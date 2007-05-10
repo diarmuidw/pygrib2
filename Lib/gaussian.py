@@ -5,8 +5,6 @@ derived from fortran CCM3 code.
 
 Jeff Whitaker <jeffrey.s.whitaker@noaa.gov>
 """
-# change the next line if you want to use
-# numarray or scipy_core instead of Numeric.
 import numpy as N
 import math, sys
 
