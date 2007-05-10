@@ -1,7 +1,6 @@
-Python module for reading GRIB edition 2 files.
+Python module for reading and writing GRIB edition 2 files.
 
 Uses C code from NCEP's g2clib (http://www.nco.ncep.noaa.gov/pmb/codes/GRIB2).
-and proj.4 (http://proj.maptools.org).
 
 GRIB is the World Meteorological Organization (WMO) standard
 file format for the weather data exchange.
@@ -10,16 +9,14 @@ file format for the weather data exchange.
 
 1) Python 2.3 or higher.
 
-2) Numeric:    N-dimensional array object for python
-               (http://numeric.scipy.org).
-               The other python array objects (numarray or scipy_core)
-               can be used instead simply by replacing "import Numeric as N"
-               with "import numarray as N" or "import scipy.base as N" in
-               the source files grib2.py, proj.py and gaussian.py.
+2) numpy:      N-dimensional array object for python
+               (http://numpy.scipy.org).
 
-**Optional**
+3) pyproj:     python interface to PROJ.4 library 
+               (http://code.google.com/p/pyproj). This in turn requires
+               the PROJ.4 C library from http://proj.maptools.org.
 
-3) jasper lib: This library is a C implementation of the JPEG-2000 Part-1 
+4) jasper lib: This library is a C implementation of the JPEG-2000 Part-1 
                standard (i.e., ISO/IEC 15444-1).
                Download from the JasPer Project's
                home page, http://www.ece.uvic.ca/~mdadams/jasper/.
@@ -44,16 +41,13 @@ file format for the weather data exchange.
 to the directories where jasper, png and zlib are installed.
 For example, the jasper libs should be found in $JASPER_DIR/lib, and
 the include files in $JASPER_DIR/include.
-If these environment variables are not set, the module will be built without
-support for JPEG2000 and/or PNG compression.
 Windows users will need either cygwin (www.cygwin.com) or mingw (www.mingw.org).
 
 2) Run 'python setup.py install', as root if necessary.
 
 **Usage**
 
-Play with the rdgrib utility ('rdgrib -h' for help), see the
-documentation in the 'doc/html' directory, and try the test scripts
+See documentation in the 'doc/html' directory, and try the test scripts
 in the 'examples' directory.  Sample GRIB2 files are in the
 sampledata directory.
 
@@ -64,15 +58,12 @@ Feedback to Jeff Whitaker <jeffrey.s.whitaker@noaa.gov>
 
 **Copyright**
 
-source code from proj.4 (http://proj.maptools.org) is included in the
-'proj_src' directory under the terms given in LICENSE_proj4.
-
 the source code from g2clib (http://www.nco.ncep.noaa.gov/pmb/codes/GRIB2)
 is include in the 'g2clib_src' directory and is in the public domain.
 
 Everything else:
 
-copyright (c) 2005 by Jeffrey Whitaker.
+copyright (c) 2007 by Jeffrey Whitaker.
 
 Permission to use, copy, modify, and distribute this software and its
 documentation for any purpose and without fee is hereby granted,
@@ -89,10 +80,11 @@ PERFORMANCE OF THIS SOFTWARE.
 
 **Links**
 
-http://www.cdc.noaa.noaa.gov/people/jeffrey.s.whitaker/python/grib2/
-http://www.cpc.ncep.noaa.gov/products/wesley/wgrib2.html
+http://code.google.com/p/pygrib2
+http://www.cpc.ncep.noaa.gov/products/wesley/wgrib2/
 http://www.nco.ncep.noaa.gov/pmb/codes/GRIB2
 http://www.ecmwf.int/products/data/software/grib2.html
 http://weather.gov/mdl/iwt/grib2/decoder.htm
 http://www.nws.noaa.gov/datamgmt/doc/GRIB2_encoding.html
 http://proj.maptools.org
+http://tigge.ucar.edu
