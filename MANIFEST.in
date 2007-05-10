@@ -1,0 +1,18 @@
+include g2clib_src/*.h
+include g2clib_src/g2lib.pyx
+include proj_src/*.h
+include proj_src/proj4.pyx
+recursive-include doc *
+include *.txt
+include LICENSE_proj4
+include utils/rdgrib
+include utils/gribrepack
+include sampledata/*.grb
+include examples/README.txt
+include examples/test1.py
+include examples/test1.sh
+include examples/test2.py
+include examples/test3.py
+include examples/ploteta.py
+include examples/grib2_eta.res
+exclude Lib/projpath.py
