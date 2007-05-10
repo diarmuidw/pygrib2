@@ -1,0 +1,25 @@
+#!/usr/bin/env python
+from grib2 import Grib2Decode
+import sys
+if len(sys.argv) < 2:
+    print "'python gribdump.py <grib_filename>' to get long listing"
+    print "'python gribdump.py <grib_filename> -s' to get short listing"
+    sys.exit(1)
+fname = sys.argv[1]
+short = False
+if len(sys.argv) > 2 and sys.argv[2] == '-s':
+    short = True
+grbs = Grib2Decode(fname)
+if short:
+    for grb in grbs:
+        print grb
+else:
+    for n,grb in enumerate(grbs):
+        print '----message %s---------' % n
+        keys = grb.__dict__.keys()
+        keys.sort()
+        for k in keys:
+            if not k.startswith('_'):
+                print k,'=',repr(grb.__dict__[k])
+        data = grb.data(masked_array=True)
+        print 'data: shape = ',data.shape,' min/max = ',data.min(),data.max()
