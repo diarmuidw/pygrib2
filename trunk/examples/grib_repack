@@ -1,0 +1,104 @@
+#!/usr/bin/env python
+"""
+ command line program to change packing scheme in a grib2 file
+
+ 'grib_repack -h' for help.
+"""
+from optparse import OptionParser
+import sys
+from grib2 import Grib2Decode, Grib2Encode
+
+usage = """
+ %prog [options] grib2filein grib2fileout
+
+ repack the data in grib2filein with a different packing scheme
+
+ example:
+
+'%prog -p32 grib2filein grib2fileout' converts grib2filein to complex packing with 2nd-order differencing, saves result to grib2fileout."""
+
+parser = OptionParser(usage=usage)
+parser.add_option("-p", default=False, action="store",dest="ipack",
+                        help="desired packing scheme - 0 for simple packing, 2 for complex packing, 31 for complex packing with 1st order differences, 32 for complex packing with 2nd order differences, 40 or 40000 for JPEG2000 packing, 41 or 40010 for PNG packing")
+
+(options, args) = parser.parse_args()
+
+if not options.ipack:
+    print 'must specify a packing scheme with -p or --packing_scheme'
+    sys.exit(1)
+
+ipack = int(options.ipack)
+if ipack not in [0,2,31,32,40,41,40000,40010]:
+    raise ValueError, 'packing scheme must be one of 0,2,31,32,40,41,40000,40010'
+
+# open grib file
+try:
+    filein = args[0]
+    fileout = args[1]
+except:
+    print 'need to specify input and output grib2 filenames'
+    sys.exit(1)
+print 'input grib file:',filein
+grbs = Grib2Decode(filein)
+
+# open the file for output.
+print 'output grib file:',fileout
+f=open(fileout,'wb')
+for nmsg,grb in enumerate(grbs):
+    grbo = Grib2Encode(grb.discipline_code,grb.identification_section)
+    # add grid definition template.
+    if hasattr(grb,'grid_definition_list'):
+       grbo.addgrid(grb.grid_definition_info,grb.grid_definition_template,deflist=grb.grid_definition_list)
+    else:
+       grbo.addgrid(grb.grid_definition_info,grb.grid_definition_template)
+    field = grb.data(masked_array=False,expand=False)
+    bitmapflag = grb.bitmap_indicator_flag
+    if bitmapflag == 0:
+        bitmap = grb._bitmap
+    else:
+        bitmap = None
+    if ipack == 0:
+        grb.data_representation_template_number=0
+    elif ipack == 2:
+        grb.data_representation_template_number=2
+        if len(grb.data_representation_template) < 6:
+            olddrtmpl = grb.data_representation_template
+            grb.data_representation_template=6*[0]
+            grb.data_representation_template[0:len(olddrtmpl)]=olddrtmpl
+            grb.data_representation_template[5]=1
+        else:
+            grb.data_representation_template[5]=1
+    elif ipack == 31 or ipack == 32:
+        grb.data_representation_template_number=ipack/10
+        if len(grb.data_representation_template) < 17:
+            olddrtmpl = grb.data_representation_template
+            grb.data_representation_template=17*[0]
+            grb.data_representation_template[0:len(olddrtmpl)]=olddrtmpl
+            grb.data_representation_template[5]=1
+            grb.data_representation_template[16]=ipack%10       
+        else:
+            grb.data_representation_template[5]=1
+            grb.data_representation_template[16]=ipack%10   
+    elif ipack in [40,41,40000,40010]:
+        grb.data_representation_template_number=ipack
+        if len(grb.data_representation_template) < 7:
+            olddrtmpl = grb.data_representation_template
+            grb.data_representation_template=7*[0]
+            grb.data_representation_template[0:len(olddrtmpl)]=olddrtmpl
+            grb.data_representation_template[5]=0
+            grb.data_representation_template[6]=255
+        else:
+            grb.data_representation_template[5]=0
+            grb.data_representation_template[6]=255
+    # add product definition template, data representation template
+    # and data (field and optional bitmap).
+    if hasattr(grb,'extra_vertical_coordinate_info'):
+        grbo.addfield(grb.product_definition_template_number,grb.product_definition_template,grb.data_representation_template_number,grb.data_representation_template,field,coordlist=grb.extra_vertical_coordinate_info,bitmapflag=bitmapflag,bitmap=bitmap)
+    else:
+        grbo.addfield(grb.product_definition_template_number,grb.product_definition_template,grb.data_representation_template_number,grb.data_representation_template,field,bitmapflag=bitmapflag,bitmap=bitmap)
+    # finalize the grib message.
+    grbo.end()
+    # write it to the file.
+    f.write(grbo.msg)
+# close the output file
+f.close()
