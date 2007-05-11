@@ -368,12 +368,16 @@ class Grib2Message:
         if not reggrid and gdtnum == 40: # 'reduced' gaussian grid.
             self.points_in_y_direction = gdtmpl[8]
         if gdtnum == 0: # regular lat/lon grid
-            self.latitude_first_gridpoint = gdtmpl[11]/1.e6
-            self.longitude_first_gridpoint = gdtmpl[12]/1.e6
-            self.latitude_last_gridpoint = gdtmpl[14]/1.e6
-            self.longitude_last_gridpoint = gdtmpl[15]/1.e6
-            self.gridlength_in_x_direction = gdtmpl[16]/1.e6
-            self.gridlength_in_y_direction = gdtmpl[17]/1.e6
+            scalefact = float(gdtmpl[9])
+            divisor = float(gdtmpl[10])
+            if scalefact == 0: scalefact = 1.
+            if divisor <= 0: divisor = 1.e6
+            self.latitude_first_gridpoint = scalefact*gdtmpl[11]/divisor
+            self.longitude_first_gridpoint = scalefact*gdtmpl[12]/divisor
+            self.latitude_last_gridpoint = scalefact*gdtmpl[14]/divisor
+            self.longitude_last_gridpoint = scalefact*gdtmpl[15]/divisor
+            self.gridlength_in_x_direction = scalefact*gdtmpl[16]/divisor
+            self.gridlength_in_y_direction = scalefact*gdtmpl[17]/divisor
             if self.latitude_first_gridpoint > self.latitude_last_gridpoint:
                 self.gridlength_in_y_direction = -self.gridlength_in_y_direction
             if self.longitude_first_gridpoint > self.longitude_last_gridpoint:
@@ -444,13 +448,17 @@ class Grib2Message:
                                  tobase(2,int(gdtmpl[17]))[2],\
                                  tobase(2,int(gdtmpl[17]))[3]])
         elif gdtnum == 40: # gaussian grid.
+            scalefact = float(gdtmpl[9])
+            divisor = float(gdtmpl[10])
+            if scalefact == 0: scalefact = 1.
+            if divisor <= 0: divisor = 1.e6
             self.points_between_pole_and_equator = gdtmpl[17]
-            self.latitude_first_gridpoint = gdtmpl[11]/1.e6
-            self.longitude_first_gridpoint = gdtmpl[12]/1.e6
-            self.latitude_last_gridpoint = gdtmpl[14]/1.e6
-            self.longitude_last_gridpoint = gdtmpl[15]/1.e6
+            self.latitude_first_gridpoint = scalefact*gdtmpl[11]/divisor
+            self.longitude_first_gridpoint = scalefact*gdtmpl[12]/divisor
+            self.latitude_last_gridpoint = scalefact*gdtmpl[14]/divisor
+            self.longitude_last_gridpoint = scalefact*gdtmpl[15]/divisor
             if reggrid:
-                self.gridlength_in_x_direction = gdtmpl[16]/1.e6
+                self.gridlength_in_x_direction = scalefact*gdtmpl[16]/divisor
                 if self.longitude_first_gridpoint > self.longitude_last_gridpoint:
                     self.gridlength_in_x_direction = -self.gridlength_in_x_direction
             self.scanmodeflags = ''.join([tobase(2,int(gdtmpl[18]))[0],\
