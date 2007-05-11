@@ -534,7 +534,7 @@ class Grib2Message:
         self._inventory = repr(self._grib_message_number)+':'+paramstring+':'+levstring+':'+fcsttimestring+':'+self.type_of_grid+':'+ensstring
 
     def __repr__(self):
-        """print the _inventory instance variable"""
+        """print a summary string describiing the contents of the GRIB2 message"""
         return self._inventory
         
     def data(self,fill_value=1.e30,masked_array=False,expand=True,order=None):
@@ -706,6 +706,19 @@ class Grib2Message:
         return lats.astype('f'), lons.astype('f')
 
 def Grib2Decode(filename):
+    """
+ Read the contents of a GRIB2 file.
+
+ @param filename: name of GRIB2 file.
+
+ @return:  a list of L{Grib2Message} instances representing all of the
+ grib messages in the file.  Messages with multiple fields are split 
+ into separate messages (so that each L{Grib2Message} instance contains
+ just one data field). The metadata in each GRIB2 message can be
+ accessed via L{Grib2Message} instance variables, the actual data 
+ can be read using the L{Grib2Message.data} method, and the lat/lon values of the grid
+ can be accesses using the L{Grib2Message.grid} method.
+    """
     f = open(filename,'rb')
     nmsg = 0
     # loop over grib messages, read section 0, get entire grib message.
