@@ -8,7 +8,7 @@ Python module for reading and writing GRIB edition 2 (GRIB2) files
 GRIB2 is the second version of the World Meterological Organization
 (WMO) standard for distributing gridded data. The standard is
 outlined in U{FM92 GRIB Edition 2, Code Form and Tables
-<http://www.wmo.ch/web/www/DPS/grib-2.html>}. Includes a python
+<http://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc.shtml>}. Includes a python
 programmer interface for reading/writing GRIB2 grids as well as command
 line utilities for listing the contents of a grib file and 're-packing' a
 grib file using a different compression scheme.
@@ -257,7 +257,7 @@ class Grib2Message:
 
  @ivar number_of_data_points_to_unpack: total number of data points in grib message.
  @ivar parameter: string describing the variable in the grib message.
- @ivar parameter_category:  string describing the type of variable of the variable in the grib message.
+ @ivar parameter_category:  string describing the type of variable the grib message.
  @ivar parameter_category_code: variable category code.
  @ivar parameter_code: variable code.
  @ivar parameter_units: units of variable.
