@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>grib2.grib2</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th bgcolor="#70b0f0" class="navbar-select"
+          >&nbsp;&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;grib2 ::
+        Module&nbsp;grib2
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module grib2</h1><span class="codelink"><a href="grib2.grib2-pysrc.html">source&nbsp;code</a></span><br /><br />
+<h1 class="heading">Introduction</h1>
+    Python module for reading and writing GRIB edition 2 (GRIB2) files 
+    (<a href="http://code.google.com/p/pygrib/downloads/list" 
+    target="_top">download</a>). GRIB2 is the second version of the World 
+    Meterological Organization (WMO) standard for distributing gridded 
+    data. The standard is outlined in <a 
+    href="http://www.wmo.ch/web/www/DPS/grib-2.html" target="_top">FM92 
+    GRIB Edition 2, Code Form and Tables</a>. Includes a python programmer 
+    interface for reading/writing GRIB2 grids as well as command line 
+    utilities for listing the contents of a grib file and 're-packing' a 
+    grib file using a different compression scheme.
+  <h1 class="heading">Required</h1>
+    <ul>
+      <li>
+        <a href="http://python.org" target="_top">Python</a> 2.3 or 
+        higher.
+      </li>
+      <li>
+        <a 
+        href="http://sourceforge.net/project/showfiles.php?group_id=1369" 
+        target="_top">numpy</a> N-dimensional array object for python.
+      </li>
+      <li>
+        <a href="http://code.google.com/p/pyproj/" 
+        target="_top">pyproj</a> Python interface to <a 
+        href="http://proj.maptools.org" target="_top">PROJ.4</a> library 
+        for cartographic transformations. <a 
+        href="http://proj.maptools.org" target="_top">PROJ.4</a> library 
+        must be installed first.
+      </li>
+      <li>
+        <a href="http://www.ece.uvic.ca/~mdadams/jasper" 
+        target="_top">Jasper</a> library. This library is a C 
+        implementation of the JPEG-2000 Part-1 standard (ISO/IEC 
+        15444-1).
+      </li>
+      <li>
+        <a href="http://www.libpng.org/pub/png/libpng.html" 
+        target="_top">PNG</a> library. This library is a C implementation 
+        of the Portable Network Graphics (PNG) image compression format. 
+        It's probably already on your system.
+      </li>
+      <li>
+        <a href="http://www.gzip.org/zlib/" target="_top">zlib</a> 
+        compression library. It's almost certainly already on your 
+        system.
+      </li>
+    </ul>
+  <h1 class="heading">Installation</h1>
+    <ul>
+      <li>
+        set the environment variables <code>$JASPER_DIR</code>, 
+        <code>$PNG_DIR</code> and <code>$ZLIB_DIR</code> so that the 
+        include files and libraries for jasper, png and zlib will be found.
+        For example, the include files for jasper should be found in 
+        <code>$JASPER_DIR/include</code>, and the jasper library should be 
+        found in <code>$JASPER_DIR/lib</code>.
+      </li>
+      <li>
+        Run 'python setup.py install', as root if necessary.
+      </li>
+    </ul>
+  <h1 class="heading">Example usage</h1>
+    <ul>
+      <li>
+        from the python interpreter prompt, import the package:
+<pre class="literalblock">
+  &gt;&gt;&gt; from grib2 import Grib2Decode, dump
+</pre>
+      </li>
+      <li>
+        open a GRIB2 file, create a list of Grib2Message instances:
+<pre class="literalblock">
+  &gt;&gt;&gt; grbs = Grib2Decode('sampledata/gfs.grb')  
+</pre>
+      </li>
+      <li>
+        print an inventory of the file:
+<pre class="literalblock">
+  &gt;&gt;&gt; for grb in grbs:
+  &gt;&gt;&gt;     print grb 
+  1:Geopotential height [gpm]:100000 Pa (Isobaric surface):72 Hour Forecast initialized 2004120912:Latitude/longitude:Unperturbed high-resolution control forecast member 0 of 10
+  2:Geopotential height [gpm]:97500 Pa (Isobaric surface):72 Hour Forecast initialized 2004120912:Latitude/longitude:Unperturbed high-resolution control forecast member 0 of 10
+  3:Geopotential height [gpm]:95000 Pa (Isobaric surface):72 Hour Forecast initialized 2004120912:Latitude/longitude:Unperturbed high-resolution control forecast member 0 of 10
+
+     .....
+</pre>
+      </li>
+      <li>
+        find the first grib message containing 500 hPa geopotential 
+        height:
+<pre class="literalblock">
+  &gt;&gt;&gt; z500 = [g for g in grbs if g.parameter=='Geopotential height' and g.vertical_level=='50000 Pa' and g.vertical_level_descriptor=='Isobaric surface'][0]
+</pre>
+      </li>
+      <li>
+        extract the 500 hPa height data:
+<pre class="literalblock">
+  &gt;&gt;&gt; z500data = z500.data()
+  &gt;&gt;&gt; print z500.shape, z500data.min(), z500data.max()
+  (73, 144) 4834.89990234 5931.20019531
+</pre>
+      </li>
+      <li>
+        get the latitudes and longitudes of the grid:
+<pre class="literalblock">
+  &gt;&gt;&gt; lats, lons = z500.grid()
+  &gt;&gt;&gt; print lats.shape, lats.min(), lats.max(), lons.shape, lons.min(), lons.max()
+  (73, 144) -90.0 90.0 (73, 144) 0.0 357.5
+</pre>
+      </li>
+      <li>
+        dump just this grib message to another file:
+<pre class="literalblock">
+  &gt;&gt;&gt; dump('gfs_z500.grb',[z500])
+</pre>
+      </li>
+      <li>
+        read that file back in and verify it's contents:
+<pre class="literalblock">
+  &gt;&gt;&gt; grbs = Grib2Decode('gfs_z500.grb')
+  &gt;&gt;&gt; for g in grbs:
+  &gt;&gt;&gt;    print g
+  1:Geopotential height [gpm]:50000 Pa (Isobaric surface):72 Hour Forecast initialized 2004120912:Latitude/longitude:Unperturbed high-resolution control forecast member 0 of 10
+</pre>
+      </li>
+    </ul>
+  <h1 class="heading">Documentation</h1>
+    <ul>
+      <li>
+        see below for python API documentation (<a 
+        href="grib2.grib2-module.html#Grib2Decode" 
+        class="link">Grib2Decode</a>, <a 
+        href="grib2.grib2.Grib2Encode-class.html" 
+        class="link">Grib2Encode</a>, <a 
+        href="grib2.grib2.Grib2Message-class.html" 
+        class="link">Grib2Message</a>, <a 
+        href="grib2.grib2-module.html#dump" class="link">dump</a>).
+      </li>
+    </ul>
+  <h1 class="heading">Links</h1>
+    <ul>
+      <li>
+        <a href="http://www.cpc.ncep.noaa.gov/products/wesley/wgrib2/" 
+        target="_top">wgrib2</a>
+      </li>
+      <li>
+        <a href="http://www.nco.ncep.noaa.gov/pmb/codes/GRIB2/" 
+        target="_top">NCEP GRIB2 C and FORTRAN libraries</a>. This package 
+        uses C routines from g2clib.
+      </li>
+      <li>
+        <a href="http://www.ecmwf.int/products/data/software/grib2.html"
+        target="_top">ECMWF gribAPI</a>
+      </li>
+      <li>
+        <a href="http://weather.gov/mdl/iwt/grib2/decoder.htm" 
+        target="_top">MDL GRIB2 Decoder</a>
+      </li>
+      <li>
+        <a href="http://nz.cosc.canterbury.ac.nz/~greg/python/Pyrex/" 
+        target="_top">Pyrex</a> (used to create python interface to g2clib 
+        and proj4).
+      </li>
+      <li>
+        <a href="http://proj.maptools.org" target="_top">proj.4</a> 
+        (used to perform cartographic transformations).
+      </li>
+    </ul>
+  <h1 class="heading">Changelog</h1>
+    <ul>
+      <li>
+        <b>20041213</b>: initial release. Fully supports lat/lon, 
+        gaussian, lambert conformal, polar stereographic and mercator 
+        grids.  Includes all product (section 4) tables included in the 
+        20031105 version of the WMO GRIB2 <a 
+        href="http://www.wmo.ch/web/www/DPS/grib-2.html" 
+        target="_top">document</a>. Works with every GRIB2 file I could 
+        find - if you find one it has trouble with please let me know.
+      </li>
+      <li>
+        <b>20041215</b>: Fixed to handle files with 'communications 
+        headers' at beginning of GRIB message.
+      </li>
+      <li>
+        <b>20041217</b>: Added <code>matchrecs</code> class method to 
+        find GRIB records with matching gdtnum, pdtnum, idsect, gdtmpl or 
+        pdtmpl values. Added example that reads an ETA grid and plots it 
+        with <a href="http://matplotlib.sf.net/" 
+        target="_top">Matplotlib</a>.
+      </li>
+      <li>
+        <b>20050118</b>: Updated C code to g2clib-1.0.2 (from 
+        1.0.1).
+      </li>
+      <li>
+        <b>20050316</b>: added a new class (<a 
+        href="grib2.grib2.Grib2Encode-class.html" 
+        class="link">Grib2Encode</a>) for encoding GRIB2 messages. Renamed 
+        Grib2 class <a href="grib2.grib2-module.html#Grib2Decode" 
+        class="link">Grib2Decode</a>. Additional options for rdgrib 
+        utility.
+      </li>
+      <li>
+        <b>20050322</b>: bugfixes for <a 
+        href="grib2.grib2.Grib2Encode-class.html" 
+        class="link">Grib2Encode</a>. Added test script (test3.py) that 
+        exercises both Grib2Decode and Grib2Encode.
+      </li>
+      <li>
+        <b>20050716</b>: Added some support for irregular grids (such as
+        ECMWF reduced gaussian grids). JPEG2000 and PNG support is now 
+        optional.
+      </li>
+      <li>
+        <b>20050829</b>: getfld and getflds <a 
+        href="grib2.grib2-module.html#Grib2Decode" 
+        class="link">Grib2Decode</a> methods can now return masked arrays 
+        when there is a bitmap.
+      </li>
+      <li>
+        <b>20050830</b>: Now displays more ensemble info in 
+        inventory.
+      </li>
+      <li>
+        <b>20051121</b>: Now uses Numeric by default (no longer requires
+        numarray).  Can easily be modified to use nummarray or Numeric by 
+        modifying the imports in 3 files (grib2.py, proj.py and 
+        gaussian.py). A new utility, gribrepack, is included for repacking 
+        a grib2 file with a different compression scheme.
+      </li>
+      <li>
+        <b>20051125</b>: Updated grib2 tables to version 3 (released by 
+        WMO on Nov 2, 2005).
+      </li>
+      <li>
+        <b>20060117</b>: Now uses numpy by default (instead of Numeric).
+        Python 2.5 compatibility fixes.
+      </li>
+      <li>
+        <b>20070130</b>: Fixes some bugs found by Rob Cermak.  Now 
+        requires pyproj be installed first (which in turn requires that you
+        have the PROJ.4 C-library installed). Updated to g2clib 1.0.4.
+      </li>
+      <li>
+        <b>20070428</b>: Fixed memory leaks with a patch provided by 
+        Thomas Natschlager.
+      </li>
+      <li>
+        <b>20070501</b>: Included new parameters approved by WMO for 
+        operational implementation in November, 2007. These new parameters 
+        are used in the <a href="http://tigge.ecmwf.int/tigge/d/tigge/" 
+        target="_top">TIGGE</a> grib2 files, so now all TIGGE files should 
+        be interpreted correctly. 'Reduced' global gaussian grids (from 
+        ECMWF) are now expanded to full global gaussian grids automatically
+        using linear interpolation.
+      </li>
+      <li>
+        <b>20070503</b>: Now partially supports grid definition template
+        90 (space-view satellite projection). Can't yet handle case when 
+        sub-satellite point is off the equator and earth is specified as an
+        oblate spheroid. Does work with EUMETSAT grib2 files.  Bug fix for 
+        Oblate Spheroid earth shape (major and minor radii are actually in 
+        km, not m).
+      </li>
+      <li>
+        <b>20070515</b>: Totally revamped API for reading.  Now hosted 
+        on google code. Supports Albers equal area, and azimuthal 
+        equidistant projections, although these are untested since I 
+        couldn't find any grib files in the wild that use these.
+      </li>
+    </ul><br /><br />
+
+<hr />
+<div class="fields">      <p><strong>Author:</strong>
+        Jeffrey Whitaker.
+      </p>
+      <p><strong>Contact:</strong>
+        <a href="mailto:jeffrey.s.whitaker@noaa.gov" target="_top">Jeff 
+        Whitaker</a>
+      </p>
+      <p><strong>Version:</strong>
+        20070515
+      </p>
+      <p><strong>Copyright:</strong>
+        copyright 2007 by Jeffrey Whitaker.
+      </p>
+      <p><strong>License:</strong>
+        Permission to use, copy, modify, and distribute this software 
+        and its documentation for any purpose and without fee is hereby 
+        granted, provided that the above copyright notice appear in all 
+        copies and that both that copyright notice and this permission 
+        notice appear in supporting documentation. THE AUTHOR DISCLAIMS ALL
+        WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING ALL IMPLIED 
+        WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE 
+        AUTHOR BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES
+        OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR 
+        PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER 
+        TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR 
+        PERFORMANCE OF THIS SOFTWARE.
+      </p>
+</div><!-- ==================== CLASSES ==================== -->
+<a name="section-Classes"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Classes</span></td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="grib2.grib2.Grib2Message-class.html" class="summary-name">Grib2Message</a><br />
+      Class for accessing data in a GRIB Edition 2 message.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="grib2.grib2.Grib2Encode-class.html" class="summary-name">Grib2Encode</a><br />
+      Class for encoding data into a GRIB2 message.
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Functions</span></td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="grib2.grib2-module.html#Grib2Decode" class="summary-sig-name">Grib2Decode</a>(<span class="summary-sig-arg">filename</span>)</span><br />
+      Read the contents of a GRIB2 file.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Decode">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="grib2.grib2-module.html#dump" class="summary-sig-name">dump</a>(<span class="summary-sig-arg">filename</span>,
+        <span class="summary-sig-arg">grbs</span>)</span><br />
+      write the given <a href="grib2.grib2.Grib2Message-class.html" 
+      class="link">Grib2Message</a> instances to a grib file.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="grib2.grib2-pysrc.html#dump">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Variables</span></td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__version__"></a><span class="summary-name">__version__</span> = <code title="'20070515'"><code class="variable-quote">'</code><code class="variable-string">20070515</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="grib2.grib2-module.html#__doc__" class="summary-name">__doc__</a> = <code title="&quot;&quot;&quot;
+Introduction
+============
+
+Python module for reading and writing GRIB edition 2 (GRIB2) files
+(U{download&lt;http://code.google.com/p/pygrib/downloads/list&gt;}). 
+GRIB2 is the second version of the World Meterological Organization
+(WMO) standard for distributing gridded data. The standard is
+..."><code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Function Details</span></td>
+</tr>
+</table>
+<a name="Grib2Decode"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Grib2Decode</span>(<span class="sig-arg">filename</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Decode">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  Read the contents of a GRIB2 file.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>filename</code></strong> - name of GRIB2 file.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>a list of <a href="grib2.grib2.Grib2Message-class.html" 
+          class="link">Grib2Message</a> instances representing all of the 
+          grib messages in the file.  Messages with multiple fields are 
+          split into separate messages (so that each <a 
+          href="grib2.grib2.Grib2Message-class.html" 
+          class="link">Grib2Message</a> instance contains just one data 
+          field). The metadata in each GRIB2 message can be accessed via <a
+          href="grib2.grib2.Grib2Message-class.html" 
+          class="link">Grib2Message</a> instance variables, the actual data
+          can be read using the <a 
+          href="grib2.grib2.Grib2Message-class.html#data" 
+          class="link">Grib2Message.data</a> method, and the lat/lon values
+          of the grid can be accesses using the <a 
+          href="grib2.grib2.Grib2Message-class.html#grid" 
+          class="link">Grib2Message.grid</a> method.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="dump"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">dump</span>(<span class="sig-arg">filename</span>,
+        <span class="sig-arg">grbs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="grib2.grib2-pysrc.html#dump">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  write the given <a href="grib2.grib2.Grib2Message-class.html" 
+  class="link">Grib2Message</a> instances to a grib file.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>filename</code></strong> - file to write grib data to.</li>
+        <li><strong class="pname"><code>grbs</code></strong> - a list of <a href="grib2.grib2.Grib2Message-class.html" 
+          class="link">Grib2Message</a> instances.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== VARIABLES DETAILS ==================== -->
+<a name="section-VariablesDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Variables Details</span></td>
+</tr>
+</table>
+<a name="__doc__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">__doc__</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+&quot;&quot;&quot;
+Introduction
+============
+
+Python module for reading and writing GRIB edition 2 (GRIB2) files
+(U{download&lt;http://code.google.com/p/pygrib/downloads/list&gt;}). 
+GRIB2 is the second version of the World Meterological Organization
+(WMO) standard for distributing gridded data. The standard is
+<code class="variable-ellipsis">...</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th bgcolor="#70b0f0" class="navbar-select"
+          >&nbsp;&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Fri May 11 12:53:01 2007
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>
