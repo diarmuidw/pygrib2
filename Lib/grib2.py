@@ -208,42 +208,43 @@ class Grib2Message:
  When a class instance is created, metadata in the GRIB2 file
  is decoded and used to set various instance variables.
  
- @ivar bitmap_indicator_flag:
- @ivar data_representation_template:
- @ivar data_representation_template_number:
- @ivar discipline:
- @ivar discipline_code:
- @ivar earthRmajor:
- @ivar earthRminor:
+ @ivar bitmap_indicator_flag: flag to indicate whether a bit-map is used (0 for yes, 255 for no).
+ @ivar data_representation_template: data representation template  from section 5.
+ @ivar data_representation_template_number: data representation template number from section 5.
+ @ivar discipline: product discipline for grib message.
+ @ivar discipline_code: product discipline code for grib message.
+ @ivar earthRmajor: major (equatorial) earth radius.
+ @ivar earthRminor: minor (polar) earth radius.
  @ivar ensemble_info: ensemble member information string.
  @ivar forecast_time: string describing forecast time.
  @ivar grid_definition_info: grid definition section information from section 3.
  See L{Grib2Encode.addgrid} for details.
- @ivar grid_definition_template:
- @ivar grid_definition_template_number:
- @ivar gridlength_in_x_direction:
- @ivar gridlength_in_y_direction:
+ @ivar grid_definition_template: grid definition template from section 3.
+ @ivar grid_definition_template_number: grid definition template number from section 3.
+ @ivar gridlength_in_x_direction: x (or longitudinal) direction grid length.
+ @ivar gridlength_in_y_direction: y (or latitudinal) direction grid length.
  @ivar identification_section: data from identification section (section 1).
  See L{Grib2Encode.__init__} for details.
- @ivar latitude_first_gridpoint:
- @ivar latitude_last_gridpoint:
- @ivar longitude_first_gridpoint:
- @ivar longitude_last_gridpoint:
- @ivar number_of_data_points_to_unpack:
- @ivar parameter:
- @ivar parameter_category:
- @ivar parameter_category_code:
- @ivar parameter_code:
- @ivar parameter_units:
- @ivar points_in_x_direction:
- @ivar points_in_y_direction:
- @ivar product_definition_template:
- @ivar product_definition_template_name:
- @ivar product_definition_template_number:
- @ivar shape_of_earth:
- @ivar type_of_grid:
- @ivar vertical_level:
- @ivar vertical_level_descriptor:
+ @ivar latitude_first_gridpoint: latitude of first grid point on grid.
+ @ivar latitude_last_gridpoint: latitude of last grid point on grid.
+ @ivar longitude_first_gridpoint: longitude of first grid point on grid.
+ @ivar longitude_last_gridpoint: longitude of last grid point on grid.
+ @ivar number_of_data_points_to_unpack: total number of data points in grib message.
+ @ivar parameter: string describing the variable in the grib message.
+ @ivar parameter_category:  string describing the type of variable of the variable in the grib message.
+ @ivar parameter_category_code: variable category code.
+ @ivar parameter_code: variable code.
+ @ivar parameter_units: units of variable.
+ @ivar points_in_x_direction: number of points in the x (longitudinal) direction.
+ @ivar points_in_y_direction: number of points in the y (latitudinal) direction.
+ @ivar product_definition_template: product definition template nfrom section 4.
+ @ivar product_definition_template_name: product definition template name.
+ @ivar product_definition_template_number: product definition template number from section 4.
+ @ivar shape_of_earth: string describing the shape of the earth (e.g. 'Oblate Spheroid', 'Spheriod').
+ @ivar type_of_grid: type of grid or map projection (e.g. 'regular lat/lon', 'Lambert Conformal').
+ @ivar vertical_level: string describing vertical level ('50000 Pa', '10 m', etc).
+ @ivar vertical_level_descriptor: string describing the type of vertical level 
+ (e.g. 'Isobaric surface').
 
     """
     def __init__(self,**kwargs):
@@ -393,6 +394,10 @@ class Grib2Message:
             self.gridlength_in_x_direction = gdtmpl[14]/1000.
             self.gridlength_in_y_direction = gdtmpl[15]/1000.
             self.proj4_proj = 'stere'
+            scanmodex = tobase(2,int(gdtmpl[11]))[0]
+            scanmodey = tobase(2,int(gdtmpl[11]))[1]
+            storageorder = tobase(2,int(gdtmpl[11]))[2]
+            rowscanflip = tobase(2,int(gdtmpl[11]))[3]
         elif gdtnum == 30: # lambert conformal
             self.latitude_first_gridpoint = gdtmpl[9]/1.e6
             self.longitude_first_gridpoint = gdtmpl[10]/1.e6
