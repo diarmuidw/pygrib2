@@ -218,26 +218,43 @@ class Grib2Message:
  @ivar ensemble_info: ensemble member information string.
  @ivar forecast_time: string describing forecast time.
  @ivar grid_definition_info: grid definition section information from section 3.
- See L{Grib2Encode.addgrid} for details.
+  See L{Grib2Encode.addgrid} for details.
  @ivar grid_definition_template: grid definition template from section 3.
  @ivar grid_definition_template_number: grid definition template number from section 3.
  @ivar gridlength_in_x_direction: x (or longitudinal) direction grid length.
  @ivar gridlength_in_y_direction: y (or latitudinal) direction grid length.
  @ivar identification_section: data from identification section (section 1).
- See L{Grib2Encode.__init__} for details.
+  See L{Grib2Encode.__init__} for details.
  @ivar latitude_first_gridpoint: latitude of first grid point on grid.
  @ivar latitude_last_gridpoint: latitude of last grid point on grid.
  @ivar longitude_first_gridpoint: longitude of first grid point on grid.
  @ivar longitude_last_gridpoint: longitude of last grid point on grid.
  @ivar scanmodeflags: scanning mode flags from Table 3.4.
- bit 1: 0 - Points in the first row or column scan in the +i (+x) direction
-	    1 - Points in the first row or column scan in the +i (+x) direction
- bit 2: 0 - Points in the first row or column scan in the -j (-y) direction
-	    1 - Points in the first row or column scan in the +j (+y) direction
- bit 3: 0 - Adjacent points in the i (x) direction are consecutive.
-	    1 - Adjacent points in the j (y) direction are consecutive.
- bit 4: 0 - All rows scan in the same direction
-	    1 - Adjacent rows scan in the opposite direction
+
+  - bit 1:
+
+    0 - Points in the first row or column scan in the +i (+x) direction
+
+    1 - Points in the first row or column scan in the +i (+x) direction
+
+  - bit 2:
+
+    0 - Points in the first row or column scan in the -j (-y) direction
+
+    1 - Points in the first row or column scan in the +j (+y) direction
+
+  - bit 3:
+
+    0 - Adjacent points in the i (x) direction are consecutive.
+
+    1 - Adjacent points in the j (y) direction are consecutive.
+
+  - bit 4:
+
+    0 - All rows scan in the same direction
+
+    1 - Adjacent rows scan in the opposite direction
+
  @ivar number_of_data_points_to_unpack: total number of data points in grib message.
  @ivar parameter: string describing the variable in the grib message.
  @ivar parameter_category:  string describing the type of variable of the variable in the grib message.
@@ -249,7 +266,7 @@ class Grib2Message:
  @ivar product_definition_template: product definition template nfrom section 4.
  @ivar product_definition_template_name: product definition template name.
  @ivar product_definition_template_number: product definition template number from section 4.
- @ivar shape_of_earth: string describing the shape of the earth (e.g. 'Oblate Spheroid', 'Spheriod').
+ @ivar shape_of_earth: string describing the shape of the earth (e.g. 'Oblate Spheroid', 'Spheroid').
  @ivar type_of_grid: type of grid or map projection (e.g. 'regular lat/lon', 'Lambert Conformal').
  @ivar vertical_level: string describing vertical level ('50000 Pa', '10 m', etc).
  @ivar vertical_level_descriptor: string describing the type of vertical level 
