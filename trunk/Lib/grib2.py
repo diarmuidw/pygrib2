@@ -625,9 +625,9 @@ class Grib2Message:
             projparams['h']=self.proj4_h
             pj = pyproj.Proj(projparams)
             x = dx*N.indices((ny,nx),'f')[1,:,:]
-            x = x - 0.5*x.min()
+            x = x - 0.5*x.max()
             y = dy*N.indices((ny,nx),'f')[0,:,:]
-            y = y - 0.5*y.min()
+            y = y - 0.5*y.max()
             lons, lats = pj(x,y,inverse=True)
             # set lons,lats to 1.e30 where undefined
             abslons = N.fabs(lons); abslats = N.fabs(lats)
