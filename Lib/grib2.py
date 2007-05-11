@@ -489,6 +489,7 @@ class Grib2Message:
         """
         bitmapflag = self.bitmap_indicator_flag
         drtnum = self.data_representation_template_number
+        drtmpl = self.data_representation_template
         # default order=0 is missing values or bitmap exists.
         if order is None:
             if ((drtnum == 3 or drtnum == 2) and drtmpl[6] != 0) or bitmapflag == 0:
@@ -501,7 +502,6 @@ class Grib2Message:
         f.close()
         gdtnum = self.grid_definition_template_number
         gdtmpl = self.grid_definition_template
-        drtmpl = self.data_representation_template
         ndpts = self.number_of_data_points_to_unpack
         gdsinfo = self.grid_definition_info
         ngrdpts = gdsinfo[1]
