@@ -229,6 +229,15 @@ class Grib2Message:
  @ivar latitude_last_gridpoint: latitude of last grid point on grid.
  @ivar longitude_first_gridpoint: longitude of first grid point on grid.
  @ivar longitude_last_gridpoint: longitude of last grid point on grid.
+ @ivar scanmodeflags: scanning mode flags from Table 3.4.
+ bit 1: 0 - Points in the first row or column scan in the +i (+x) direction
+	    1 - Points in the first row or column scan in the +i (+x) direction
+ bit 2: 0 - Points in the first row or column scan in the -j (-y) direction
+	    1 - Points in the first row or column scan in the +j (+y) direction
+ bit 3: 0 - Adjacent points in the i (x) direction are consecutive.
+	    1 - Adjacent points in the j (y) direction are consecutive.
+ bit 4: 0 - All rows scan in the same direction
+	    1 - Adjacent rows scan in the opposite direction
  @ivar number_of_data_points_to_unpack: total number of data points in grib message.
  @ivar parameter: string describing the variable in the grib message.
  @ivar parameter_category:  string describing the type of variable of the variable in the grib message.
@@ -369,10 +378,10 @@ class Grib2Message:
                 self.gridlength_in_y_direction = -self.gridlength_in_y_direction
             if self.longitude_first_gridpoint > self.longitude_last_gridpoint:
                 self.gridlength_in_x_direction = -self.gridlength_in_x_direction
-            self.rescompflags = (tobase(2,int(gdtmpl[13]))[0],\
-                                 tobase(2,int(gdtmpl[13]))[1],\
-                                 tobase(2,int(gdtmpl[13]))[2],\
-                                 tobase(2,int(gdtmpl[13]))[3])
+            self.scanmodeflags = ''.join([tobase(2,int(gdtmpl[18]))[0],\
+                                 tobase(2,int(gdtmpl[18]))[1],\
+                                 tobase(2,int(gdtmpl[18]))[2],\
+                                 tobase(2,int(gdtmpl[18]))[3]])
         elif gdtnum == 10: # mercator
             self.latitude_first_gridpoint = gdtmpl[9]/1.e6
             self.longitude_first_gridpoint = gdtmpl[10]/1.e6
@@ -383,10 +392,10 @@ class Grib2Message:
             self.proj4_lat_ts = gdtmpl[12]/1.e6
             self.proj4_lon_0 = 0.5*(self.longitude_first_gridpoint+self.longitude_last_gridpoint)
             self.proj4_proj = 'merc'
-            self.rescompflags = (tobase(2,int(gdtmpl[11]))[0],\
-                                 tobase(2,int(gdtmpl[11]))[1],\
-                                 tobase(2,int(gdtmpl[11]))[2],\
-                                 tobase(2,int(gdtmpl[11]))[3])
+            self.scanmodeflags = ''.join([tobase(2,int(gdtmpl[15]))[0],\
+                                 tobase(2,int(gdtmpl[15]))[1],\
+                                 tobase(2,int(gdtmpl[15]))[2],\
+                                 tobase(2,int(gdtmpl[15]))[3]])
         elif gdtnum == 20: # stereographic
             projflag = tobase(2,int(gdtmpl[16]))[0]
             self.latitude_first_gridpoint = gdtmpl[9]/1.e6
@@ -402,10 +411,10 @@ class Grib2Message:
             self.gridlength_in_x_direction = gdtmpl[14]/1000.
             self.gridlength_in_y_direction = gdtmpl[15]/1000.
             self.proj4_proj = 'stere'
-            self.rescompflags = (tobase(2,int(gdtmpl[11]))[0],\
-                                 tobase(2,int(gdtmpl[11]))[1],\
-                                 tobase(2,int(gdtmpl[11]))[2],\
-                                 tobase(2,int(gdtmpl[11]))[3])
+            self.scanmodeflags = ''.join([tobase(2,int(gdtmpl[17]))[0],\
+                                 tobase(2,int(gdtmpl[17]))[1],\
+                                 tobase(2,int(gdtmpl[17]))[2],\
+                                 tobase(2,int(gdtmpl[17]))[3]])
         elif gdtnum == 30: # lambert conformal
             self.latitude_first_gridpoint = gdtmpl[9]/1.e6
             self.longitude_first_gridpoint = gdtmpl[10]/1.e6
@@ -416,10 +425,10 @@ class Grib2Message:
             self.proj4_lat_0 = gdtmpl[12]/1.e6
             self.proj4_lon_0 = gdtmpl[13]/1.e6
             self.proj4_proj = 'lcc'
-            self.rescompflags = (tobase(2,int(gdtmpl[11]))[0],\
-                                 tobase(2,int(gdtmpl[11]))[1],\
-                                 tobase(2,int(gdtmpl[11]))[2],\
-                                 tobase(2,int(gdtmpl[11]))[3])
+            self.scanmodeflags = ''.join([tobase(2,int(gdtmpl[17]))[0],\
+                                 tobase(2,int(gdtmpl[17]))[1],\
+                                 tobase(2,int(gdtmpl[17]))[2],\
+                                 tobase(2,int(gdtmpl[17]))[3]])
         elif gdtnum == 31: # albers equal area.
             self.latitude_first_gridpoint = gdtmpl[9]/1.e6
             self.longitude_first_gridpoint = gdtmpl[10]/1.e6
@@ -430,10 +439,10 @@ class Grib2Message:
             self.proj4_lat_0 = gdtmpl[12]/1.e6
             self.proj4_lon_0 = gdtmpl[13]/1.e6
             self.proj4_proj = 'aea'
-            self.rescompflags = (tobase(2,int(gdtmpl[11]))[0],\
-                                 tobase(2,int(gdtmpl[11]))[1],\
-                                 tobase(2,int(gdtmpl[11]))[2],\
-                                 tobase(2,int(gdtmpl[11]))[3])
+            self.scanmodeflags = ''.join([tobase(2,int(gdtmpl[17]))[0],\
+                                 tobase(2,int(gdtmpl[17]))[1],\
+                                 tobase(2,int(gdtmpl[17]))[2],\
+                                 tobase(2,int(gdtmpl[17]))[3]])
         elif gdtnum == 40: # gaussian grid.
             self.points_between_pole_and_equator = gdtmpl[17]
             self.latitude_first_gridpoint = gdtmpl[11]/1.e6
@@ -444,10 +453,10 @@ class Grib2Message:
                 self.gridlength_in_x_direction = gdtmpl[16]/1.e6
                 if self.longitude_first_gridpoint > self.longitude_last_gridpoint:
                     self.gridlength_in_x_direction = -self.gridlength_in_x_direction
-            self.rescompflags = (tobase(2,int(gdtmpl[13]))[0],\
-                                 tobase(2,int(gdtmpl[13]))[1],\
-                                 tobase(2,int(gdtmpl[13]))[2],\
-                                 tobase(2,int(gdtmpl[13]))[3])
+            self.scanmodeflags = ''.join([tobase(2,int(gdtmpl[18]))[0],\
+                                 tobase(2,int(gdtmpl[18]))[1],\
+                                 tobase(2,int(gdtmpl[18]))[2],\
+                                 tobase(2,int(gdtmpl[18]))[3]])
         elif gdtnum == 90: # near-sided vertical perspective satellite projection
             self.proj4_lat_0 = gdtmpl[9]/1.e6
             self.proj4_lon_0 = gdtmpl[10]/1.e6
@@ -463,20 +472,20 @@ class Grib2Message:
                 self.proj4_proj = 'npers'
                 self.gridlength_in_x_direction = 2.*self.earthRmajor/dx
                 self.gridlength_in_y_direction = 2.*self.earthRmajor/dy
-            self.rescompflags = (tobase(2,int(gdtmpl[11]))[0],\
-                                 tobase(2,int(gdtmpl[11]))[1],\
-                                 tobase(2,int(gdtmpl[11]))[2],\
-                                 tobase(2,int(gdtmpl[11]))[3])
+            self.scanmodeflags = ''.join([tobase(2,int(gdtmpl[16]))[0],\
+                                 tobase(2,int(gdtmpl[16]))[1],\
+                                 tobase(2,int(gdtmpl[16]))[2],\
+                                 tobase(2,int(gdtmpl[16]))[3]])
         elif gdtnum == 110: # azimuthal equidistant.
             self.proj4_lat_0 = gdtmpl[9]/1.e6
             self.proj4_lon_0 = gdtmpl[10]/1.e6
             self.gridlength_in_x_direction = gdtmpl[12]/1000.
             self.gridlength_in_y_direction = gdtmpl[13]/1000.
             self.proj4_proj = 'aeqd'
-            self.rescompflags = (tobase(2,int(gdtmpl[11]))[0],\
-                                 tobase(2,int(gdtmpl[11]))[1],\
-                                 tobase(2,int(gdtmpl[11]))[2],\
-                                 tobase(2,int(gdtmpl[11]))[3])
+            self.scanmodeflags = ''.join([tobase(2,int(gdtmpl[15]))[0],\
+                                 tobase(2,int(gdtmpl[15]))[1],\
+                                 tobase(2,int(gdtmpl[15]))[2],\
+                                 tobase(2,int(gdtmpl[15]))[3]])
         # inventory string.
         if not hasattr(self,'parameter_units') or self.parameter_units=='':
             paramstring = self.parameter
