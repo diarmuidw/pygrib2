@@ -45,6 +45,10 @@
     <td>
       <table cellpadding="0" cellspacing="0">
         <!-- hide/show private -->
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="grib2.grib2.Grib2Encode-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
       </table>
     </td>
   </tr>
@@ -120,57 +124,46 @@ Class for encoding data into a GRIB2 message.
 <table class="summary" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr bgcolor="#70b0f0" class="table-header">
-  <td align="left" colspan="2" class="table-header">
-    <span class="table-header">Instance Methods</span></td>
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
 </tr>
 <tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="grib2.grib2.Grib2Encode-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+  <td width="15%" align="right" valign="top" class="summary">
+    <code class="summary-type">&nbsp;</code>
+  </td><td class="summary">
+    <span class="summary-sig"><a href="grib2.grib2.Grib2Encode-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">discipline</span>,
         <span class="summary-sig-arg">idsect</span>)</span><br />
       create a Grib2Enecode class instance given the GRIB2 discipline 
-      parameter and the identification section (sections 0 and 1).</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Encode.__init__">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
+      parameter and the identification section (sections 0 and 1).
+  </td>
+</tr>
 <tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="grib2.grib2.Grib2Encode-class.html#addgrid" class="summary-sig-name">addgrid</a>(<span class="summary-sig-arg">self</span>,
+  <td width="15%" align="right" valign="top" class="summary">
+    <code class="summary-type">&nbsp;</code>
+  </td><td class="summary">
+    <span class="summary-sig"><a href="grib2.grib2.Grib2Encode-class.html#addgrid" class="summary-sig-name">addgrid</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">gdsinfo</span>,
         <span class="summary-sig-arg">gdtmpl</span>,
         <span class="summary-sig-arg">deflist</span>=<span class="summary-sig-default">None</span>)</span><br />
       Add a grid definition section (section 3) to the GRIB2 
-      message.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Encode.addgrid">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
+      message.
+  </td>
+</tr>
 <tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="grib2.grib2.Grib2Encode-class.html#addfield" class="summary-sig-name">addfield</a>(<span class="summary-sig-arg">self</span>,
+  <td width="15%" align="right" valign="top" class="summary">
+    <code class="summary-type">&nbsp;</code>
+  </td><td class="summary">
+    <span class="summary-sig"><a href="grib2.grib2.Grib2Encode-class.html#addfield" class="summary-sig-name">addfield</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">pdtnum</span>,
         <span class="summary-sig-arg">pdtmpl</span>,
         <span class="summary-sig-arg">drtnum</span>,
@@ -181,58 +174,64 @@ Class for encoding data into a GRIB2 message.
         <span class="summary-sig-arg">bitmap</span>=<span class="summary-sig-default">None</span>)</span><br />
       Add a product definition section, data representation section, 
       bitmap section and data section to the GRIB2 message (sections 
-      4-7).</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Encode.addfield">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
+      4-7).
+  </td>
+</tr>
 <tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="grib2.grib2.Grib2Encode-class.html#end" class="summary-sig-name">end</a>(<span class="summary-sig-arg">self</span>)</span><br />
-      Add an end section (section 8) to the GRIB2 message.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Encode.end">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
+  <td width="15%" align="right" valign="top" class="summary">
+    <code class="summary-type">&nbsp;</code>
+  </td><td class="summary">
+    <span class="summary-sig"><a href="grib2.grib2.Grib2Encode-class.html#end" class="summary-sig-name">end</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Add an end section (section 8) to the GRIB2 message.
+  </td>
+</tr>
 </table>
+
+<br />
 <!-- ==================== INSTANCE VARIABLES ==================== -->
 <a name="section-InstanceVariables"></a>
 <table class="summary" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr bgcolor="#70b0f0" class="table-header">
-  <td align="left" colspan="2" class="table-header">
-    <span class="table-header">Instance Variables</span></td>
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
 </tr>
 <tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a href="grib2.grib2.Grib2Encode-class.html#msg" class="summary-name">msg</a><br />
+  <td width="15%" align="right" valign="top" class="summary">
+    <code class="summary-type">&nbsp;</code>
+  </td><td class="summary">
+    <a href="grib2.grib2.Grib2Encode-class.html#msg">msg</a><br />
       A binary string containing the GRIB2 message.
-    </td>
-  </tr>
+  </td>
+</tr>
 </table>
+
+<br />
 <!-- ==================== METHOD DETAILS ==================== -->
 <a name="section-MethodDetails"></a>
-<table class="details" border="1" cellpadding="3"
+<table class="summary" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr bgcolor="#70b0f0" class="table-header">
-  <td align="left" colspan="2" class="table-header">
-    <span class="table-header">Method Details</span></td>
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
 </tr>
 </table>
 <a name="__init__"></a>
@@ -248,8 +247,8 @@ Class for encoding data into a GRIB2 message.
     <br /><em class="fname">(Constructor)</em>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Encode.__init__">source&nbsp;code</a></span>&nbsp;
-    </td>
+    ><span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Encode.__init__">source&nbsp;code</a></span>&nbsp;</span
+    ></td>
   </table>
   
   <p>create a Grib2Enecode class instance given the GRIB2 discipline 
@@ -262,9 +261,9 @@ Class for encoding data into a GRIB2 message.
   class="link">addfield</a> and <a 
   href="grib2.grib2.Grib2Encode-class.html#end" class="link">end</a> class 
   methods must be called to complete the GRIB2 message.
-  <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
+  <dl><dt></dt><dd>
+    <dl><dt>Parameters:</dt></dl>
+    <ul class="nomargin">
         <li><strong class="pname"><code>discipline</code></strong> - Discipline or GRIB Master Table Number (Code Table 0.0). (0 
           for meteorlogical, 1 for hydrological, 2 for land surface, 3 for 
           space, 10 for oceanographic products).</li>
@@ -314,8 +313,8 @@ Class for encoding data into a GRIB2 message.
               idsect[12]=Type of processed data (Code Table 1.4)
             </li>
           </ul></li>
-    </ul></dd>
-  </dl>
+    </ul>
+  </dd></dl>
 </td></tr></table>
 </div>
 <a name="addgrid"></a>
@@ -331,14 +330,14 @@ Class for encoding data into a GRIB2 message.
         <span class="sig-arg">deflist</span>=<span class="sig-default">None</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Encode.addgrid">source&nbsp;code</a></span>&nbsp;
-    </td>
+    ><span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Encode.addgrid">source&nbsp;code</a></span>&nbsp;</span
+    ></td>
   </table>
   
   Add a grid definition section (section 3) to the GRIB2 message.
-  <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
+  <dl><dt></dt><dd>
+    <dl><dt>Parameters:</dt></dl>
+    <ul class="nomargin">
         <li><strong class="pname"><code>gdsinfo</code></strong> - Sequence containing information needed for the grid definition
           section.
           <ul>
@@ -371,8 +370,8 @@ Class for encoding data into a GRIB2 message.
         <li><strong class="pname"><code>deflist</code></strong> - (Used if gds[2] != 0)  Sequence containing the number of grid 
           points contained in each row (or column) of a non-regular 
           grid.</li>
-    </ul></dd>
-  </dl>
+    </ul>
+  </dd></dl>
 </td></tr></table>
 </div>
 <a name="addfield"></a>
@@ -393,15 +392,15 @@ Class for encoding data into a GRIB2 message.
         <span class="sig-arg">bitmap</span>=<span class="sig-default">None</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Encode.addfield">source&nbsp;code</a></span>&nbsp;
-    </td>
+    ><span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Encode.addfield">source&nbsp;code</a></span>&nbsp;</span
+    ></td>
   </table>
   
   Add a product definition section, data representation section, bitmap 
   section and data section to the GRIB2 message (sections 4-7).
-  <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
+  <dl><dt></dt><dd>
+    <dl><dt>Parameters:</dt></dl>
+    <ul class="nomargin">
         <li><strong class="pname"><code>pdtnum</code></strong> - Product Definition Template Number (see Code Table 4.0)</li>
         <li><strong class="pname"><code>pdtmpl</code></strong> - Sequence with the data values for the specified Product 
           Definition Template (N=pdtnum).  Each element of this integer 
@@ -439,8 +438,8 @@ Class for encoding data into a GRIB2 message.
           </ul></li>
         <li><strong class="pname"><code>bitmap</code></strong> - int32 numpy array containing bitmap to be added (if 
           bitmapflag=0 or 254). Default None.</li>
-    </ul></dd>
-  </dl>
+    </ul>
+  </dd></dl>
 </td></tr></table>
 </div>
 <a name="end"></a>
@@ -453,25 +452,34 @@ Class for encoding data into a GRIB2 message.
   <h3 class="epydoc"><span class="sig"><span class="sig-name">end</span>(<span class="sig-arg">self</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Encode.end">source&nbsp;code</a></span>&nbsp;
-    </td>
+    ><span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Encode.end">source&nbsp;code</a></span>&nbsp;</span
+    ></td>
   </table>
   
   Add an end section (section 8) to the GRIB2 message. A GRIB2 message 
   is not complete without an end section. Once an end section is added, the
   GRIB2 message can be output to a file.
-  <dl class="fields">
-  </dl>
+  <dl><dt></dt><dd>
+  </dd></dl>
 </td></tr></table>
 </div>
 <br />
 <!-- ==================== INSTANCE VARIABLE DETAILS ==================== -->
 <a name="section-InstanceVariableDetails"></a>
-<table class="details" border="1" cellpadding="3"
+<table class="summary" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr bgcolor="#70b0f0" class="table-header">
-  <td align="left" colspan="2" class="table-header">
-    <span class="table-header">Instance Variable Details</span></td>
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Variable Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceVariableDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
 </tr>
 </table>
 <a name="msg"></a>
@@ -484,8 +492,8 @@ Class for encoding data into a GRIB2 message.
   been terminated by calling the <a 
   href="grib2.grib2.Grib2Encode-class.html#end" class="link">end</a> 
   method, this string can be written to a file.
-  <dl class="fields">
-  </dl>
+  <dl><dt></dt><dd>
+  </dd></dl>
 </td></tr></table>
 </div>
 <br />
@@ -514,9 +522,8 @@ Class for encoding data into a GRIB2 message.
 </table>
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
-    <td align="left" class="footer">
-    Generated by Epydoc 3.0beta1 on Fri May 11 13:48:50 2007
-    </td>
+    <td align="left" class="footer">Generated by Epydoc
+        3.0alpha3 on Sat May 12 05:31:58 2007</td>
     <td align="right" class="footer">
       <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
     </td>

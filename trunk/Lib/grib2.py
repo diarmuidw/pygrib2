@@ -4,11 +4,12 @@ Introduction
 ============
 
 Python module for reading and writing GRIB edition 2 (GRIB2) files
-(U{download<http://code.google.com/p/pygrib/downloads/list>}). 
+(U{download<http://code.google.com/p/pygrib2/downloads/list>}). 
 GRIB2 is the second version of the World Meterological Organization
 (WMO) standard for distributing gridded data. The standard is
 outlined in U{FM92 GRIB Edition 2, Code Form and Tables
-<http://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc.shtml>}. Includes a python
+<http://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc.shtml>}. 
+The module includes a python
 programmer interface for reading/writing GRIB2 grids as well as command
 line utilities for listing the contents of a grib file and 're-packing' a
 grib file using a different compression scheme.
@@ -549,7 +550,7 @@ class Grib2Message:
  expanded to regular gaussian grids.
  @keyword order: if 1, linear interpolation is used for expanding reduced
  gaussian grids.  if 0, nearest neighbor interpolation is used. Default 
- is 0 grid has missing or bitmapped values, 1 otherwise.
+ is 0 if grid has missing or bitmapped values, 1 otherwise.
  
  @return: C{B{data}}, a float32 numpy regular or masked array
  with shape (nlats,lons) containing the request grid.
@@ -716,8 +717,8 @@ def Grib2Decode(filename):
  into separate messages (so that each L{Grib2Message} instance contains
  just one data field). The metadata in each GRIB2 message can be
  accessed via L{Grib2Message} instance variables, the actual data 
- can be read using the L{Grib2Message.data} method, and the lat/lon values of the grid
- can be accesses using the L{Grib2Message.grid} method.
+ can be read using L{Grib2Message.data}, and the lat/lon values of the grid
+ can be accesses using L{Grib2Message.grid}.
     """
     f = open(filename,'rb')
     nmsg = 0
