@@ -44,6 +44,10 @@
     <td>
       <table cellpadding="0" cellspacing="0">
         <!-- hide/show private -->
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="grib2.grib2-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
       </table>
     </td>
   </tr>
@@ -52,15 +56,16 @@
 <h1 class="epydoc">Module grib2</h1><span class="codelink"><a href="grib2.grib2-pysrc.html">source&nbsp;code</a></span><br /><br />
 <h1 class="heading">Introduction</h1>
     Python module for reading and writing GRIB edition 2 (GRIB2) files 
-    (<a href="http://code.google.com/p/pygrib/downloads/list" 
+    (<a href="http://code.google.com/p/pygrib2/downloads/list" 
     target="_top">download</a>). GRIB2 is the second version of the World 
     Meterological Organization (WMO) standard for distributing gridded 
     data. The standard is outlined in <a 
     href="http://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc.shtml" 
-    target="_top">FM92 GRIB Edition 2, Code Form and Tables</a>. Includes a
-    python programmer interface for reading/writing GRIB2 grids as well as 
-    command line utilities for listing the contents of a grib file and 
-    're-packing' a grib file using a different compression scheme.
+    target="_top">FM92 GRIB Edition 2, Code Form and Tables</a>. The module
+    includes a python programmer interface for reading/writing GRIB2 grids 
+    as well as command line utilities for listing the contents of a grib 
+    file and 're-packing' a grib file using a different compression 
+    scheme.
   <h1 class="heading">Required</h1>
     <ul>
       <li>
@@ -324,7 +329,7 @@
     </ul><br /><br />
 
 <hr />
-<div class="fields">      <p><strong>Author:</strong>
+      <p><strong>Author:</strong>
         Jeffrey Whitaker.
       </p>
       <p><strong>Contact:</strong>
@@ -351,114 +356,143 @@
         TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR 
         PERFORMANCE OF THIS SOFTWARE.
       </p>
-</div><!-- ==================== CLASSES ==================== -->
+<!-- ==================== CLASSES ==================== -->
 <a name="section-Classes"></a>
 <table class="summary" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr bgcolor="#70b0f0" class="table-header">
-  <td align="left" colspan="2" class="table-header">
-    <span class="table-header">Classes</span></td>
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Classes"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
 </tr>
 <tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a href="grib2.grib2.Grib2Message-class.html" class="summary-name">Grib2Message</a><br />
+  <td width="15%" align="right" valign="top" class="summary">
+    <code class="summary-type">&nbsp;</code>
+  </td><td class="summary">
+    <a href="grib2.grib2.Grib2Message-class.html">Grib2Message</a><br />
       Class for accessing data in a GRIB Edition 2 message.
-    </td>
-  </tr>
+  </td>
+</tr>
 <tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a href="grib2.grib2.Grib2Encode-class.html" class="summary-name">Grib2Encode</a><br />
+  <td width="15%" align="right" valign="top" class="summary">
+    <code class="summary-type">&nbsp;</code>
+  </td><td class="summary">
+    <a href="grib2.grib2.Grib2Encode-class.html">Grib2Encode</a><br />
       Class for encoding data into a GRIB2 message.
-    </td>
-  </tr>
+  </td>
+</tr>
 </table>
+
+<br />
 <!-- ==================== FUNCTIONS ==================== -->
 <a name="section-Functions"></a>
 <table class="summary" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr bgcolor="#70b0f0" class="table-header">
-  <td align="left" colspan="2" class="table-header">
-    <span class="table-header">Functions</span></td>
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
 </tr>
 <tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="grib2.grib2-module.html#Grib2Decode" class="summary-sig-name">Grib2Decode</a>(<span class="summary-sig-arg">filename</span>)</span><br />
-      Read the contents of a GRIB2 file.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Decode">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
+  <td width="15%" align="right" valign="top" class="summary">
+    <code class="summary-type">&nbsp;</code>
+  </td><td class="summary">
+    <span class="summary-sig"><a href="grib2.grib2-module.html#Grib2Decode" class="summary-sig-name">Grib2Decode</a>(<span class="summary-sig-arg">filename</span>)</span><br />
+      Read the contents of a GRIB2 file.
+  </td>
+</tr>
 <tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="grib2.grib2-module.html#dump" class="summary-sig-name">dump</a>(<span class="summary-sig-arg">filename</span>,
+  <td width="15%" align="right" valign="top" class="summary">
+    <code class="summary-type">&nbsp;</code>
+  </td><td class="summary">
+    <span class="summary-sig"><a href="grib2.grib2-module.html#dump" class="summary-sig-name">dump</a>(<span class="summary-sig-arg">filename</span>,
         <span class="summary-sig-arg">grbs</span>)</span><br />
       write the given <a href="grib2.grib2.Grib2Message-class.html" 
-      class="link">Grib2Message</a> instances to a grib file.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="grib2.grib2-pysrc.html#dump">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
+      class="link">Grib2Message</a> instances to a grib file.
+  </td>
+</tr>
 </table>
+
+<br />
 <!-- ==================== VARIABLES ==================== -->
 <a name="section-Variables"></a>
 <table class="summary" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr bgcolor="#70b0f0" class="table-header">
-  <td align="left" colspan="2" class="table-header">
-    <span class="table-header">Variables</span></td>
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
 </tr>
 <tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a name="__version__"></a><span class="summary-name">__version__</span> = <code title="'20070515'"><code class="variable-quote">'</code><code class="variable-string">20070515</code><code class="variable-quote">'</code></code>
-    </td>
-  </tr>
+  <td width="15%" align="right" valign="top" class="summary">
+    <code class="summary-type">&nbsp;</code>
+  </td><td class="summary">
+    <a href="grib2.grib2-module.html#__version__">__version__</a> = <code title="'20070515'">'20070515'</code>
+  </td>
+</tr>
 <tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a href="grib2.grib2-module.html#__doc__" class="summary-name">__doc__</a> = <code title="&quot;&quot;&quot;
+  <td width="15%" align="right" valign="top" class="summary">
+    <code class="summary-type">&nbsp;</code>
+  </td><td class="summary">
+    <a href="grib2.grib2-module.html#__doc__">__doc__</a> = <code title="&quot;&quot;&quot;
 Introduction
 ============
 
 Python module for reading and writing GRIB edition 2 (GRIB2) files
-(U{download&lt;http://code.google.com/p/pygrib/downloads/list&gt;}). 
+(U{download&lt;http://code.google.com/p/pygrib2/downloads/list&gt;}). 
 GRIB2 is the second version of the World Meterological Organization
 (WMO) standard for distributing gridded data. The standard is
-..."><code class="variable-ellipsis">...</code></code>
-    </td>
-  </tr>
+outlined in U{FM92 GRIB Edition 2, Code Form and Tables
+&lt;http://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc.shtml&gt;}. 
+The module includes a python
+programmer interface for reading/writing GRIB2 grids as well as command
+line utilities for listing the contents of a grib file and 're-packing' a
+grib fil...">&quot;&quot;&quot; Introduction ============ Python module for read...</code>
+  </td>
+</tr>
 </table>
+
+<br />
 <!-- ==================== FUNCTION DETAILS ==================== -->
 <a name="section-FunctionDetails"></a>
-<table class="details" border="1" cellpadding="3"
+<table class="summary" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr bgcolor="#70b0f0" class="table-header">
-  <td align="left" colspan="2" class="table-header">
-    <span class="table-header">Function Details</span></td>
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
 </tr>
 </table>
 <a name="Grib2Decode"></a>
@@ -471,17 +505,17 @@ GRIB2 is the second version of the World Meterological Organization
   <h3 class="epydoc"><span class="sig"><span class="sig-name">Grib2Decode</span>(<span class="sig-arg">filename</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Decode">source&nbsp;code</a></span>&nbsp;
-    </td>
+    ><span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Decode">source&nbsp;code</a></span>&nbsp;</span
+    ></td>
   </table>
   
   Read the contents of a GRIB2 file.
-  <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
+  <dl><dt></dt><dd>
+    <dl><dt>Parameters:</dt></dl>
+    <ul class="nomargin">
         <li><strong class="pname"><code>filename</code></strong> - name of GRIB2 file.</li>
-    </ul></dd>
-    <dt>Returns:</dt>
+    </ul>
+    <dl><dt>Returns:</dt>
         <dd>a list of <a href="grib2.grib2.Grib2Message-class.html" 
           class="link">Grib2Message</a> instances representing all of the 
           grib messages in the file.  Messages with multiple fields are 
@@ -491,13 +525,13 @@ GRIB2 is the second version of the World Meterological Organization
           field). The metadata in each GRIB2 message can be accessed via <a
           href="grib2.grib2.Grib2Message-class.html" 
           class="link">Grib2Message</a> instance variables, the actual data
-          can be read using the <a 
+          can be read using <a 
           href="grib2.grib2.Grib2Message-class.html#data" 
-          class="link">Grib2Message.data</a> method, and the lat/lon values
-          of the grid can be accesses using the <a 
+          class="link">Grib2Message.data</a>, and the lat/lon values of the
+          grid can be accesses using <a 
           href="grib2.grib2.Grib2Message-class.html#grid" 
-          class="link">Grib2Message.grid</a> method.</dd>
-  </dl>
+          class="link">Grib2Message.grid</a>.</dd></dl>
+  </dd></dl>
 </td></tr></table>
 </div>
 <a name="dump"></a>
@@ -511,56 +545,79 @@ GRIB2 is the second version of the World Meterological Organization
         <span class="sig-arg">grbs</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="grib2.grib2-pysrc.html#dump">source&nbsp;code</a></span>&nbsp;
-    </td>
+    ><span class="codelink"><a href="grib2.grib2-pysrc.html#dump">source&nbsp;code</a></span>&nbsp;</span
+    ></td>
   </table>
   
   write the given <a href="grib2.grib2.Grib2Message-class.html" 
   class="link">Grib2Message</a> instances to a grib file.
-  <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
+  <dl><dt></dt><dd>
+    <dl><dt>Parameters:</dt></dl>
+    <ul class="nomargin">
         <li><strong class="pname"><code>filename</code></strong> - file to write grib data to.</li>
         <li><strong class="pname"><code>grbs</code></strong> - a list of <a href="grib2.grib2.Grib2Message-class.html" 
           class="link">Grib2Message</a> instances.</li>
-    </ul></dd>
-  </dl>
+    </ul>
+  </dd></dl>
 </td></tr></table>
 </div>
 <br />
 <!-- ==================== VARIABLES DETAILS ==================== -->
 <a name="section-VariablesDetails"></a>
-<table class="details" border="1" cellpadding="3"
+<table class="summary" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr bgcolor="#70b0f0" class="table-header">
-  <td align="left" colspan="2" class="table-header">
-    <span class="table-header">Variables Details</span></td>
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-VariablesDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
 </tr>
 </table>
+<a name="__version__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">__version__</h3>
+  None
+  <dl><dt></dt><dd>
+    <dl><dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<span class="variable-quote">'</span>20070515<span class="variable-quote">'</span>                                                             
+      </pre></td></tr></table></dd>
+    </dl>
+  </dd></dl>
+</td></tr></table>
+</div>
 <a name="__doc__"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <h3 class="epydoc">__doc__</h3>
-  
-  <dl class="fields">
-  </dl>
-  <dl class="fields">
-    <dt>Value:</dt>
+  None
+  <dl><dt></dt><dd>
+    <dl><dt>Value:</dt>
       <dd><table><tr><td><pre class="variable">
 &quot;&quot;&quot;
 Introduction
 ============
 
 Python module for reading and writing GRIB edition 2 (GRIB2) files
-(U{download&lt;http://code.google.com/p/pygrib/downloads/list&gt;}). 
+(U{download&lt;http://code.google.com/p/pygrib2/downloads/list&gt;}). 
 GRIB2 is the second version of the World Meterological Organization
 (WMO) standard for distributing gridded data. The standard is
-<code class="variable-ellipsis">...</code>
-</pre></td></tr></table>
-</dd>
-  </dl>
+<span class="variable-ellipsis">...</span>                                                                    
+      </pre></td></tr></table></dd>
+    </dl>
+  </dd></dl>
 </td></tr></table>
 </div>
 <br />
@@ -589,9 +646,8 @@ GRIB2 is the second version of the World Meterological Organization
 </table>
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
-    <td align="left" class="footer">
-    Generated by Epydoc 3.0beta1 on Fri May 11 13:48:50 2007
-    </td>
+    <td align="left" class="footer">Generated by Epydoc
+        3.0alpha3 on Sat May 12 05:31:58 2007</td>
     <td align="right" class="footer">
       <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
     </td>
