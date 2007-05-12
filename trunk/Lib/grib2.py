@@ -594,9 +594,15 @@ class Grib2Message:
             ny = self.points_in_y_direction
         if nx is not None and ny is not None: # rectangular grid.
             if hasattr(fld,'mask'):
-                fld = ma.reshape(fld,(ny,nx))
+                if not(int(self.scanmodeflags[2])): # row major order.
+                    fld = ma.reshape(fld,(ny,nx))
+                else:
+                    fld = ma.reshape(fld,(nx,ny)) # column major order
             else:
-                fld = N.reshape(fld,(ny,nx))
+                if not(int(self.scanmodeflags[2])): # row major order.
+                    fld = N.reshape(fld,(ny,nx))
+                else:
+                    fld = N.reshape(fld,(nx,ny)) # column major order
         else:
             if gdsinfo[2] and gdtnum == 40: # ECMWF 'reduced' global gaussian grid.
                 if expand: 
