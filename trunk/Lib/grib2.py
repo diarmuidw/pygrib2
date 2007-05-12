@@ -710,6 +710,9 @@ class Grib2Message:
         else:
             print '%s not supported' % self.type_of_grid
             return None, None
+        if int(self.scanmodeflags[2]): # column major order.
+            lons = lons.transpose()
+            lats = lats.transpose()
         return lats.astype('f'), lons.astype('f')
 
 def Grib2Decode(filename):
