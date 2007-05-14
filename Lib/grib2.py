@@ -541,11 +541,17 @@ class Grib2Message:
  @return: C{B{data}}, a float32 numpy regular or masked array
  with shape (nlats,lons) containing the request grid.
         """
+        # make sure scan mode is supported.
+        # if there is no 'scanmodeflags', then grid is not supported.
         if not hasattr(self,'scanmodeflags'):
             raise ValueError('unsupported grid definition template number %s'%self.grid_definition_template_number)
         else:
             if self.scanmodeflags[2]:
-               raise ValueError('unsupported scanning mode (bit 3==1 in Table 3.4, column-major storage order')
+                raise ValueError('unsupported scan mode (bit 3==1 in Table 3.4: column-major storage order')
+            elif self.scanmodeflags[3]:
+                raise ValueError('unsupported scan mode (bit 4==1 in Table 3.4: adjacent rows scan in the opposite direction')
+            else:
+                pass
         bitmapflag = self.bitmap_indicator_flag
         drtnum = self.data_representation_template_number
         drtmpl = self.data_representation_template
