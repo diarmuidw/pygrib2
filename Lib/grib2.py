@@ -369,7 +369,11 @@ class Grib2Message:
             ensname,pertnum,nmembers = _getensinfo(pdtnum,pdtmpl)
             self.ensemble_info = ensname+' from a '+repr(nmembers)+' member ensemble'
         # shape of the earth.
-        earthR = sxn3.codetable[2][gdtmpl[0]]
+        if gdtnum not in [50,51,52,1200]:
+            earthR = sxn3.codetable[2][gdtmpl[0]]
+            if earthR == 'Reserved': earthR = None
+        else:
+            earthR = None
         if _isString(earthR) and (earthR.startswith('Reserved') or earthR=='Missing'):
             self.shape_of_earth = earthR
             self.earthRminor = None
@@ -399,9 +403,10 @@ class Grib2Message:
             self.earthRmajor = earthR[0]
             self.earthRminor = earthR[1]
         else: 
-            self.shape_of_earth = 'Spherical'
-            self.earthRmajor = earthR
-            self.earthRminor = self.earthRmajor
+            if earthR is not None:
+                self.shape_of_earth = 'Spherical'
+                self.earthRmajor = earthR
+                self.earthRminor = self.earthRmajor
         # grid information
         reggrid = gdsinfo[2] == 0 # gdsinfo[2]=0 means regular 2-d grid
         if reggrid and gdtnum not in [50,51,52,53,100,120,1000,1200]:
