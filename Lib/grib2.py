@@ -426,9 +426,9 @@ class Grib2Message:
             self.latitude_first_gridpoint = gdtmpl[9]/1.e6
             self.longitude_first_gridpoint = gdtmpl[10]/1.e6
             self.proj4_lat_ts = gdtmpl[12]/1.e6
-            if projflag == '0':
+            if projflag == 0:
                 self.proj4_lat_0 = 90
-            elif projflag == '1':
+            elif projflag == 1:
                 self.proj4_lat_0 = -90
             else:
                 raise ValueError,'Invalid projection center flag = %s' % projflag
