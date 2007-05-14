@@ -67,3 +67,4 @@ grib2.grib2.Grib2Message.points_in_y_direction	grib2.grib2.Grib2Message-class.ht
 grib2.grib2.Grib2Message.latitude_last_gridpoint	grib2.grib2.Grib2Message-class.html#latitude_last_gridpoint
 grib2.grib2.Grib2Message.latitude_first_gridpoint	grib2.grib2.Grib2Message-class.html#latitude_first_gridpoint
 grib2.grib2.Grib2Message.data_representation_template	grib2.grib2.Grib2Message-class.html#data_representation_template
+grib2.grib2.Grib2Message.missing_value2	grib2.grib2.Grib2Message-class.html#missing_value2
