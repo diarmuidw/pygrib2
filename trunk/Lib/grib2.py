@@ -149,6 +149,8 @@ Changelog
  - B{%(__version__)s}: Totally revamped API for reading.  Now hosted on google code.
    Supports Albers equal area, and azimuthal equidistant projections, although
    these are untested since I couldn't find any grib files in the wild that use these.
+   Some support for spectral data and rotated lat/lon and gaussian grids.
+   Lots of bug fixes.
 
 @author: Jeffrey Whitaker.
 
