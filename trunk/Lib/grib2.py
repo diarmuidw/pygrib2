@@ -394,7 +394,7 @@ class Grib2Message:
             self.points_in_y_direction = gdtmpl[8]
         if not reggrid and gdtnum == 40: # 'reduced' gaussian grid.
             self.points_in_y_direction = gdtmpl[8]
-        if gdtnum == 0: # regular lat/lon grid
+        if gdtnum == 0 or gdtnum == 1: # regular lat/lon grid
             scalefact = float(gdtmpl[9])
             divisor = float(gdtmpl[10])
             if scalefact == 0: scalefact = 1.
@@ -410,6 +410,10 @@ class Grib2Message:
             if self.longitude_first_gridpoint > self.longitude_last_gridpoint:
                 self.gridlength_in_x_direction = -self.gridlength_in_x_direction
             self.scanmodeflags = _dec2bin(gdtmpl[18])[0:4]
+            if gdtnum == 1:
+                self.latitude_of_southern_pole = scalefact*gdtmpl[19]/divisor
+                self.longitude_of_southern_pole = scalefact*gdtmpl[20]/divisor
+                self.angle_of_pole_rotation = gdtmpl[21]
         elif gdtnum == 10: # mercator
             self.latitude_first_gridpoint = gdtmpl[9]/1.e6
             self.longitude_first_gridpoint = gdtmpl[10]/1.e6
@@ -459,7 +463,7 @@ class Grib2Message:
             self.proj4_lon_0 = gdtmpl[13]/1.e6
             self.proj4_proj = 'aea'
             self.scanmodeflags = _dec2bin(gdtmpl[17])[0:4]
-        elif gdtnum == 40: # gaussian grid.
+        elif gdtnum == 40 or gdtnum == 41: # gaussian grid.
             scalefact = float(gdtmpl[9])
             divisor = float(gdtmpl[10])
             if scalefact == 0: scalefact = 1.
@@ -474,6 +478,10 @@ class Grib2Message:
                 if self.longitude_first_gridpoint > self.longitude_last_gridpoint:
                     self.gridlength_in_x_direction = -self.gridlength_in_x_direction
             self.scanmodeflags = _dec2bin(gdtmpl[18])[0:4]
+            if gdtnum == 41:
+                self.latitude_of_southern_pole = scalefact*gdtmpl[19]/divisor
+                self.longitude_of_southern_pole = scalefact*gdtmpl[20]/divisor
+                self.angle_of_pole_rotation = gdtmpl[21]
         elif gdtnum == 50: # spectral coefficients.
             self.spectral_truncation_parameters = (gdtmpl[0],gdtmpl[1],gdtmpl[2])
             self.scanmodeflags = [None,None,None,None] # doesn't apply
