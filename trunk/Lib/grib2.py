@@ -150,7 +150,9 @@ Changelog
    Supports Albers equal area, and azimuthal equidistant projections, although
    these are untested since I couldn't find any grib files in the wild that use these.
    Some support for spectral data and rotated lat/lon and gaussian grids.
-   Lots of bug fixes.
+   If data in grib file is in column-major storage order, an exception is
+   raised.  I could make this work, but I don't have a grib file to test
+   it on (if you have one, please forward it to me).  Lots of bug fixes.
 
 @author: Jeffrey Whitaker.
 
