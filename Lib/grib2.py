@@ -283,7 +283,18 @@ class Grib2Message:
  @ivar vertical_level: string describing vertical level ('50000 Pa', '10 m', etc).
  @ivar vertical_level_descriptor: string describing the type of vertical level 
  (e.g. 'Isobaric surface').
-
+ @ivar spectral_truncation_parameters:  pentagonal truncation parameters that describe the 
+ spherical harmonic truncation (only relevant for grid_definition_template_number - 50).
+ For triangular truncation, all three of these numbers are the same.
+ @ivar latitude_of_southern_pole = the geographic latitude in degrees of the southern 
+ pole of the coordinate system (for rotated lat/lon or gaussian grids).
+ @ivar longitude_of_southern_pole = the geographic longitude in degrees of the southern 
+ pole of the coordinate system (for rotated lat/lon or gaussian grids).
+ @ivar angle_of_pole_rotation = The angle of rotation in degrees about the new 
+ polar axis (measured clockwise when looking from the southern to the northern pole)
+ of the coordinate system. For rotated lat/lon or gaussian grids.
+ @ivar missing_value: primary missing value (for data_representation_template_numbers
+ 2 and 3).
     """
     def __init__(self,**kwargs):
         """
