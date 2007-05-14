@@ -1,4 +1,5 @@
 grib2.grib2	grib2.grib2-module.html
+grib2.grib2._dec2bin	grib2.grib2-module.html#_dec2bin
 grib2.grib2._meshgrid	grib2.grib2-module.html#_meshgrid
 grib2.grib2.dump	grib2.grib2-module.html#dump
 grib2.grib2._repeatlast	grib2.grib2-module.html#_repeatlast
