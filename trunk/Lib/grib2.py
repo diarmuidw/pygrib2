@@ -420,7 +420,6 @@ class Grib2Message:
             self.proj4_lat_ts = gdtmpl[12]/1.e6
             self.proj4_lon_0 = 0.5*(self.longitude_first_gridpoint+self.longitude_last_gridpoint)
             self.proj4_proj = 'merc'
-            print _dec2bin(gdtmpl[15])
             self.scanmodeflags = _dec2bin(gdtmpl[15])[0:4]
         elif gdtnum == 20: # stereographic
             projflag = _dec2bin(gdtmpl[16])[0]
@@ -498,6 +497,11 @@ class Grib2Message:
             self.gridlength_in_y_direction = gdtmpl[13]/1000.
             self.proj4_proj = 'aeqd'
             self.scanmodeflags = _dec2bin(gdtmpl[15])[0:4]
+        # missing value.
+        drtnum = self.data_representation_template_number
+        drtmpl = self.data_representation_template
+        if (drtnum == 2 or drtnum == 3) and drtmpl[6] != 0:
+            self.missing_value = _getieeeint(drtmpl[7]) 
         # inventory string.
         if not hasattr(self,'parameter_units') or self.parameter_units=='':
             paramstring = self.parameter
@@ -548,10 +552,6 @@ class Grib2Message:
         else:
             if self.scanmodeflags[2]:
                 raise ValueError('unsupported scan mode (bit 3==1 in Table 3.4: column-major storage order')
-            elif self.scanmodeflags[3]:
-                raise ValueError('unsupported scan mode (bit 4==1 in Table 3.4: adjacent rows scan in the opposite direction')
-            else:
-                pass
         bitmapflag = self.bitmap_indicator_flag
         drtnum = self.data_representation_template_number
         drtmpl = self.data_representation_template
@@ -580,8 +580,8 @@ class Grib2Message:
             if masked_array:
                 fld = ma.masked_values(fld,fill_value)
         # missing values instead of bitmap
-        elif (drtnum == 3 or drtnum == 2) and drtmpl[6] != 0 and masked_array:
-            fld = ma.masked_values(fld1,_getieeeint(drtmpl[7])) 
+        elif masked_array and hasattr(self,'missing_value'):
+            fld = ma.masked_values(fld1,self.missing_value)
         else:
             fld = fld1
         nx = None; ny = None
@@ -605,6 +605,11 @@ class Grib2Message:
                         fld = ma.masked_values(fld,fill_value)
                     else:
                         fld = g2lib._redtoreg(nx, lonsperlat, fld, N.zeros,order=order)
+        # adjacent rows scan in opposite direction.
+        # (flip every other row)
+        if self.scanmodeflags[3]:
+            fldsave = fld.astype('f') # casting makes a copy
+            fld[1::2,:] = fldsave[1::2,::-1]
         return fld
 
     def grid(self):
