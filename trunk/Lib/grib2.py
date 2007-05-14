@@ -474,6 +474,9 @@ class Grib2Message:
                 if self.longitude_first_gridpoint > self.longitude_last_gridpoint:
                     self.gridlength_in_x_direction = -self.gridlength_in_x_direction
             self.scanmodeflags = _dec2bin(gdtmpl[18])[0:4]
+        elif gdtnum == 50: # spectral coefficients.
+            self.spectral_truncation_parameters = (gdtmpl[0],gdtmpl[1],gdtmpl[2])
+            self.scanmodeflags = [None,None,None,None] # doesn't apply
         elif gdtnum == 90: # near-sided vertical perspective satellite projection
             self.proj4_lat_0 = gdtmpl[9]/1.e6
             self.proj4_lon_0 = gdtmpl[10]/1.e6
