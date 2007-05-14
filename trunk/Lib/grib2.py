@@ -286,7 +286,7 @@ class Grib2Message:
  @ivar vertical_level_descriptor: string describing the type of vertical level 
  (e.g. 'Isobaric surface').
  @ivar spectral_truncation_parameters:  pentagonal truncation parameters that describe the 
- spherical harmonic truncation (only relevant for grid_definition_template_number - 50).
+ spherical harmonic truncation (only relevant for grid_definition_template_numbers 50-52).
  For triangular truncation, all three of these numbers are the same.
  @ivar latitude_of_southern_pole: the geographic latitude in degrees of the southern 
  pole of the coordinate system (for rotated lat/lon or gaussian grids).
