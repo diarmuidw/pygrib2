@@ -246,9 +246,9 @@ class Grib2Message:
 
   - bit 3:
 
-    0 - Adjacent points in the i (x) direction are consecutive.
+    0 - Adjacent points in the i (x) direction are consecutive (row-major order).
 
-    1 - Adjacent points in the j (y) direction are consecutive.
+    1 - Adjacent points in the j (y) direction are consecutive (column-major order).
 
   - bit 4:
 
@@ -555,6 +555,11 @@ class Grib2Message:
  @return: C{B{data}}, a float32 numpy regular or masked array
  with shape (nlats,lons) containing the request grid.
         """
+        if not(int(self.scanmodeflags[2])): # row major order.
+            order = 'C'
+        else: # column major order
+            order = 'F'
+            raise ValueError('cannot yet handle grib messages in fortran storage order (bit 3 in Table 3.4 set to 1)')
         bitmapflag = self.bitmap_indicator_flag
         drtnum = self.data_representation_template_number
         drtmpl = self.data_representation_template
@@ -594,15 +599,9 @@ class Grib2Message:
             ny = self.points_in_y_direction
         if nx is not None and ny is not None: # rectangular grid.
             if hasattr(fld,'mask'):
-                if not(int(self.scanmodeflags[2])): # row major order.
-                    fld = ma.reshape(fld,(ny,nx))
-                else:
-                    fld = ma.reshape(fld,(nx,ny)) # column major order
+                fld = ma.reshape(fld,(ny,nx))
             else:
-                if not(int(self.scanmodeflags[2])): # row major order.
-                    fld = N.reshape(fld,(ny,nx))
-                else:
-                    fld = N.reshape(fld,(nx,ny)) # column major order
+                fld = N.reshape(fld,(ny,nx))
         else:
             if gdsinfo[2] and gdtnum == 40: # ECMWF 'reduced' global gaussian grid.
                 if expand: 
@@ -710,9 +709,6 @@ class Grib2Message:
         else:
             print '%s not supported' % self.type_of_grid
             return None, None
-        if int(self.scanmodeflags[2]): # column major order.
-            lons = lons.transpose()
-            lats = lats.transpose()
         return lats.astype('f'), lons.astype('f')
 
 def Grib2Decode(filename):
