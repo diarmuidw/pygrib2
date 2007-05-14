@@ -25,7 +25,7 @@ m = Basemap(llcrnrlon=llcrnrlon,llcrnrlat=llcrnrlat,
             urcrnrlon=urcrnrlon,urcrnrlat=urcrnrlat,rsphere=rsphere,lon_0=lon0,
             lat_1=lat1,lat_2=lat2,resolution='l',projection=projection)
 # setup fig axes so map aspect ratio is preserved.
-fig=figure(figsize=(8,m.aspect*8))
+fig=figure()
 ax = fig.add_axes([0.1,0.1,0.75,0.75])
 # draw coastlines, state and country boundaries, edge of map.
 m.drawcoastlines()
@@ -44,7 +44,7 @@ x, y = m(lons, lats) # compute map proj coordinates.
 # draw filled contours.
 cs = m.contourf(x,y,data,20,cmap=cm.jet,colors=None)
 # new axis for colorbar.
-cax = axes([0.875, 0.1, 0.05, 0.75])
+cax = axes([0.875, 0.10, 0.04, 0.75])
 colorbar(cs, cax, format='%d') # draw colorbar
 axes(ax)  # make the original axes current again
 title('ETA '+g.vertical_level+' '+g.parameter+' ['+g.parameter_units+']')
