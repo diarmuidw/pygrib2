@@ -8,9 +8,8 @@ Python module for reading and writing GRIB edition 2 (GRIB2) files
 GRIB2 is the second version of the World Meterological Organization
 (WMO) standard for distributing gridded data. The standard is
 outlined in U{FM92 GRIB Edition 2, Code Form and Tables
-<http://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc.shtml>}. 
-The module includes a python
-programmer interface for reading/writing GRIB2 grids as well as command
+<http://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc.shtml>}. The module
+includes a programmer interface for reading/writing GRIB2 grids as well as command
 line utilities for listing the contents of a grib file and 're-packing' a
 grib file using a different compression scheme.
 
@@ -181,9 +180,19 @@ import math
 
 import numpy as N
 from numpy import ma
-from tobase import tobase
 from proj import Proj
 import pyproj
+
+def _dec2bin(val, maxbits = 8): 
+    """ 
+    A decimal to binary converter. Returns bits in a list. 
+    """ 
+    retval = [] 
+    for i in range(maxbits - 1, -1, -1): 
+        bit = int(val / (2 ** i)) 
+        val = (val % (2 ** i)) 
+        retval.append(bit) 
+    return retval 
 
 def _putieeeint(r):
     """convert a float to a IEEE format 32 bit integer"""
@@ -400,10 +409,7 @@ class Grib2Message:
                 self.gridlength_in_y_direction = -self.gridlength_in_y_direction
             if self.longitude_first_gridpoint > self.longitude_last_gridpoint:
                 self.gridlength_in_x_direction = -self.gridlength_in_x_direction
-            self.scanmodeflags = ''.join([tobase(2,int(gdtmpl[18]))[0],\
-                                 tobase(2,int(gdtmpl[18]))[1],\
-                                 tobase(2,int(gdtmpl[18]))[2],\
-                                 tobase(2,int(gdtmpl[18]))[3]])
+            self.scanmodeflags = _dec2bin(gdtmpl[18])[0:4]
         elif gdtnum == 10: # mercator
             self.latitude_first_gridpoint = gdtmpl[9]/1.e6
             self.longitude_first_gridpoint = gdtmpl[10]/1.e6
@@ -414,12 +420,10 @@ class Grib2Message:
             self.proj4_lat_ts = gdtmpl[12]/1.e6
             self.proj4_lon_0 = 0.5*(self.longitude_first_gridpoint+self.longitude_last_gridpoint)
             self.proj4_proj = 'merc'
-            self.scanmodeflags = ''.join([tobase(2,int(gdtmpl[15]))[0],\
-                                 tobase(2,int(gdtmpl[15]))[1],\
-                                 tobase(2,int(gdtmpl[15]))[2],\
-                                 tobase(2,int(gdtmpl[15]))[3]])
+            print _dec2bin(gdtmpl[15])
+            self.scanmodeflags = _dec2bin(gdtmpl[15])[0:4]
         elif gdtnum == 20: # stereographic
-            projflag = tobase(2,int(gdtmpl[16]))[0]
+            projflag = _dec2bin(gdtmpl[16])[0]
             self.latitude_first_gridpoint = gdtmpl[9]/1.e6
             self.longitude_first_gridpoint = gdtmpl[10]/1.e6
             self.proj4_lat_ts = gdtmpl[12]/1.e6
@@ -433,10 +437,7 @@ class Grib2Message:
             self.gridlength_in_x_direction = gdtmpl[14]/1000.
             self.gridlength_in_y_direction = gdtmpl[15]/1000.
             self.proj4_proj = 'stere'
-            self.scanmodeflags = ''.join([tobase(2,int(gdtmpl[17]))[0],\
-                                 tobase(2,int(gdtmpl[17]))[1],\
-                                 tobase(2,int(gdtmpl[17]))[2],\
-                                 tobase(2,int(gdtmpl[17]))[3]])
+            self.scanmodeflags = _dec2bin(gdtmpl[17])[0:4]
         elif gdtnum == 30: # lambert conformal
             self.latitude_first_gridpoint = gdtmpl[9]/1.e6
             self.longitude_first_gridpoint = gdtmpl[10]/1.e6
@@ -447,10 +448,7 @@ class Grib2Message:
             self.proj4_lat_0 = gdtmpl[12]/1.e6
             self.proj4_lon_0 = gdtmpl[13]/1.e6
             self.proj4_proj = 'lcc'
-            self.scanmodeflags = ''.join([tobase(2,int(gdtmpl[17]))[0],\
-                                 tobase(2,int(gdtmpl[17]))[1],\
-                                 tobase(2,int(gdtmpl[17]))[2],\
-                                 tobase(2,int(gdtmpl[17]))[3]])
+            self.scanmodeflags = _dec2bin(gdtmpl[17])[0:4]
         elif gdtnum == 31: # albers equal area.
             self.latitude_first_gridpoint = gdtmpl[9]/1.e6
             self.longitude_first_gridpoint = gdtmpl[10]/1.e6
@@ -461,10 +459,7 @@ class Grib2Message:
             self.proj4_lat_0 = gdtmpl[12]/1.e6
             self.proj4_lon_0 = gdtmpl[13]/1.e6
             self.proj4_proj = 'aea'
-            self.scanmodeflags = ''.join([tobase(2,int(gdtmpl[17]))[0],\
-                                 tobase(2,int(gdtmpl[17]))[1],\
-                                 tobase(2,int(gdtmpl[17]))[2],\
-                                 tobase(2,int(gdtmpl[17]))[3]])
+            self.scanmodeflags = _dec2bin(gdtmpl[17])[0:4]
         elif gdtnum == 40: # gaussian grid.
             scalefact = float(gdtmpl[9])
             divisor = float(gdtmpl[10])
@@ -479,10 +474,7 @@ class Grib2Message:
                 self.gridlength_in_x_direction = scalefact*gdtmpl[16]/divisor
                 if self.longitude_first_gridpoint > self.longitude_last_gridpoint:
                     self.gridlength_in_x_direction = -self.gridlength_in_x_direction
-            self.scanmodeflags = ''.join([tobase(2,int(gdtmpl[18]))[0],\
-                                 tobase(2,int(gdtmpl[18]))[1],\
-                                 tobase(2,int(gdtmpl[18]))[2],\
-                                 tobase(2,int(gdtmpl[18]))[3]])
+            self.scanmodeflags = _dec2bin(gdtmpl[18])[0:4]
         elif gdtnum == 90: # near-sided vertical perspective satellite projection
             self.proj4_lat_0 = gdtmpl[9]/1.e6
             self.proj4_lon_0 = gdtmpl[10]/1.e6
@@ -498,20 +490,14 @@ class Grib2Message:
                 self.proj4_proj = 'npers'
                 self.gridlength_in_x_direction = 2.*self.earthRmajor/dx
                 self.gridlength_in_y_direction = 2.*self.earthRmajor/dy
-            self.scanmodeflags = ''.join([tobase(2,int(gdtmpl[16]))[0],\
-                                 tobase(2,int(gdtmpl[16]))[1],\
-                                 tobase(2,int(gdtmpl[16]))[2],\
-                                 tobase(2,int(gdtmpl[16]))[3]])
+            self.scanmodeflags = _dec2bin(gdtmpl[16])[0:4]
         elif gdtnum == 110: # azimuthal equidistant.
             self.proj4_lat_0 = gdtmpl[9]/1.e6
             self.proj4_lon_0 = gdtmpl[10]/1.e6
             self.gridlength_in_x_direction = gdtmpl[12]/1000.
             self.gridlength_in_y_direction = gdtmpl[13]/1000.
             self.proj4_proj = 'aeqd'
-            self.scanmodeflags = ''.join([tobase(2,int(gdtmpl[15]))[0],\
-                                 tobase(2,int(gdtmpl[15]))[1],\
-                                 tobase(2,int(gdtmpl[15]))[2],\
-                                 tobase(2,int(gdtmpl[15]))[3]])
+            self.scanmodeflags = _dec2bin(gdtmpl[15])[0:4]
         # inventory string.
         if not hasattr(self,'parameter_units') or self.parameter_units=='':
             paramstring = self.parameter
@@ -555,11 +541,11 @@ class Grib2Message:
  @return: C{B{data}}, a float32 numpy regular or masked array
  with shape (nlats,lons) containing the request grid.
         """
-        if not(int(self.scanmodeflags[2])): # row major order.
-            order = 'C'
-        else: # column major order
-            order = 'F'
-            raise ValueError('cannot yet handle grib messages in fortran storage order (bit 3 in Table 3.4 set to 1)')
+        if not hasattr(self,'scanmodeflags'):
+            raise ValueError('unsupported grid definition template number %s'%self.grid_definition_template_number)
+        else:
+            if self.scanmodeflags[2]:
+               raise ValueError('unsupported scanning mode (bit 3==1 in Table 3.4, column-major storage order')
         bitmapflag = self.bitmap_indicator_flag
         drtnum = self.data_representation_template_number
         drtmpl = self.data_representation_template
