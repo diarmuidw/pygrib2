@@ -983,14 +983,14 @@ def _getvertlevel(pdtmpl):
     if scaledlevel1 in [2*(2**31-1),-(2**31-1)]: # ditto 
         scaledlevel1 = None
     if scaledlevel1 is not None and level1scale is not None:
-        level1 = math.pow(10,-level1scale)*scaledlevel1
+        level1 = math.pow(10,level1scale)*scaledlevel1
     else:
         level1 = None
     if len(pdtmpl) >= 12 and pdtmpl[12] != 255:
        level2info = sxn4.codetable[5][pdtmpl[12]]
        scaledlevel2 = pdtmpl[14]
        level2scale = pdtmpl[13]
-       level2 = math.pow(10,-level2scale)*scaledlevel2
+       level2 = math.pow(10,level2scale)*scaledlevel2
        return level1,level1info[1],level1info[0],level2,level2info[1],level2info[0]
     else:
        return level1,level1info[1],level1info[0]
