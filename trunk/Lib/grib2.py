@@ -295,6 +295,8 @@ class Grib2Message:
  of the coordinate system. For rotated lat/lon or gaussian grids.
  @ivar missing_value: primary missing value (for data_representation_template_numbers
  2 and 3).
+ @ivar missing_value2: secondary missing value (for data_representation_template_numbers
+ 2 and 3).
     """
     def __init__(self,**kwargs):
         """
@@ -526,6 +528,8 @@ class Grib2Message:
         drtmpl = self.data_representation_template
         if (drtnum == 2 or drtnum == 3) and drtmpl[6] != 0:
             self.missing_value = _getieeeint(drtmpl[7]) 
+            if drtmpl[6] == 2:
+                self.missing_value2 = _getieeeint(drtmpl[8]) 
         # inventory string.
         if not hasattr(self,'parameter_units') or self.parameter_units=='':
             paramstring = self.parameter
@@ -605,7 +609,11 @@ class Grib2Message:
                 fld = ma.masked_values(fld,fill_value)
         # missing values instead of bitmap
         elif masked_array and hasattr(self,'missing_value'):
-            fld = ma.masked_values(fld1,self.missing_value)
+            if hasattr(self, 'missing_value2'):
+                mask = N.logical_or(fld1 == self.missing_value, fld1 == self.missing_value2)
+            else:
+                mask = fld1 == self.missing_value
+            fld = ma.array(fld1,mask=mask)
         else:
             fld = fld1
         nx = None; ny = None
