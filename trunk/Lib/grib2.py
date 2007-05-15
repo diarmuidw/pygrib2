@@ -150,9 +150,7 @@ Changelog
    Supports Albers equal area, and azimuthal equidistant projections, although
    these are untested since I couldn't find any grib files in the wild that use these.
    Some support for spectral data and rotated lat/lon and gaussian grids.
-   If data in grib file is in column-major storage order, an exception is
-   raised.  I could make this work, but I don't have a grib file to test
-   it on (if you have one, please forward it to me).  Lots of bug fixes.
+   Lots of bug fixes.
 
 @author: Jeffrey Whitaker.
 
@@ -586,7 +584,9 @@ class Grib2Message:
             raise ValueError('unsupported grid definition template number %s'%self.grid_definition_template_number)
         else:
             if self.scanmodeflags[2]:
-                raise ValueError('unsupported scan mode (bit 3==1 in Table 3.4: column-major storage order')
+                storageorder='F'
+            else:
+                storageorder='C'
         bitmapflag = self.bitmap_indicator_flag
         drtnum = self.data_representation_template_number
         drtmpl = self.data_representation_template
@@ -606,7 +606,7 @@ class Grib2Message:
         gdsinfo = self.grid_definition_info
         ngrdpts = gdsinfo[1]
         ipos = self._section7_byte_offset
-        fld1=g2lib.unpack7(gribmsg,gdtnum,gdtmpl,drtnum,drtmpl,ndpts,ipos,N.zeros)
+        fld1=g2lib.unpack7(gribmsg,gdtnum,gdtmpl,drtnum,drtmpl,ndpts,ipos,N.zeros,storageorder=storageorder)
         # apply bitmap.
         if bitmapflag == 0:
             bitmap=self._bitmap

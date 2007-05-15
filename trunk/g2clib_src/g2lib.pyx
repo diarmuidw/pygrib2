@@ -397,7 +397,7 @@ def unpack6(gribmsg,ndpts,ipos,object zeros):
     free(bmap)
     return bitmap,ibmap
     
-def unpack7(gribmsg,gdtnum,object gdtmpl,drtnum,object drtmpl,ndpts,ipos,object zeros,printminmax=False):
+def unpack7(gribmsg,gdtnum,object gdtmpl,drtnum,object drtmpl,ndpts,ipos,object zeros,printminmax=False,storageorder='C'):
     """
  Unpacks Section 7 (Data Section) as defined in GRIB Edition 2.
 
@@ -426,6 +426,7 @@ def unpack7(gribmsg,gdtnum,object gdtmpl,drtnum,object drtmpl,ndpts,ipos,object 
             C API functions need to be used.  This means that any of these
             array modules can be used simply by changing the import statement
             in your python code.
+   storageorder - 'C' for row-major, or 'F' for column-major (Default 'C')
    printminmax - if True, min/max of fld is printed.
 
  RETURNS:      
@@ -457,7 +458,7 @@ def unpack7(gribmsg,gdtnum,object gdtmpl,drtnum,object drtmpl,ndpts,ipos,object 
     if ierr != 0:
        msg = "Error unpacking section 7 - error code = %i" % ierr
        raise RuntimeError(msg)
-    data = zeros(ngpts, 'f') # allocate numeric array in python
+    data = zeros(ngpts, 'f', order=storageorder) # allocate numeric array in python
     # get pointer to data buffer.
     PyObject_AsWriteBuffer(data, &datadat, &buflen) 
     datadata = <g2float *>datadat
