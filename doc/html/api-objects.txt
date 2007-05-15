@@ -31,6 +31,7 @@ grib2.grib2.Grib2Message.data_representation_template_number	grib2.grib2.Grib2Me
 grib2.grib2.Grib2Message.earthRmajor	grib2.grib2.Grib2Message-class.html#earthRmajor
 grib2.grib2.Grib2Message.parameter_code	grib2.grib2.Grib2Message-class.html#parameter_code
 grib2.grib2.Grib2Message.product_definition_template_number	grib2.grib2.Grib2Message-class.html#product_definition_template_number
+grib2.grib2.Grib2Message.longitude_of_southern_pole	grib2.grib2.Grib2Message-class.html#longitude_of_southern_pole
 grib2.grib2.Grib2Message.vertical_level_descriptor	grib2.grib2.Grib2Message-class.html#vertical_level_descriptor
 grib2.grib2.Grib2Message.bitmap_indicator_flag	grib2.grib2.Grib2Message-class.html#bitmap_indicator_flag
 grib2.grib2.Grib2Message.parameter_category_code	grib2.grib2.Grib2Message-class.html#parameter_category_code
@@ -43,10 +44,13 @@ grib2.grib2.Grib2Message.grid_definition_template_number	grib2.grib2.Grib2Messag
 grib2.grib2.Grib2Message.longitude_first_gridpoint	grib2.grib2.Grib2Message-class.html#longitude_first_gridpoint
 grib2.grib2.Grib2Message.grid_definition_info	grib2.grib2.Grib2Message-class.html#grid_definition_info
 grib2.grib2.Grib2Message.identification_section	grib2.grib2.Grib2Message-class.html#identification_section
+grib2.grib2.Grib2Message.inventory	grib2.grib2.Grib2Message-class.html#inventory
 grib2.grib2.Grib2Message.product_definition_template_name	grib2.grib2.Grib2Message-class.html#product_definition_template_name
 grib2.grib2.Grib2Message.parameter_category	grib2.grib2.Grib2Message-class.html#parameter_category
 grib2.grib2.Grib2Message.parameter	grib2.grib2.Grib2Message-class.html#parameter
+grib2.grib2.Grib2Message.latitude_of_southern_pole	grib2.grib2.Grib2Message-class.html#latitude_of_southern_pole
 grib2.grib2.Grib2Message.vertical_level	grib2.grib2.Grib2Message-class.html#vertical_level
+grib2.grib2.Grib2Message.angle_of_pole_rotation	grib2.grib2.Grib2Message-class.html#angle_of_pole_rotation
 grib2.grib2.Grib2Message.gridlength_in_x_direction	grib2.grib2.Grib2Message-class.html#gridlength_in_x_direction
 grib2.grib2.Grib2Message.type_of_grid	grib2.grib2.Grib2Message-class.html#type_of_grid
 grib2.grib2.Grib2Message.discipline_code	grib2.grib2.Grib2Message-class.html#discipline_code
