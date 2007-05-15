@@ -4,6 +4,9 @@ c-wrappers that Pyrex generates."""
 
 import math
 
+cdef extern from "pycompat.h":
+    ctypedef int Py_ssize_t
+
 # Some helper routines from the Python API
 cdef extern from "Python.h":
   # To access integers
@@ -15,7 +18,6 @@ cdef extern from "Python.h":
   char *PyString_AsString(object string)
   object PyString_FromString(char *)
   object PyString_FromStringAndSize(char *, int)
-  ctypedef int Py_ssize_t
   int PyObject_AsWriteBuffer(object, void **rbuf, Py_ssize_t *len)
   int PyObject_AsReadBuffer(object, void **rbuf, Py_ssize_t *len)
   int PyObject_CheckReadBuffer(object)
