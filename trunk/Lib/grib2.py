@@ -297,6 +297,8 @@ class Grib2Message:
  2 and 3).
  @ivar missing_value2: secondary missing value (for data_representation_template_numbers
  2 and 3).
+ @ivar inventory: a summary string describing the contents of the grib message.
+ The format is "_grib_message_number:parameter(parameter_units):vertical_level(vertical_level_descriptor):forecast_time:type_of_grid:ensemble_info".
     """
     def __init__(self,**kwargs):
         """
@@ -555,11 +557,11 @@ class Grib2Message:
             ensstring = self.ensemble_info
         else:
             ensstring = ''
-        self._inventory = repr(self._grib_message_number)+':'+paramstring+':'+levstring+':'+fcsttimestring+':'+self.type_of_grid+':'+ensstring
+        self.inventory = repr(self._grib_message_number)+':'+paramstring+':'+levstring+':'+fcsttimestring+':'+self.type_of_grid+':'+ensstring
 
     def __repr__(self):
         """print a summary string describiing the contents of the GRIB2 message"""
-        return self._inventory
+        return self.inventory
         
     def data(self,fill_value=1.e30,masked_array=False,expand=True,order=None):
         """
