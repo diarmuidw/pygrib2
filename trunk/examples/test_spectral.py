@@ -1,7 +1,10 @@
 from pylab import *
 from matplotlib.toolkits.basemap import Basemap
 from grib2 import Grib2Decode
-import spharm
+try:
+    import spharm
+except:
+    raise ImportError("requires spharm (python spherical harmonic module).  google 'python spharm' to find it")
 
 grbs = Grib2Decode('../sampledata/spectral.grb')
 for g in grbs:
