@@ -299,6 +299,8 @@ class Grib2Message:
  2 and 3).
  @ivar inventory: a summary string describing the contents of the grib message.
  The format is "_grib_message_number:parameter(parameter_units):vertical_level(vertical_level_descriptor):forecast_time:type_of_grid:ensemble_info".
+ @ivar proj4_: instance variables with this prefix are used to set the map projection
+ parameters for U{PROJ.4<http://proj.maptools.org>}. 
     """
     def __init__(self,**kwargs):
         """
