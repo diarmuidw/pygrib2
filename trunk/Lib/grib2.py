@@ -102,9 +102,8 @@ Changelog
  - B{20041213}: initial release. Fully supports lat/lon, gaussian, lambert
    conformal, polar stereographic and mercator grids.  Includes all
    product (section 4) tables included in the 20031105 version of the WMO
-   GRIB2 U{document<http://www.wmo.ch/web/www/DPS/grib-2.html>}. Works with
-   every GRIB2 file I could find - if you find one it has trouble with please
-   let me know.
+   GRIB2 document. Works with every GRIB2 file I could find -
+   if you find one it has trouble with please let me know.
  - B{20041215}: Fixed to handle files with 'communications headers' at
    beginning of GRIB message.
  - B{20041217}: Added C{matchrecs} class method to find GRIB records with
