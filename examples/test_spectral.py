@@ -4,7 +4,7 @@ from grib2 import Grib2Decode
 try:
     import spharm
 except:
-    raise ImportError("requires spharm (python spherical harmonic module).  google 'python spharm' to find it")
+    raise ImportError("requires pyspharm (python spherical harmonic module) from http://code.google.com/p/pyspharm")
 
 grbs = Grib2Decode('../sampledata/spectral.grb')
 for g in grbs:
