@@ -1,9 +1,9 @@
 Python module for reading and writing GRIB edition 2 files.
 
-Uses C code from NCEP's g2clib (http://www.nco.ncep.noaa.gov/pmb/codes/GRIB2).
-
 GRIB is the World Meteorological Organization (WMO) standard
-file format for the weather data exchange.
+file format for the exchange of weather data.
+
+Uses C code from NCEP's g2clib (http://www.nco.ncep.noaa.gov/pmb/codes/GRIB2).
 
 **Requires** 
 
