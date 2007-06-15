@@ -1,4 +1,4 @@
-__version__ = '20070515'
+__version__ = '20070615'
 __doc__="""
 Introduction
 ============
@@ -145,11 +145,12 @@ Changelog
    equator and earth is specified as an oblate spheroid. Does work with EUMETSAT
    grib2 files.  Bug fix for Oblate Spheroid earth shape (major and minor
    radii are actually in km, not m).
- - B{%(__version__)s}: Totally revamped API for reading.  Now hosted on google code.
+ - B{20070515}: Totally revamped API for reading.  Now hosted on google code.
    Supports Albers equal area, and azimuthal equidistant projections, although
    these are untested since I couldn't find any grib files in the wild that use these.
    Some support for spectral data and rotated lat/lon and gaussian grids.
    Lots of bug fixes.
+ - B{%(__version__)s}: Compatibility fix for python < 2.5, bug fixes.
 
 @author: Jeffrey Whitaker.
 
@@ -1098,7 +1099,10 @@ def _getpdt(pdtnum):
 def _getparamcat(discipline,pdtmpl):
     """return parameter category description"""
     paramcat = pdtmpl[0]
-    return sxn4.codetable[1][discipline][paramcat]
+    try:
+        return sxn4.codetable[1][discipline][paramcat]
+    except:
+        return 'Unknown'
 
 def _getparam(discipline,pdtmpl):
     """return parameter name, units"""
