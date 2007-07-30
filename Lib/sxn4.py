@@ -676,9 +676,9 @@ codetable[6]={0:'Unperturbed high-resolution control forecast',
 3:'Positively perturbed forecast',
 255:('Missing','')}
 for n in range(192):
-    if not codetable[6].has_key(n): codetable[6][n]=('Reserved','')
+    if not codetable[6].has_key(n): codetable[6][n]='Reserved'
 for n in range(192,255):
-    codetable[6][n] = ('Reserved for local use','')
+    codetable[6][n] = 'Reserved for local use'
 # Code Table 4.7: Derived forecast 
 codetable[7]={0:'Unweighted mean of all members', 
 1:'Weighted mean of all members',
