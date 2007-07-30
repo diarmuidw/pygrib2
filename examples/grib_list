@@ -2,8 +2,8 @@
 from grib2 import Grib2Decode
 import sys
 if len(sys.argv) < 2:
-    print "'python gribdump.py <grib_filename>' to get long listing"
-    print "'python gribdump.py <grib_filename> -s' to get short listing"
+    print "'grib_list <grib_filename>' to get long listing"
+    print "'grib_list <grib_filename> -s' to get short listing"
     sys.exit(1)
 fname = sys.argv[1]
 short = False
