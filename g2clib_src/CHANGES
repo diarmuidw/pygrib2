@@ -41,3 +41,4 @@ g2libc-1.0.4 - October 2006 - Modified Product Definition Templates 4.5 and 4.9
                             - Fixed rounding error bugs during encoding.
                             - Cleanup up a few small memory leaks.
 
+g2libc-1.0.5 - August  2007 - Add GDT 3.204 Curvilinear Orthogonal Grid

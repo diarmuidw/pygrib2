@@ -13,6 +13,7 @@ g2int getgridindex(g2int number)
 !
 ! PROGRAM HISTORY LOG:
 ! 2001-06-28  Gilbert
+! 2007-08-16  Vuong     -  Added GDT 3.204  Curvilinear Orthogonal Grid
 !
 ! USAGE:    index=getgridindex(number)
 !   INPUT ARGUMENT LIST:
@@ -56,6 +57,7 @@ template *getgridtemplate(g2int number)
 !
 ! PROGRAM HISTORY LOG:
 ! 2000-05-09  Gilbert
+! 2007-08-16  Vuong     -  Added GDT 3.204  Curvilinear Orthogonal Grid
 !
 ! USAGE:    template *getgridtemplate(number)
 !   INPUT ARGUMENT LIST:
