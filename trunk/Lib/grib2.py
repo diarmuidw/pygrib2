@@ -8,7 +8,7 @@ Python module for reading and writing GRIB edition 2 (GRIB2) files
 GRIB2 is the second version of the World Meterological Organization
 (WMO) standard for distributing gridded data. The standard is
 outlined in U{FM92 GRIB Edition 2, Code Form and Tables
-<http://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc.shtml>}. The module
+<http://www.wmo.ch/pages/prog/www/WMOCodes/GRIB.html>}. The module
 includes a programmer interface for reading/writing GRIB2 grids as well as command
 line utilities for listing the contents of a grib file and 're-packing' a
 grib file using a different compression scheme.
@@ -85,6 +85,7 @@ Documentation
 Links
 =====
 
+ - U{WMO GRIB information<http://www.wmo.ch/pages/prog/www/WMOCodes/GRIB.html>}.
  - U{wgrib2<http://www.cpc.ncep.noaa.gov/products/wesley/wgrib2/>}
  - U{NCEP GRIB2 C and FORTRAN libraries
    <http://www.nco.ncep.noaa.gov/pmb/codes/GRIB2/>}. This package uses
