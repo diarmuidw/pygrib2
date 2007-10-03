@@ -4,8 +4,8 @@ c-wrappers that Pyrex generates."""
 
 import math
 
-cdef extern from "pycompat.h":
-    ctypedef int Py_ssize_t
+#cdef extern from "pycompat.h":
+#    ctypedef int Py_ssize_t
 
 # Some helper routines from the Python API
 cdef extern from "Python.h":
