@@ -533,7 +533,11 @@ class Grib2Message:
             self.gridlength_in_y_direction = gdtmpl[13]/1000.
             self.proj4_proj = 'aeqd'
             self.scanmodeflags = _dec2bin(gdtmpl[15])[0:4]
+        elif gdtnum == 203: # rotated Arakawa E grid.
+            self.scanmodeflags = _dec2bin(gdtmpl[18])[0:4]
         elif gdtnum == 204: # curvilinear orthogonal
+            self.scanmodeflags = _dec2bin(gdtmpl[18])[0:4]
+        elif gdtnum == 205: # rotated Arakwaw B grid.
             self.scanmodeflags = _dec2bin(gdtmpl[18])[0:4]
         # missing value.
         drtnum = self.data_representation_template_number
