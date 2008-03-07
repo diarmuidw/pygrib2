@@ -419,7 +419,7 @@ class Grib2Message:
             self.points_in_y_direction = gdtmpl[8]
         if not reggrid and gdtnum == 40: # 'reduced' gaussian grid.
             self.points_in_y_direction = gdtmpl[8]
-        if gdtnum == 0 or gdtnum == 1: # regular lat/lon grid
+        if gdtnum in [0,1,203,205]: # regular or rotated lat/lon grid
             scalefact = float(gdtmpl[9])
             divisor = float(gdtmpl[10])
             if scalefact == 0: scalefact = 1.
@@ -533,11 +533,7 @@ class Grib2Message:
             self.gridlength_in_y_direction = gdtmpl[13]/1000.
             self.proj4_proj = 'aeqd'
             self.scanmodeflags = _dec2bin(gdtmpl[15])[0:4]
-        elif gdtnum == 203: # rotated Arakawa E grid.
-            self.scanmodeflags = _dec2bin(gdtmpl[18])[0:4]
         elif gdtnum == 204: # curvilinear orthogonal
-            self.scanmodeflags = _dec2bin(gdtmpl[18])[0:4]
-        elif gdtnum == 205: # rotated Arakwaw B grid.
             self.scanmodeflags = _dec2bin(gdtmpl[18])[0:4]
         # missing value.
         drtnum = self.data_representation_template_number
