@@ -152,6 +152,7 @@ Changelog
    Some support for spectral data and rotated lat/lon and gaussian grids.
    Lots of bug fixes.
  - B{%(__version__)s}: Compatibility fix for python < 2.5, bug fixes.
+ - svn (not yet released):  Some support for GDT 204.  Update g2clib to 1.0.5.
 
 @author: Jeffrey Whitaker.
 
