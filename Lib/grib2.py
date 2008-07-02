@@ -151,7 +151,7 @@ Changelog
    these are untested since I couldn't find any grib files in the wild that use these.
    Some support for spectral data and rotated lat/lon and gaussian grids.
    Lots of bug fixes.
- - B{200070615}: Compatibility fix for python < 2.5, bug fixes.
+ - B{20070615}: Compatibility fix for python < 2.5, bug fixes.
  - B{%(__version__)s}: Some support for GDT 204.  Update g2clib to 1.0.5.
    Tables updated, local use section now accessible.
 
@@ -226,6 +226,9 @@ class Grib2Message:
  @ivar bitmap_indicator_flag: flag to indicate whether a bit-map is used (0 for yes, 255 for no).
  @ivar data_representation_template: data representation template  from section 5.
  @ivar data_representation_template_number: data representation template number from section 5.
+ @ivar has_local_use_section:  True if grib message contains a local use 
+ section. If True the actual local use section is contained in the
+ C{_local_use_section} instance variable, as a raw byte string.
  @ivar discipline: product discipline for grib message.
  @ivar discipline_code: product discipline code for grib message.
  @ivar earthRmajor: major (equatorial) earth radius.
