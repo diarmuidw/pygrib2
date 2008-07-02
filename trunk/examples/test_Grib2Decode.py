@@ -6,7 +6,7 @@ grbs = Grib2Decode('../sampledata/eta.grb')
 for g in grbs:
     print g
 # extract just geopotential height on isobaric surfaces.
-zgribs = [g for g in grbs if g.parameter == 'Geopotential height' and g.vertical_level_descriptor == 'Isobaric surface']
+zgribs = [g for g in grbs if g.parameter_abbrev == 'HGT' and g.vertical_level_descriptor == 'Isobaric Surface']
 nlevs = len(zgribs)
 nlons = zgribs[0].points_in_x_direction
 nlats = zgribs[0].points_in_y_direction
