@@ -91,6 +91,36 @@ def itor_ieee(object iarr, object rarr):
     idata = <g2int *>idat
     rdieee(idata, rdata, bufleni/4)
 
+cdef _toarray(void *items, object a):
+    """
+ Fill a numpy array from the grib2 file.  Note that this free()s the items argument!
+    """
+    cdef void *abuf
+    cdef Py_ssize_t buflen
+    cdef g2int *idata
+    cdef g2float *fdata
+
+    # get pointer to data buffer.
+    PyObject_AsWriteBuffer(a, &abuf, &buflen)
+
+    if str(a.dtype) == 'int32':
+      idata = <g2int *>abuf
+      # fill buffer.
+      for i from 0 <= i < len(a):
+        idata[i] = (<g2int *>items)[i]
+    elif str(a.dtype) == 'float32':
+      fdata = <g2float *>abuf
+      # fill buffer.
+      for i from 0 <= i < len(a):
+        fdata[i] = (<g2float *>items)[i]
+    else:
+      free(items)
+      raise RuntimeError('unknown array type %s' % a.dtype)
+
+    free(items)
+    return a
+
+
 # routines for reading grib2 files.
 
 def unpack1(gribmsg, ipos, object zeros):
@@ -134,24 +164,18 @@ def unpack1(gribmsg, ipos, object zeros):
     """
     cdef unsigned char *cgrib
     cdef g2int i, iofst, ierr, idslen
-    cdef Py_ssize_t buflen
-    cdef g2int *ids, *idsectdata
-    cdef void *idsectdat
+    cdef g2int *ids
     cgrib = <unsigned char *>PyString_AsString(gribmsg)
     iofst = <g2int>PyInt_AsLong(ipos*8)
     ierr = g2_unpack1(cgrib, &iofst, &ids, &idslen)
     if ierr != 0:
        msg = "Error unpacking section 1 - error code = %i" % ierr
        raise RuntimeError(msg)
-    idsect = zeros(idslen, 'i') # allocate numeric array in python
-    # get pointer to data buffer.
-    PyObject_AsWriteBuffer(idsect, &idsectdat, &buflen) 
-    idsectdata = <g2int *>idsectdat
-    # fill buffer.
-    for i from 0 <= i < idslen:
-        idsectdata[i] = ids[i]
-    free(ids)
+
+    idsect = _toarray(ids, zeros(idslen, 'i'))
     return idsect,iofst/8
+
+
 
 def unpack3(gribmsg, ipos, object zeros):
     """
@@ -198,37 +222,19 @@ def unpack3(gribmsg, ipos, object zeros):
                 6 = memory allocation error
     """
     cdef unsigned char *cgrib
-    cdef g2int *igds, *igdstmpl, *ideflist, *gdtmpldata, *gdsdata, *deflistdata
-    cdef void *gdtmpldat, *gdsdat, *deflistdat
+    cdef g2int *igds, *igdstmpl, *ideflist
     cdef g2int mapgridlen, iofst, idefnum, ierr
-    cdef Py_ssize_t buflen
     cgrib = <unsigned char *>PyString_AsString(gribmsg)
     iofst = <g2int>PyInt_AsLong(ipos*8)
     ierr=g2_unpack3(cgrib,&iofst,&igds,&igdstmpl,&mapgridlen,&ideflist,&idefnum)
     if ierr != 0:
        msg = "Error unpacking section 3 - error code = %i" % ierr
        raise RuntimeError(msg)
-    # allocate arrays in python.
-    gdtmpl = zeros(mapgridlen, 'i')
-    gds = zeros(5, 'i')
-    deflist = zeros(idefnum, 'i') 
-    # get pointers to data buffers.
-    PyObject_AsWriteBuffer(gdtmpl, &gdtmpldat, &buflen) 
-    PyObject_AsWriteBuffer(gds, &gdsdat, &buflen) 
-    PyObject_AsWriteBuffer(deflist, &deflistdat, &buflen) 
-    gdtmpldata = <g2int *>gdtmpldat
-    gdsdata = <g2int *>gdsdat
-    deflistdata = <g2int *>deflistdat
-    # fill buffers.
-    for i from 0 <= i < mapgridlen:
-        gdtmpldata[i] = igdstmpl[i]
-    free(igdstmpl)
-    for i from 0 <= i < 5:
-        gdsdata[i] = igds[i]
-    free(igds)
-    for i from 0 <= i < idefnum:
-        deflistdata[i] = ideflist[i]
-    free(ideflist)
+
+    gdtmpl = _toarray(igdstmpl, zeros(mapgridlen, 'i'))
+    gds = _toarray(igds, zeros(5, 'i'))
+    deflist = _toarray(ideflist, zeros(idefnum, 'i'))
+
     return gds,gdtmpl,deflist,iofst/8
 
 def unpack4(gribmsg,ipos,object zeros):
@@ -266,32 +272,19 @@ def unpack4(gribmsg,ipos,object zeros):
               6 = memory allocation error
     """
     cdef unsigned char *cgrib
-    cdef g2int *ipdstmpl, *pdtmpldata
-    cdef g2float *icoordlist, *coordlistdata
+    cdef g2int *ipdstmpl
+    cdef g2float *icoordlist
     cdef g2int mappdslen, iofst, ipdsnum, ierr, numcoord
-    cdef void *pdtmpldat, *coordlistdat
-    cdef Py_ssize_t buflen
     cgrib = <unsigned char *>PyString_AsString(gribmsg)
     iofst = <g2int>PyInt_AsLong(ipos*8)
     ierr=g2_unpack4(cgrib,&iofst,&ipdsnum,&ipdstmpl,&mappdslen,&icoordlist,&numcoord)
     if ierr != 0:
        msg = "Error unpacking section 4 - error code = %i" % ierr
        raise RuntimeError(msg)
-    # allocate arrays in python.
-    pdtmpl = zeros(mappdslen, 'i')
-    coordlist = zeros(numcoord, 'f') 
-    # get pointers to data buffers.
-    PyObject_AsWriteBuffer(pdtmpl, &pdtmpldat, &buflen) 
-    PyObject_AsWriteBuffer(coordlist, &coordlistdat, &buflen) 
-    pdtmpldata = <g2int *>pdtmpldat
-    coordlistdata = <g2float *>coordlistdat
-    # fill buffers.
-    for i from 0 <= i < mappdslen:
-        pdtmpldata[i] = ipdstmpl[i]
-    free(ipdstmpl)
-    for i from 0 <= i < numcoord:
-        coordlistdata[i] = icoordlist[i]
-    free(icoordlist)
+
+    pdtmpl = _toarray(ipdstmpl, zeros(mappdslen, 'i'))
+    coordlist = _toarray(icoordlist, zeros(numcoord, 'f'))
+
     return pdtmpl,ipdsnum,coordlist,iofst/8
     
 def unpack5(gribmsg,ipos,object zeros):
@@ -326,24 +319,16 @@ def unpack5(gribmsg,ipos,object zeros):
                   Representation Template
     """
     cdef unsigned char *cgrib
-    cdef g2int *idrstmpl, *drtmpldata
-    cdef void *drtmpldat
+    cdef g2int *idrstmpl
     cdef g2int iofst, ierr, ndpts, idrsnum, mapdrslen
-    cdef Py_ssize_t buflen
     cgrib = <unsigned char *>PyString_AsString(gribmsg)
     iofst = <g2int>PyInt_AsLong(ipos*8)
     ierr=g2_unpack5(cgrib,&iofst,&ndpts,&idrsnum,&idrstmpl,&mapdrslen)
     if ierr != 0:
        msg = "Error unpacking section 5 - error code = %i" % ierr
        raise RuntimeError(msg)
-    drtmpl = zeros(mapdrslen, 'i') # allocate numeric array in python
-    # get pointer to data buffer.
-    PyObject_AsWriteBuffer(drtmpl, &drtmpldat, &buflen) 
-    drtmpldata = <g2int *>drtmpldat
-    # fill buffer.
-    for i from 0 <= i < mapdrslen:
-        drtmpldata[i] = idrstmpl[i]
-    free(idrstmpl)
+
+    drtmpl = _toarray(idrstmpl, zeros(mapdrslen, 'i'))
     return drtmpl,idrsnum,ndpts,iofst/8
     
 def unpack6(gribmsg,ndpts,ipos,object zeros):
@@ -374,11 +359,10 @@ def unpack6(gribmsg,ndpts,ipos,object zeros):
               4 = Unrecognized pre-defined bit-map.
               6 = memory allocation error
     """
+    cdef object bitmap
     cdef unsigned char *cgrib
     cdef g2int iofst, ierr, ngpts, ibmap
-    cdef g2int *bmap, *bitmapdata
-    cdef void *bitmapdat
-    cdef Py_ssize_t buflen
+    cdef g2int *bmap
     cgrib = <unsigned char *>PyString_AsString(gribmsg)
     iofst = <g2int>PyInt_AsLong(ipos*8)
     ngpts = <g2int>PyInt_AsLong(ndpts)
@@ -387,16 +371,10 @@ def unpack6(gribmsg,ndpts,ipos,object zeros):
         msg = "Error unpacking section 6 - error code = %i" % ierr
         raise RuntimeError(msg)
     if ibmap == 0:
-        bitmap = zeros(ngpts, 'i') # allocate numeric array in python
-        # get pointer to data buffer.
-        PyObject_AsWriteBuffer(bitmap, &bitmapdat, &buflen) 
-        bitmapdata = <g2int *>bitmapdat
-        # fill buffer.
-        for i from 0 <= i < ngpts:
-            bitmapdata[i] = bmap[i]
+        bitmap = _toarray(bmap, zeros(ngpts, 'i'))
     else:
         bitmap = None
-    free(bmap)
+        free(bmap)
     return bitmap,ibmap
     
 def unpack7(gribmsg,gdtnum,object gdtmpl,drtnum,object drtmpl,ndpts,ipos,object zeros,printminmax=False,storageorder='C'):
@@ -442,8 +420,8 @@ def unpack7(gribmsg,gdtnum,object gdtmpl,drtnum,object drtmpl,ndpts,ipos,object 
     cdef unsigned char *cgrib
     cdef g2int iofst, ierr, ngpts, idrsnum, igdsnum
     cdef g2int *igdstmpl, *idrstmpl
-    cdef g2float *fld, *datadata
-    cdef void *drtmpldat, *gdtmpldat, *datadat
+    cdef g2float *fld
+    cdef void *drtmpldat, *gdtmpldat
     cdef float rmin, rmax
     cdef int n
     cdef Py_ssize_t buflen
@@ -460,13 +438,8 @@ def unpack7(gribmsg,gdtnum,object gdtmpl,drtnum,object drtmpl,ndpts,ipos,object 
     if ierr != 0:
        msg = "Error unpacking section 7 - error code = %i" % ierr
        raise RuntimeError(msg)
-    data = zeros(ngpts, 'f', order=storageorder) # allocate numeric array in python
-    # get pointer to data buffer.
-    PyObject_AsWriteBuffer(data, &datadat, &buflen) 
-    datadata = <g2float *>datadat
-    # fill buffer.
-    for i from 0 <= i < ngpts:
-        datadata[i] = fld[i]
+
+
     if printminmax:
         rmax=-<float>9.9e31
         rmin=<float>9.9e31
@@ -481,7 +454,8 @@ def unpack7(gribmsg,gdtnum,object gdtmpl,drtnum,object drtmpl,ndpts,ipos,object 
         minmaxstring = 'min/max='+format+'/'+format
         minmaxstring = minmaxstring % (fldmin,fldmax)
         print minmaxstring
-    free(fld)
+
+    data = _toarray(fld, zeros(ngpts, 'f', order=storageorder))
     return data
 
 # routines for writing grib2 files.
