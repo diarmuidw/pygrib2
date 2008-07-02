@@ -1146,7 +1146,7 @@ def _getparam(discipline,pdtmpl):
         sxn4.codetable[2][discipline][paramcat].has_key(pdtmpl[1]) 
         return sxn4.codetable[2][discipline][paramcat][pdtmpl[1]]
     except:
-        return 'Unknown',''
+        return 'Unknown','','' 
 
 def _unpack1(gribmsg,pos):
     """unpack section 1 given starting point in bytes
