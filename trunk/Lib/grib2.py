@@ -153,7 +153,7 @@ Changelog
    Lots of bug fixes.
  - B{20070615}: Compatibility fix for python < 2.5, bug fixes.
  - B{%(__version__)s}: Some support for GDT 204.  Update g2clib to 1.0.5.
-   Tables updated, local use section now accessible.
+   Tables updated, local use section now accessible. Fixed possible memory leak.
 
 @author: Jeffrey Whitaker.
 
@@ -275,6 +275,7 @@ class Grib2Message:
 
  @ivar number_of_data_points_to_unpack: total number of data points in grib message.
  @ivar parameter: string describing the variable in the grib message.
+ @ivar parameter_abbrev: NCEP abbreviation (suitable for defining variable names).
  @ivar parameter_category:  string describing the type of variable the grib message.
  @ivar parameter_category_code: variable category code.
  @ivar parameter_code: variable code.
@@ -331,6 +332,8 @@ class Grib2Message:
         self.parameter = paramname[0]
         if paramname[1] != '':
             self.parameter_units = paramname[1]
+        if paramname[2] != '':
+            self.parameter_abbrev = paramname[2]
         self.parameter_category = _getparamcat(discipline,pdtmpl)
         self.parameter_category_code = pdtmpl[0]
         self.parameter_code = pdtmpl[1]
@@ -547,11 +550,15 @@ class Grib2Message:
             self.missing_value = _getieeeint(drtmpl[7]) 
             if drtmpl[6] == 2:
                 self.missing_value2 = _getieeeint(drtmpl[8]) 
+        if hasattr(self,'parameter_abbrev'):
+            paramname = self.parameter_abbrev
+        else:
+            paramname = self.parameter
         # inventory string.
         if not hasattr(self,'parameter_units') or self.parameter_units=='':
-            paramstring = self.parameter
+            paramstring = paramname
         else:
-            paramstring = self.parameter+' ['+self.parameter_units+']'
+            paramstring = paramname+' ['+self.parameter_units+']'
         if hasattr(self,'forecast_time'):
             fcsttimestring = self.forecast_time
         else:
