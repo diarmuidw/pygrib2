@@ -154,6 +154,9 @@ Changelog
  - B{20070615}: Compatibility fix for python < 2.5, bug fixes.
  - B{%(__version__)s}: Some support for GDT 204.  Update g2clib to 1.0.5.
    Tables updated, local use section now accessible. Fixed possible memory leak.
+   NCEP parameter abbreviations included (via C{parameter_abbrev} instance
+   variable.  Inventory string now uses the abbreviation instead of the full
+   parameter name.
 
 @author: Jeffrey Whitaker.
 
