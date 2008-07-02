@@ -1,10 +1,13 @@
 from pylab import *
-from matplotlib.toolkits.basemap import Basemap
+try:
+    from mpl_toolkits.basemap import Basemap
+except:
+    from matplotlib.toolkits.basemap import Basemap
 from grib2 import *
 
 grbs = Grib2Decode('../sampledata/eta_wheaders.grb')
 for g in grbs:
-    if g.parameter == 'Maximum temperature':
+    if g.parameter_abbrev == 'T_MAX':
         data = g.data()
         lats,lons = g.grid()
         break
