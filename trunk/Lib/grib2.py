@@ -1,4 +1,4 @@
-__version__ = '20070615'
+__version__ = '20080710'
 __doc__="""
 Introduction
 ============
@@ -151,8 +151,9 @@ Changelog
    these are untested since I couldn't find any grib files in the wild that use these.
    Some support for spectral data and rotated lat/lon and gaussian grids.
    Lots of bug fixes.
- - B{%(__version__)s}: Compatibility fix for python < 2.5, bug fixes.
- - svn (not yet released):  Some support for GDT 204.  Update g2clib to 1.0.5.
+ - B{200070615}: Compatibility fix for python < 2.5, bug fixes.
+ - B{%(__version__)s}: Some support for GDT 204.  Update g2clib to 1.0.5.
+   Tables updated, local use section now accessible.
 
 @author: Jeffrey Whitaker.
 
@@ -845,6 +846,7 @@ def Grib2Decode(filename):
     bitmapflag = [] # bit-map indicator flag from sxn 6
     bitmap = [] # bitmap from sxn 6.
     pos7 = [] # byte offset for section 7.
+    localsxn = [] # local use sections.
     msgstart = [] # byte offset in file for message start.
     msglength = [] # length of the message in bytes.
     message = [] # the actual grib message.
@@ -880,14 +882,19 @@ def Grib2Decode(filename):
         bitmapflags = []
         bitmaps = []
         sxn7pos = []
+        localsxns = []
         while 1:
             # check to see if this is the end of the message.
             if gribmsg[pos:pos+4] == '7777': break
             lensect = struct.unpack('>i',gribmsg[pos:pos+4])[0]
             sectnum = struct.unpack('>B',gribmsg[pos+4])[0]
             # section 2, local use section.
-            if sectnum == 2:  # skip
-                #localsxns.append(gribmsg[pos+5:pos+lensect-5])
+            if sectnum == 2:
+                # "local use section", used by NDFD to store WX
+                # strings.  This section is returned as a raw
+                # bytestring for further dataset-specific parsing,
+                # not as a numpy array.
+                localsxns.append(gribmsg[pos+5:pos+lensect])
                 pos = pos + lensect
             # section 3, grid definition section.
             elif sectnum == 3:
@@ -945,6 +952,9 @@ def Grib2Decode(filename):
         bitmapflag.append(_repeatlast(numfields[n],bitmapflags))
         bitmap.append(_repeatlast(numfields[n],bitmaps))
         pos7.append(_repeatlast(numfields[n],sxn7pos))
+        if len(localsxns) == 0:
+            localsxns = [None]
+        localsxn.append(_repeatlast(numfields[n],localsxns))
         msgstart.append(_repeatlast(numfields[n],[spos]))
         msglength.append(_repeatlast(numfields[n],[lengrib]))
         identsect.append(_repeatlast(numfields[n],[idsect]))
@@ -963,6 +973,7 @@ def Grib2Decode(filename):
     bitmapflag = _flatten(numfields,bitmapflag)
     bitmap = _flatten(numfields,bitmap)
     pos7 = _flatten(numfields,pos7)
+    localsxn = _flatten(numfields,localsxn)
     msgstart = _flatten(numfields,msgstart)
     msglength = _flatten(numfields,msglength)
     identsect = _flatten(numfields,identsect)
@@ -993,6 +1004,11 @@ def Grib2Decode(filename):
         kwargs['_grib_filename']=filename
         kwargs['identification_section']=identsect[n]
         kwargs['_grib_message_number']=n+1
+        if localsxn[n] is not None:
+            kwargs['has_local_use_section'] = True
+            kwargs['_local_use_section']=localsxn[n]
+        else:
+            kwargs['has_local_use_section'] = False
         gribs.append(Grib2Message(**kwargs))
     f.close()
     return gribs 
