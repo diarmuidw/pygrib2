@@ -1,6 +1,6 @@
 from grib2 import Grib2Decode
 from pylab import *
-from matplotlib.toolkits.basemap import Basemap
+from mpl_toolkits.basemap import Basemap
 grbs = Grib2Decode('../sampledata/gfs.grb')
 lats, lons = grbs[0].grid()
 print lats[:,0]

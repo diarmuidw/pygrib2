@@ -1,8 +1,5 @@
 from pylab import *
-try:
-    from mpl_toolkits.basemap import Basemap
-except:
-    from matplotlib.toolkits.basemap import Basemap
+from mpl_toolkits.basemap import Basemap
 from grib2 import *
 
 grbs = Grib2Decode('../sampledata/eta_wheaders.grb')
@@ -22,6 +19,7 @@ lon0    = g.proj4_lon_0     # central meridian
 rsphere = (g.earthRmajor, g.earthRminor)
 projection = g.proj4_proj
 print data.shape, data.min(), data.max()
+print llcrnrlat,llcrnrlat,urcrnrlat,urcrnrlon
 # make a plot using matplotlib basemap toolkit.
 # (http://matplotlib.sf.net/toolkits.html)
 m = Basemap(llcrnrlon=llcrnrlon,llcrnrlat=llcrnrlat,

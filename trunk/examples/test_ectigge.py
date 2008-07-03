@@ -1,8 +1,5 @@
 from pylab import *
-try:
-    from mpl_toolkits.basemap import Basemap
-except:
-    from matplotlib.toolkits.basemap import Basemap
+from mpl_toolkits.basemap import Basemap
 from numpy import ma
 from grib2 import Grib2Decode, dump
 
@@ -25,10 +22,7 @@ CS = m.contourf(x,y,fld,15,cmap=cm.jet)
 #im = m.pcolor(x,y,fld,cmap=cm.jet,shading='flat')
 ax = gca()
 pos = ax.get_position()
-if hasattr(pos,'bounds'):
-    l, b, w, h = pos.bounds
-else:
-    l, b, w, h = pos
+l, b, w, h = pos.bounds
 cax = axes([l+w+0.025, b, 0.025, h]) # setup colorbar axes
 colorbar(drawedges=True, cax=cax, format='%d') # draw colorbar
 axes(ax)  # make the original axes current again
