@@ -1,5 +1,5 @@
 from pylab import *
-from matplotlib.toolkits.basemap import Basemap
+from mpl_toolkits.basemap import Basemap
 from grib2 import Grib2Decode
 try:
     import spharm
@@ -8,7 +8,7 @@ except:
 
 grbs = Grib2Decode('../sampledata/spectral.grb')
 for g in grbs:
-    if g.parameter == 'Temperature' and g.vertical_level=='0.99598 sigma value':
+    if g.parameter_abbrev == 'TMP' and g.vertical_level=='0.99598':
         fld = g.data()
         break
 
@@ -40,7 +40,8 @@ m = Basemap(llcrnrlon=-180.,llcrnrlat=-90,urcrnrlon=180.,urcrnrlat=90.,\
 x, y = m(lons,lats)
 CS = m.contourf(x,y,data,15,cmap=cm.jet)
 ax = gca()
-l,b,w,h=ax.get_position()
+pos = ax.get_position()
+l, b, w, h = pos.bounds
 cax = axes([l+w+0.025, b, 0.025, h]) # setup colorbar axes
 colorbar(drawedges=True, cax=cax) # draw colorbar
 axes(ax)  # make the original axes current again

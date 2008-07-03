@@ -1,6 +1,6 @@
 from grib2 import Grib2Decode
 from pylab import *
-from matplotlib.toolkits.basemap import Basemap
+from mpl_toolkits.basemap import Basemap
 from numpy import ma
 grbs = Grib2Decode('../sampledata/ds.temp.grb')
 g = grbs[0]

@@ -1,7 +1,7 @@
 from grib2 import Grib2Decode
 from pylab import *
-from matplotlib.toolkits.basemap import Basemap
-grbs = Grib2Decode('./sampledata/eta.grb')
+from mpl_toolkits.basemap import Basemap
+grbs = Grib2Decode('../sampledata/eta.grb')
 lats, lons = grbs[0].grid()
 print lats.min(), lats.max()
 print lons.min(), lons.max()

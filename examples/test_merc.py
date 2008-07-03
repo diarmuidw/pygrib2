@@ -1,12 +1,13 @@
 from grib2 import Grib2Decode
 from pylab import *
-from matplotlib.toolkits.basemap import Basemap
+from mpl_toolkits.basemap import Basemap
 grbs = Grib2Decode('../sampledata/dspr.temp.grb')
 lats, lons = grbs[0].grid()
 llcrnrlon = lons[0,0]
 llcrnrlat = lats[0,0]
 urcrnrlon = lons[-1,-1]
 urcrnrlat = lats[-1,-1]
+print llcrnrlat,llcrnrlon,urcrnrlat,urcrnrlon
 rsphere = (grbs[0].earthRmajor,grbs[0].earthRminor)
 lat_ts = grbs[0].proj4_lat_ts
 lon_0 = grbs[0].proj4_lon_0
