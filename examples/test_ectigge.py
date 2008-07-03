@@ -1,11 +1,14 @@
 from pylab import *
-from matplotlib.toolkits.basemap import Basemap
+try:
+    from mpl_toolkits.basemap import Basemap
+except:
+    from matplotlib.toolkits.basemap import Basemap
 from numpy import ma
 from grib2 import Grib2Decode, dump
 
 grbs = Grib2Decode('../sampledata/ecmwf_tigge.grb')
 for g in grbs:
-    if g.parameter == 'Volumetric soil moisture':
+    if g.parameter_abbrev == 'SOILM':
         fld = g.data(masked_array=True)
         lats, lons = g.grid()
         break
@@ -21,9 +24,13 @@ x, y = m(lons,lats)
 CS = m.contourf(x,y,fld,15,cmap=cm.jet)
 #im = m.pcolor(x,y,fld,cmap=cm.jet,shading='flat')
 ax = gca()
-l,b,w,h=ax.get_position()
+pos = ax.get_position()
+if hasattr(pos,'bounds'):
+    l, b, w, h = pos.bounds
+else:
+    l, b, w, h = pos
 cax = axes([l+w+0.025, b, 0.025, h]) # setup colorbar axes
-colorbar(drawedges=True, cax=cax) # draw colorbar
+colorbar(drawedges=True, cax=cax, format='%d') # draw colorbar
 axes(ax)  # make the original axes current again
 m.drawcoastlines()
 # draw parallels
