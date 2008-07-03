@@ -155,7 +155,7 @@ Changelog
  - B{%(__version__)s}: Some support for GDT 204.  Update g2clib to 1.0.5.
    Tables updated, local use section now accessible. Fixed possible memory leak.
    NCEP parameter abbreviations included (via C{parameter_abbrev} instance
-   variable.  Inventory string now uses the abbreviation instead of the full
+   variable).  Inventory string now uses the abbreviation instead of the full
    parameter name. Added C{originating_center} instance variable.
 
 @author: Jeffrey Whitaker.
