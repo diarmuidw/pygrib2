@@ -38,11 +38,12 @@ grib2.grib2.Grib2Message.parameter_category_code	grib2.grib2.Grib2Message-class.
 grib2.grib2.Grib2Message.__init__	grib2.grib2.Grib2Message-class.html#__init__
 grib2.grib2.Grib2Message.discipline	grib2.grib2.Grib2Message-class.html#discipline
 grib2.grib2.Grib2Message.missing_value	grib2.grib2.Grib2Message-class.html#missing_value
+grib2.grib2.Grib2Message.has_local_use_section	grib2.grib2.Grib2Message-class.html#has_local_use_section
 grib2.grib2.Grib2Message.scanmodeflags	grib2.grib2.Grib2Message-class.html#scanmodeflags
 grib2.grib2.Grib2Message.proj4_	grib2.grib2.Grib2Message-class.html#proj4_
-grib2.grib2.Grib2Message.earthRminor	grib2.grib2.Grib2Message-class.html#earthRminor
-grib2.grib2.Grib2Message.grid_definition_template_number	grib2.grib2.Grib2Message-class.html#grid_definition_template_number
 grib2.grib2.Grib2Message.longitude_first_gridpoint	grib2.grib2.Grib2Message-class.html#longitude_first_gridpoint
+grib2.grib2.Grib2Message.grid_definition_template_number	grib2.grib2.Grib2Message-class.html#grid_definition_template_number
+grib2.grib2.Grib2Message.earthRminor	grib2.grib2.Grib2Message-class.html#earthRminor
 grib2.grib2.Grib2Message.grid_definition_info	grib2.grib2.Grib2Message-class.html#grid_definition_info
 grib2.grib2.Grib2Message.identification_section	grib2.grib2.Grib2Message-class.html#identification_section
 grib2.grib2.Grib2Message.inventory	grib2.grib2.Grib2Message-class.html#inventory
@@ -56,6 +57,7 @@ grib2.grib2.Grib2Message.gridlength_in_x_direction	grib2.grib2.Grib2Message-clas
 grib2.grib2.Grib2Message.type_of_grid	grib2.grib2.Grib2Message-class.html#type_of_grid
 grib2.grib2.Grib2Message.discipline_code	grib2.grib2.Grib2Message-class.html#discipline_code
 grib2.grib2.Grib2Message.grid	grib2.grib2.Grib2Message-class.html#grid
+grib2.grib2.Grib2Message.parameter_abbrev	grib2.grib2.Grib2Message-class.html#parameter_abbrev
 grib2.grib2.Grib2Message.data	grib2.grib2.Grib2Message-class.html#data
 grib2.grib2.Grib2Message.number_of_data_points_to_unpack	grib2.grib2.Grib2Message-class.html#number_of_data_points_to_unpack
 grib2.grib2.Grib2Message.spectral_truncation_parameters	grib2.grib2.Grib2Message-class.html#spectral_truncation_parameters

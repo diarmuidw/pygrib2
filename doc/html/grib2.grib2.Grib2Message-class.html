@@ -50,13 +50,13 @@
   </tr>
 </table>
 <!-- ==================== CLASS DESCRIPTION ==================== -->
-<h1 class="epydoc">Class Grib2Message</h1><span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Message">source&nbsp;code</a></span><br /><br />
+<h1 class="epydoc">Class Grib2Message</h1><p class="nomargin-top"><span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Message">source&nbsp;code</a></span></p>
 <p>Class for accessing data in a GRIB Edition 2 message.</p>
   <p>The <a href="grib2.grib2-module.html#Grib2Decode" 
   class="link">Grib2Decode</a> function returns a list of these class 
   instances, one for each grib message in the file.</p>
-  When a class instance is created, metadata in the GRIB2 file is 
-  decoded and used to set various instance variables.<br /><br />
+  <p>When a class instance is created, metadata in the GRIB2 file is 
+  decoded and used to set various instance variables.</p>
 
 <!-- ==================== INSTANCE METHODS ==================== -->
 <a name="section-InstanceMethods"></a>
@@ -74,8 +74,7 @@
         <tr>
           <td><span class="summary-sig"><a href="grib2.grib2.Grib2Message-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">**kwargs</span>)</span><br />
-      create a Grib2Decode class instance given a GRIB Edition 2 
-      filename.</td>
+      create a Grib2Decode class instance given a GRIB Edition 2 filename.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Message.__init__">source&nbsp;code</a></span>
             
@@ -92,8 +91,7 @@
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a name="__repr__"></a><span class="summary-sig-name">__repr__</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      print a summary string describiing the contents of the GRIB2 
-      message</td>
+      print a summary string describiing the contents of the GRIB2 message</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Message.__repr__">source&nbsp;code</a></span>
             
@@ -155,9 +153,9 @@
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
         <a href="grib2.grib2.Grib2Message-class.html#angle_of_pole_rotation" class="summary-name">angle_of_pole_rotation</a><br />
-      The angle of rotation in degrees about the new polar axis 
-      (measured clockwise when looking from the southern to the northern 
-      pole) of the coordinate system.
+      The angle of rotation in degrees about the new polar axis (measured 
+      clockwise when looking from the southern to the northern pole) of the
+      coordinate system.
     </td>
   </tr>
 <tr>
@@ -165,8 +163,7 @@
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
         <a name="bitmap_indicator_flag"></a><span class="summary-name">bitmap_indicator_flag</span><br />
-      flag to indicate whether a bit-map is used (0 for yes, 255 for 
-      no).
+      flag to indicate whether a bit-map is used (0 for yes, 255 for no).
     </td>
   </tr>
 <tr>
@@ -277,6 +274,14 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
+        <a href="grib2.grib2.Grib2Message-class.html#has_local_use_section" class="summary-name">has_local_use_section</a><br />
+      True if grib message contains a local use section.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
         <a href="grib2.grib2.Grib2Message-class.html#identification_section" class="summary-name">identification_section</a><br />
       data from identification section (section 1).
     </td>
@@ -344,8 +349,8 @@
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
         <a name="missing_value"></a><span class="summary-name">missing_value</span><br />
-      primary missing value (for data_representation_template_numbers 2 
-      and 3).
+      primary missing value (for data_representation_template_numbers 2 and
+      3).
     </td>
   </tr>
 <tr>
@@ -353,8 +358,8 @@
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
         <a name="missing_value2"></a><span class="summary-name">missing_value2</span><br />
-      secondary missing value (for data_representation_template_numbers 
-      2 and 3).
+      secondary missing value (for data_representation_template_numbers 2 
+      and 3).
     </td>
   </tr>
 <tr>
@@ -371,6 +376,14 @@
     </td><td class="summary">
         <a name="parameter"></a><span class="summary-name">parameter</span><br />
       string describing the variable in the grib message.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="parameter_abbrev"></a><span class="summary-name">parameter_abbrev</span><br />
+      NCEP abbreviation (suitable for defining variable names).
     </td>
   </tr>
 <tr>
@@ -476,9 +489,9 @@
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
         <a href="grib2.grib2.Grib2Message-class.html#spectral_truncation_parameters" class="summary-name">spectral_truncation_parameters</a><br />
-      pentagonal truncation parameters that describe the spherical 
-      harmonic truncation (only relevant for 
-      grid_definition_template_numbers 50-52).
+      pentagonal truncation parameters that describe the spherical harmonic
+      truncation (only relevant for grid_definition_template_numbers 
+      50-52).
     </td>
   </tr>
 <tr>
@@ -529,12 +542,12 @@
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Message.__init__">source&nbsp;code</a></span>&nbsp;
     </td>
-  </table>
+  </tr></table>
   
   <p>create a Grib2Decode class instance given a GRIB Edition 2 
   filename.</p>
-  (used by <a href="grib2.grib2-module.html#Grib2Decode" 
-  class="link">Grib2Decode</a> function - not directly called by user)
+  <p>(used by <a href="grib2.grib2-module.html#Grib2Decode" 
+  class="link">Grib2Decode</a> function - not directly called by user)</p>
   <dl class="fields">
   </dl>
 </td></tr></table>
@@ -555,26 +568,24 @@
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Message.data">source&nbsp;code</a></span>&nbsp;
     </td>
-  </table>
+  </tr></table>
   
-  returns an unpacked data grid.
+  <p>returns an unpacked data grid.</p>
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>fill_value</code></strong> - missing or masked data is filled with this value (default 
-          1.e30).</li>
-        <li><strong class="pname"><code>masked_array</code></strong> - if True, return masked array if there is bitmap for missing or
+        <li><strong class="pname"><code>fill_value</code></strong> - missing or masked data is filled with this value (default 1.e30).</li>
+        <li><strong class="pname"><code>masked_array</code></strong> - if True, return masked array if there is bitmap for missing or 
           masked data (default False).</li>
-        <li><strong class="pname"><code>expand</code></strong> - if True (default), ECMWF 'reduced' gaussian grids are expanded
-          to regular gaussian grids.</li>
-        <li><strong class="pname"><code>order</code></strong> - if 1, linear interpolation is used for expanding reduced 
-          gaussian grids.  if 0, nearest neighbor interpolation is used. 
-          Default is 0 if grid has missing or bitmapped values, 1 
-          otherwise.</li>
+        <li><strong class="pname"><code>expand</code></strong> - if True (default), ECMWF 'reduced' gaussian grids are expanded to
+          regular gaussian grids.</li>
+        <li><strong class="pname"><code>order</code></strong> - if 1, linear interpolation is used for expanding reduced gaussian
+          grids.  if 0, nearest neighbor interpolation is used. Default is 
+          0 if grid has missing or bitmapped values, 1 otherwise.</li>
     </ul></dd>
     <dt>Returns:</dt>
-        <dd><code><b>data</b></code>, a float32 numpy regular or masked 
-          array with shape (nlats,lons) containing the request grid.</dd>
+        <dd><code><b>data</b></code>, a float32 numpy regular or masked array
+          with shape (nlats,lons) containing the request grid.</dd>
   </dl>
 </td></tr></table>
 </div>
@@ -590,11 +601,11 @@
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Message.grid">source&nbsp;code</a></span>&nbsp;
     </td>
-  </table>
+  </tr></table>
   
-  return lats,lons (in degrees) of grid. currently can handle reg. 
+  <p>return lats,lons (in degrees) of grid. currently can handle reg. 
   lat/lon, global gaussian, mercator, stereographic, lambert conformal, 
-  albers equal-area, space-view and azimuthal equidistant grids.
+  albers equal-area, space-view and azimuthal equidistant grids.</p>
   <dl class="fields">
     <dt>Returns:</dt>
         <dd><code><b>lats</b>,<b>lons</b></code>, float32 numpy arrays 
@@ -638,6 +649,19 @@
   </dl>
 </td></tr></table>
 </div>
+<a name="has_local_use_section"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">has_local_use_section</h3>
+  True if grib message contains a local use section. If True the actual 
+  local use section is contained in the <code>_local_use_section</code> 
+  instance variable, as a raw byte string.
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
 <a name="identification_section"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -657,8 +681,8 @@
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <h3 class="epydoc">inventory</h3>
-  a summary string describing the contents of the grib message. The 
-  format is 
+  a summary string describing the contents of the grib message. The format 
+  is 
   &quot;_grib_message_number:parameter(parameter_units):vertical_level(vertical_level_descriptor):forecast_time:type_of_grid:ensemble_info&quot;.
   <dl class="fields">
   </dl>
@@ -673,30 +697,30 @@
   scanning mode flags from Table 3.4.
   <ul>
     <li>
-      <p>bit 1:</p>
+      bit 1:
       <p>0 - Points in the first row or column scan in the +i (+x) 
       direction</p>
-      1 - Points in the first row or column scan in the +i (+x) 
-      direction
+      <p>1 - Points in the first row or column scan in the +i (+x) 
+      direction</p>
     </li>
     <li>
-      <p>bit 2:</p>
+      bit 2:
       <p>0 - Points in the first row or column scan in the -j (-y) 
       direction</p>
-      1 - Points in the first row or column scan in the +j (+y) 
-      direction
+      <p>1 - Points in the first row or column scan in the +j (+y) 
+      direction</p>
     </li>
     <li>
-      <p>bit 3:</p>
+      bit 3:
       <p>0 - Adjacent points in the i (x) direction are consecutive 
       (row-major order).</p>
-      1 - Adjacent points in the j (y) direction are consecutive 
-      (column-major order).
+      <p>1 - Adjacent points in the j (y) direction are consecutive 
+      (column-major order).</p>
     </li>
     <li>
-      <p>bit 4:</p>
+      bit 4:
       <p>0 - All rows scan in the same direction</p>
-      1 - Adjacent rows scan in the opposite direction
+      <p>1 - Adjacent rows scan in the opposite direction</p>
     </li>
   </ul>
   <dl class="fields">
@@ -746,8 +770,7 @@
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <h3 class="epydoc">vertical_level_descriptor</h3>
-  string describing the type of vertical level (e.g. 'Isobaric 
-  surface').
+  string describing the type of vertical level (e.g. 'Isobaric surface').
   <dl class="fields">
   </dl>
 </td></tr></table>
@@ -779,10 +802,11 @@
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0beta1 on Wed Oct  3 12:35:23 2007
+    Generated by Epydoc 3.0.1 on Thu Jul  3 12:29:48 2008
     </td>
     <td align="right" class="footer">
-      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
     </td>
   </tr>
 </table>
@@ -793,9 +817,8 @@
   // javascript is turned off then we want them to be
   // visible); but by default, we want to hide them.  So hide
   // them unless we have a cookie that says to show them.
-  checkCookie()
+  checkCookie();
   // -->
 </script>
-  
 </body>
 </html>
