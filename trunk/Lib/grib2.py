@@ -205,14 +205,14 @@ def _dec2bin(val, maxbits = 8):
 def _putieeeint(r):
     """convert a float to a IEEE format 32 bit integer"""
     ra = N.array([r],'f')
-    ia = N.zeros(1,'i')
+    ia = N.empty(1,'i')
     g2lib.rtoi_ieee(ra,ia)
     return ia[0]
 
 def _getieeeint(i):
     """convert an IEEE format 32 bit integer to a float"""
     ia = N.array([i],'i')
-    ra = N.zeros(1,'f')
+    ra = N.empty(1,'f')
     g2lib.itor_ieee(ia,ra)
     return ra[0]
 
@@ -628,7 +628,7 @@ class Grib2Message:
         gdsinfo = self.grid_definition_info
         ngrdpts = gdsinfo[1]
         ipos = self._section7_byte_offset
-        fld1=g2lib.unpack7(gribmsg,gdtnum,gdtmpl,drtnum,drtmpl,ndpts,ipos,N.zeros,storageorder=storageorder)
+        fld1=g2lib.unpack7(gribmsg,gdtnum,gdtmpl,drtnum,drtmpl,ndpts,ipos,N.empty,storageorder=storageorder)
         # apply bitmap.
         if bitmapflag == 0:
             bitmap=self._bitmap
@@ -662,10 +662,10 @@ class Grib2Message:
                     lonsperlat = self.grid_definition_list
                     if hasattr(fld,'mask'):
                         fld = ma.filled(fld)
-                        fld = g2lib._redtoreg(nx, lonsperlat, fld, N.zeros, order=order)
+                        fld = g2lib._redtoreg(nx, lonsperlat, fld, N.empty, order=order)
                         fld = ma.masked_values(fld,fill_value)
                     else:
-                        fld = g2lib._redtoreg(nx, lonsperlat, fld, N.zeros,order=order)
+                        fld = g2lib._redtoreg(nx, lonsperlat, fld, N.empty,order=order)
         # adjacent rows scan in opposite direction.
         # (flip every other row)
         if self.scanmodeflags[3]:
@@ -880,7 +880,7 @@ def Grib2Decode(filename):
         # unpack section 1, octets 1-21 (13 parameters).  This section
         # can occur only once per grib message.
         #idsect,pos = _unpack1(gribmsg,lensect0) # python version
-        idsect,pos = g2lib.unpack1(gribmsg,lensect0,N.zeros) # c version
+        idsect,pos = g2lib.unpack1(gribmsg,lensect0,N.empty) # c version
         # loop over rest of sections in message.
         gdtnums = []
         gdtmpls = []
@@ -911,26 +911,26 @@ def Grib2Decode(filename):
                 pos = pos + lensect
             # section 3, grid definition section.
             elif sectnum == 3:
-                gds,gdtempl,deflist,pos = g2lib.unpack3(gribmsg,pos,N.zeros)
+                gds,gdtempl,deflist,pos = g2lib.unpack3(gribmsg,pos,N.empty)
                 gdtnums.append(gds[4])
                 gdtmpls.append(gdtempl)
                 gdeflists.append(deflist)
                 gdsinfos.append(gds)
             # section, product definition section.
             elif sectnum == 4:
-                pdtempl,pdtn,coordlst,pos = g2lib.unpack4(gribmsg,pos,N.zeros)
+                pdtempl,pdtn,coordlst,pos = g2lib.unpack4(gribmsg,pos,N.empty)
                 pdtmpls.append(pdtempl)
                 coordlists.append(coordlst)
                 pdtnums.append(pdtn)
             # section 5, data representation section.
             elif sectnum == 5:
-                drtempl,drtn,npts,pos = g2lib.unpack5(gribmsg,pos,N.zeros)
+                drtempl,drtn,npts,pos = g2lib.unpack5(gribmsg,pos,N.empty)
                 drtmpls.append(drtempl)
                 drtnums.append(drtn)
                 ndptslist.append(npts)
             # section 6, bit-map section.
             elif sectnum == 6:
-                bmap,bmapflag = g2lib.unpack6(gribmsg,gds[1],pos,N.zeros)
+                bmap,bmapflag = g2lib.unpack6(gribmsg,gds[1],pos,N.empty)
                 #bitmapflag = struct.unpack('>B',gribmsg[pos+5])[0]
                 if bmapflag == 0:
                     bitmaps.append(bmap.astype('b'))
