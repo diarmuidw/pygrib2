@@ -374,9 +374,9 @@ class Grib2Message:
         else:
             levs = ''
         if levs+levinfo[1] != '':
-            self.vertical_level = levs+levinfo[1]
+            self.vertical_level = (levs+levinfo[1]).rstrip()
         if levinfo[2] != '':
-            self.vertical_level_descriptor = levinfo[2]
+            self.vertical_level_descriptor = levinfo[2].rstrip()
         # ensemble info.
         if pdtnum in [1,11]:
             ensname,pertnum,nmembers = _getensinfo(pdtnum,pdtmpl)
