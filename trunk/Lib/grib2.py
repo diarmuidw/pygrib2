@@ -156,7 +156,7 @@ Changelog
    Tables updated, local use section now accessible. Fixed possible memory leak.
    NCEP parameter abbreviations included (via C{parameter_abbrev} instance
    variable.  Inventory string now uses the abbreviation instead of the full
-   parameter name.
+   parameter name. Added C{originating_center} instance variable.
 
 @author: Jeffrey Whitaker.
 
@@ -181,6 +181,7 @@ PERFORMANCE OF THIS SOFTWARE.
 """ % locals()
 import g2lib
 import sxn0, sxn3, sxn4
+from table0 import table0
 import struct
 import gaussian
 import string
@@ -250,6 +251,7 @@ class Grib2Message:
  @ivar latitude_last_gridpoint: latitude of last grid point on grid.
  @ivar longitude_first_gridpoint: longitude of first grid point on grid.
  @ivar longitude_last_gridpoint: longitude of last grid point on grid.
+ @ivar originating_center: name of national/international originating center.
  @ivar scanmodeflags: scanning mode flags from Table 3.4.
 
   - bit 1:
@@ -995,6 +997,7 @@ def Grib2Decode(filename):
     gribs = []
     for n in range(len(msgstart)):
         kwargs = {}
+        kwargs['originating_center']=table0[identsect[n][0]]
         kwargs['grid_definition_template_number']=gdtnum[n]
         kwargs['grid_definition_template']=gdtmpl[n]
         if gdeflist[n] != []:
