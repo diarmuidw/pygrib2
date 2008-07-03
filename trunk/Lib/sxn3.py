@@ -29,6 +29,7 @@ codetable = {1:{0:'Latitude/longitude',
 1000:'Cross-section grid, with points equally spaced on the horizontal',
 1100:'Hovmoller diagram grid, with points equally spaced on the horizontal',
 1200:'Time section grid',
+32768:'Rotated Latitude/Longitude (Arakawa Staggerred E-Grid)',
 65535:'Missing'}}
 for n in range(32678):
     if not codetable[1].has_key(n): codetable[1][n]='Reserved'
