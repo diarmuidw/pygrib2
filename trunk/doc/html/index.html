@@ -49,9 +49,9 @@
   </tr>
 </table>
 <!-- ==================== MODULE DESCRIPTION ==================== -->
-<h1 class="epydoc">Module grib2</h1><span class="codelink"><a href="grib2.grib2-pysrc.html">source&nbsp;code</a></span><br /><br />
+<h1 class="epydoc">Module grib2</h1><p class="nomargin-top"><span class="codelink"><a href="grib2.grib2-pysrc.html">source&nbsp;code</a></span></p>
 <h1 class="heading">Introduction</h1>
-    Python module for reading and writing GRIB edition 2 (GRIB2) files 
+    <p>Python module for reading and writing GRIB edition 2 (GRIB2) files 
     (<a href="http://code.google.com/p/pygrib2/downloads/list" 
     target="_top">download</a>). GRIB2 is the second version of the World 
     Meterological Organization (WMO) standard for distributing gridded 
@@ -60,12 +60,11 @@
     target="_top">FM92 GRIB Edition 2, Code Form and Tables</a>. The module
     includes a programmer interface for reading/writing GRIB2 grids as well
     as command line utilities for listing the contents of a grib file and 
-    're-packing' a grib file using a different compression scheme.
+    're-packing' a grib file using a different compression scheme.</p>
   <h1 class="heading">Required</h1>
     <ul>
       <li>
-        <a href="http://python.org" target="_top">Python</a> 2.3 or 
-        higher.
+        <a href="http://python.org" target="_top">Python</a> 2.3 or higher.
       </li>
       <li>
         <a 
@@ -73,18 +72,16 @@
         target="_top">numpy</a> N-dimensional array object for python.
       </li>
       <li>
-        <a href="http://code.google.com/p/pyproj/" 
-        target="_top">pyproj</a> Python interface to <a 
-        href="http://proj.maptools.org" target="_top">PROJ.4</a> library 
-        for cartographic transformations. <a 
-        href="http://proj.maptools.org" target="_top">PROJ.4</a> library 
+        <a href="http://code.google.com/p/pyproj/" target="_top">pyproj</a>
+        Python interface to <a href="http://proj.maptools.org" 
+        target="_top">PROJ.4</a> library for cartographic transformations. 
+        <a href="http://proj.maptools.org" target="_top">PROJ.4</a> library
         must be installed first.
       </li>
       <li>
         <a href="http://www.ece.uvic.ca/~mdadams/jasper" 
         target="_top">Jasper</a> library. This library is a C 
-        implementation of the JPEG-2000 Part-1 standard (ISO/IEC 
-        15444-1).
+        implementation of the JPEG-2000 Part-1 standard (ISO/IEC 15444-1).
       </li>
       <li>
         <a href="http://www.libpng.org/pub/png/libpng.html" 
@@ -94,8 +91,7 @@
       </li>
       <li>
         <a href="http://www.gzip.org/zlib/" target="_top">zlib</a> 
-        compression library. It's almost certainly already on your 
-        system.
+        compression library. It's almost certainly already on your system.
       </li>
     </ul>
   <h1 class="heading">Installation</h1>
@@ -139,8 +135,7 @@
 </pre>
       </li>
       <li>
-        find the first grib message containing 500 hPa geopotential 
-        height:
+        find the first grib message containing 500 hPa geopotential height:
 <pre class="literalblock">
   &gt;&gt;&gt; z500 = [g for g in grbs if g.parameter=='Geopotential height' and g.vertical_level=='50000 Pa' and g.vertical_level_descriptor=='Isobaric surface'][0]
 </pre>
@@ -206,7 +201,7 @@
         uses C routines from g2clib.
       </li>
       <li>
-        <a href="http://www.ecmwf.int/products/data/software/grib2.html"
+        <a href="http://www.ecmwf.int/products/data/software/grib2.html" 
         target="_top">ECMWF gribAPI</a>
       </li>
       <li>
@@ -219,34 +214,32 @@
         and proj4).
       </li>
       <li>
-        <a href="http://proj.maptools.org" target="_top">proj.4</a> 
-        (used to perform cartographic transformations).
+        <a href="http://proj.maptools.org" target="_top">proj.4</a> (used 
+        to perform cartographic transformations).
       </li>
     </ul>
   <h1 class="heading">Changelog</h1>
     <ul>
       <li>
-        <b>20041213</b>: initial release. Fully supports lat/lon, 
-        gaussian, lambert conformal, polar stereographic and mercator 
-        grids.  Includes all product (section 4) tables included in the 
-        20031105 version of the WMO GRIB2 document. Works with every GRIB2 
-        file I could find - if you find one it has trouble with please let 
-        me know.
+        <b>20041213</b>: initial release. Fully supports lat/lon, gaussian,
+        lambert conformal, polar stereographic and mercator grids.  
+        Includes all product (section 4) tables included in the 20031105 
+        version of the WMO GRIB2 document. Works with every GRIB2 file I 
+        could find - if you find one it has trouble with please let me 
+        know.
       </li>
       <li>
         <b>20041215</b>: Fixed to handle files with 'communications 
         headers' at beginning of GRIB message.
       </li>
       <li>
-        <b>20041217</b>: Added <code>matchrecs</code> class method to 
-        find GRIB records with matching gdtnum, pdtnum, idsect, gdtmpl or 
-        pdtmpl values. Added example that reads an ETA grid and plots it 
-        with <a href="http://matplotlib.sf.net/" 
-        target="_top">Matplotlib</a>.
+        <b>20041217</b>: Added <code>matchrecs</code> class method to find 
+        GRIB records with matching gdtnum, pdtnum, idsect, gdtmpl or pdtmpl
+        values. Added example that reads an ETA grid and plots it with <a 
+        href="http://matplotlib.sf.net/" target="_top">Matplotlib</a>.
       </li>
       <li>
-        <b>20050118</b>: Updated C code to g2clib-1.0.2 (from 
-        1.0.1).
+        <b>20050118</b>: Updated C code to g2clib-1.0.2 (from 1.0.1).
       </li>
       <li>
         <b>20050316</b>: added a new class (<a 
@@ -263,7 +256,7 @@
         exercises both Grib2Decode and Grib2Encode.
       </li>
       <li>
-        <b>20050716</b>: Added some support for irregular grids (such as
+        <b>20050716</b>: Added some support for irregular grids (such as 
         ECMWF reduced gaussian grids). JPEG2000 and PNG support is now 
         optional.
       </li>
@@ -274,32 +267,31 @@
         when there is a bitmap.
       </li>
       <li>
-        <b>20050830</b>: Now displays more ensemble info in 
-        inventory.
+        <b>20050830</b>: Now displays more ensemble info in inventory.
       </li>
       <li>
-        <b>20051121</b>: Now uses Numeric by default (no longer requires
+        <b>20051121</b>: Now uses Numeric by default (no longer requires 
         numarray).  Can easily be modified to use nummarray or Numeric by 
         modifying the imports in 3 files (grib2.py, proj.py and 
         gaussian.py). A new utility, gribrepack, is included for repacking 
         a grib2 file with a different compression scheme.
       </li>
       <li>
-        <b>20051125</b>: Updated grib2 tables to version 3 (released by 
-        WMO on Nov 2, 2005).
+        <b>20051125</b>: Updated grib2 tables to version 3 (released by WMO
+        on Nov 2, 2005).
       </li>
       <li>
-        <b>20060117</b>: Now uses numpy by default (instead of Numeric).
+        <b>20060117</b>: Now uses numpy by default (instead of Numeric). 
         Python 2.5 compatibility fixes.
       </li>
       <li>
-        <b>20070130</b>: Fixes some bugs found by Rob Cermak.  Now 
-        requires pyproj be installed first (which in turn requires that you
-        have the PROJ.4 C-library installed). Updated to g2clib 1.0.4.
+        <b>20070130</b>: Fixes some bugs found by Rob Cermak.  Now requires
+        pyproj be installed first (which in turn requires that you have the
+        PROJ.4 C-library installed). Updated to g2clib 1.0.4.
       </li>
       <li>
-        <b>20070428</b>: Fixed memory leaks with a patch provided by 
-        Thomas Natschlager.
+        <b>20070428</b>: Fixed memory leaks with a patch provided by Thomas
+        Natschlager.
       </li>
       <li>
         <b>20070501</b>: Included new parameters approved by WMO for 
@@ -311,26 +303,31 @@
         using linear interpolation.
       </li>
       <li>
-        <b>20070503</b>: Now partially supports grid definition template
-        90 (space-view satellite projection). Can't yet handle case when 
+        <b>20070503</b>: Now partially supports grid definition template 90
+        (space-view satellite projection). Can't yet handle case when 
         sub-satellite point is off the equator and earth is specified as an
         oblate spheroid. Does work with EUMETSAT grib2 files.  Bug fix for 
         Oblate Spheroid earth shape (major and minor radii are actually in 
         km, not m).
       </li>
       <li>
-        <b>20070515</b>: Totally revamped API for reading.  Now hosted 
-        on google code. Supports Albers equal area, and azimuthal 
-        equidistant projections, although these are untested since I 
-        couldn't find any grib files in the wild that use these. Some 
-        support for spectral data and rotated lat/lon and gaussian grids. 
-        Lots of bug fixes.
+        <b>20070515</b>: Totally revamped API for reading.  Now hosted on 
+        google code. Supports Albers equal area, and azimuthal equidistant 
+        projections, although these are untested since I couldn't find any 
+        grib files in the wild that use these. Some support for spectral 
+        data and rotated lat/lon and gaussian grids. Lots of bug fixes.
       </li>
       <li>
-        <b>20070615</b>: Compatibility fix for python &lt; 2.5, bug 
-        fixes.
+        <b>20070615</b>: Compatibility fix for python &lt; 2.5, bug fixes.
       </li>
-    </ul><br /><br />
+      <li>
+        <b>20080710</b>: Some support for GDT 204.  Update g2clib to 1.0.5.
+        Tables updated, local use section now accessible. Fixed possible 
+        memory leak. NCEP parameter abbreviations included (via 
+        <code>parameter_abbrev</code> instance variable.  Inventory string 
+        now uses the abbreviation instead of the full parameter name.
+      </li>
+    </ul>
 
 <hr />
 <div class="fields">      <p><strong>Author:</strong>
@@ -341,14 +338,14 @@
         Whitaker</a>
       </p>
       <p><strong>Version:</strong>
-        20070615
+        20080710
       </p>
       <p><strong>Copyright:</strong>
         copyright 2007 by Jeffrey Whitaker.
       </p>
       <p><strong>License:</strong>
-        Permission to use, copy, modify, and distribute this software 
-        and its documentation for any purpose and without fee is hereby 
+        Permission to use, copy, modify, and distribute this software and 
+        its documentation for any purpose and without fee is hereby 
         granted, provided that the above copyright notice appear in all 
         copies and that both that copyright notice and this permission 
         notice appear in supporting documentation. THE AUTHOR DISCLAIMS ALL
@@ -442,7 +439,7 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="__version__"></a><span class="summary-name">__version__</span> = <code title="'20070615'"><code class="variable-quote">'</code><code class="variable-string">20070615</code><code class="variable-quote">'</code></code>
+        <a name="__version__"></a><span class="summary-name">__version__</span> = <code title="'20080710'"><code class="variable-quote">'</code><code class="variable-string">20080710</code><code class="variable-quote">'</code></code>
     </td>
   </tr>
 <tr>
@@ -482,9 +479,9 @@ GRIB2 is the second version of the World Meterological Organization
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Decode">source&nbsp;code</a></span>&nbsp;
     </td>
-  </table>
+  </tr></table>
   
-  Read the contents of a GRIB2 file.
+  <p>Read the contents of a GRIB2 file.</p>
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
@@ -522,10 +519,10 @@ GRIB2 is the second version of the World Meterological Organization
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="grib2.grib2-pysrc.html#dump">source&nbsp;code</a></span>&nbsp;
     </td>
-  </table>
+  </tr></table>
   
-  write the given <a href="grib2.grib2.Grib2Message-class.html" 
-  class="link">Grib2Message</a> instances to a grib file.
+  <p>write the given <a href="grib2.grib2.Grib2Message-class.html" 
+  class="link">Grib2Message</a> instances to a grib file.</p>
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
@@ -599,10 +596,11 @@ GRIB2 is the second version of the World Meterological Organization
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0beta1 on Wed Oct  3 12:35:23 2007
+    Generated by Epydoc 3.0.1 on Thu Jul  3 12:29:48 2008
     </td>
     <td align="right" class="footer">
-      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
     </td>
   </tr>
 </table>
@@ -613,9 +611,8 @@ GRIB2 is the second version of the World Meterological Organization
   // javascript is turned off then we want them to be
   // visible); but by default, we want to hide them.  So hide
   // them unless we have a cookie that says to show them.
-  checkCookie()
+  checkCookie();
   // -->
 </script>
-  
 </body>
 </html>
