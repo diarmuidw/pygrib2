@@ -85,6 +85,7 @@ for n in range(192,255):
 # 3: Space Products
 codetable[1][3]={0: 'Image format products', 
 1:'Quantitative products', 
+192:'Forecast Satellite Imagery',
 255:'Missing'}
 for n in range(192):
     if not codetable[1][3].has_key(n): codetable[1][3][n]='Reserved'
@@ -96,6 +97,7 @@ codetable[1][10]={0: 'Waves',
 2:'Ice', 
 3:'Surface Properties', 
 4:'Sub-surface Properties', 
+191:'Miscellaneous',
 255:'Missing'} 
 for n in range(192):
     if not codetable[1][10].has_key(n): codetable[1][10][n]='Reserved'
