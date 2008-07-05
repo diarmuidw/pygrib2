@@ -1,5 +1,5 @@
 __version__ = '20080710'
-__doc__="""
+"""
 Introduction
 ============
 
@@ -180,8 +180,7 @@ OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 """ % locals()
 import g2lib
-import sxn0, sxn3, sxn4
-from table0 import table0
+import sxn0, sxn3, sxn4, table0
 import struct
 import gaussian
 import string
@@ -997,7 +996,7 @@ def Grib2Decode(filename):
     gribs = []
     for n in range(len(msgstart)):
         kwargs = {}
-        kwargs['originating_center']=table0[identsect[n][0]]
+        kwargs['originating_center']=table0.table0[identsect[n][0]]
         kwargs['grid_definition_template_number']=gdtnum[n]
         kwargs['grid_definition_template']=gdtmpl[n]
         if gdeflist[n] != []:
