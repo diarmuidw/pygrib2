@@ -376,6 +376,8 @@ class Grib2Message:
             levs = ''
         if levs+levinfo[1] != '':
             self.vertical_level = (levs+levinfo[1]).rstrip()
+        if levinfo[0] == 0 and levinfo[1] == '':
+            self.vertical_level = ''
         if levinfo[2] != '':
             self.vertical_level_descriptor = levinfo[2].rstrip()
         # ensemble info.
@@ -568,7 +570,10 @@ class Grib2Message:
         else:
             fcsttimestring = ''
         if hasattr(self,'vertical_level') and self.vertical_level_descriptor != '':
-            levstring = string.lstrip(self.vertical_level+' ('+self.vertical_level_descriptor+')')
+            if self.vertical_level == '':
+                levstring = self.vertical_level_descriptor
+            else:
+                levstring = string.lstrip(self.vertical_level+' ('+self.vertical_level_descriptor+')')
         else:
             if hasattr(self,'vertical_level_descriptor'):
                 levstring = self.vertical_level_descriptor
