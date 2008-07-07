@@ -286,7 +286,7 @@ class Grib2Message:
  @ivar parameter_units: units of variable.
  @ivar points_in_x_direction: number of points in the x (longitudinal) direction.
  @ivar points_in_y_direction: number of points in the y (latitudinal) direction.
- @ivar product_definition_template: product definition template nfrom section 4.
+ @ivar product_definition_template: product definition template from section 4.
  @ivar product_definition_template_name: product definition template name.
  @ivar product_definition_template_number: product definition template number from section 4.
  @ivar shape_of_earth: string describing the shape of the earth (e.g. 'Oblate Spheroid', 'Spheroid').
@@ -1253,7 +1253,7 @@ class Grib2Encode:
  must be present and shall appear in the numerical order noted above.
  Unrepeated sections remain in effect until redefined.
 
- Note:  Reading/writing section 2 (the 'local use section') is
+ Note:  Writing section 2 (the 'local use section') is
  not yet supported.
 
  @ivar msg: A binary string containing the GRIB2 message.
