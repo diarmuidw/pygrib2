@@ -32,10 +32,11 @@
 //
 // 2001-10-26  Gilbert
 // 2007-08-16  Vuong     -  Added GDT 3.204  Curvilinear Orthogonal Grid
+// 2008-07-08  Vuong     -  Added GDT 3.32768 Rot Lat/Lon E-grid (Arakawa)
 //
 ////////////////////////////////////////////////////////////////////
 
-      #define MAXGRIDTEMP 24              // maximum number of templates
+      #define MAXGRIDTEMP 25              // maximum number of templates
       #define MAXGRIDMAPLEN 200           // maximum template map length
 
       struct gridtemplate
@@ -89,6 +90,8 @@
          {120, 7, 1, {4,4,-4,4,4,4,1} },
              // 3.204: Curvilinear Orthogonal Grid
          {204, 19, 0, {1,1,4,1,4,1,4,4,4,4,4,-4,4,1,-4,4,4,4,1} },
+             // 3.32768: Rot Lat/Lon E-grid (Arakawa)
+         {32768, 19, 0, {1,1,4,1,4,1,4,4,4,4,4,-4,4,1,-4,4,4,4,1} },
              // 3.1000: Cross Section Grid
          {1000, 20, 1, {1,1,4,1,4,1,4,4,4,4,-4,4,1,4,4,1,2,1,1,2} },
              // 3.1100: Hovmoller Diagram Grid
