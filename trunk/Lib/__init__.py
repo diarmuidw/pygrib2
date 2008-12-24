@@ -257,7 +257,7 @@ class Grib2Message:
 
     0 - Points in the first row or column scan in the +i (+x) direction
 
-    1 - Points in the first row or column scan in the +i (+x) direction
+    1 - Points in the first row or column scan in the -i (-x) direction
 
   - bit 2:
 
@@ -672,6 +672,14 @@ class Grib2Message:
                         fld = ma.masked_values(fld,fill_value)
                     else:
                         fld = g2lib._redtoreg(nx, lonsperlat, fld, N.empty,order=order)
+        # rows scan in the -x direction (so flip)
+        if self.scanmodeflags[0]:
+            fldsave = fld.astype('f') # casting makes a copy
+            fld[:,:] = fldsave[:,::-1]
+        # columns scan in the -y direction (so flip)
+        if not self.scanmodeflags[1]:
+            fldsave = fld.astype('f') # casting makes a copy
+            fld[:,:] = fldsave[::-1,:]
         # adjacent rows scan in opposite direction.
         # (flip every other row)
         if self.scanmodeflags[3]:
