@@ -29,7 +29,22 @@ for nmsg,grb in enumerate(grbs):
         fieldmin = fieldcompress.min(); fieldmax = fieldcompress.max()
     else:
         fieldmin = field.min(); fieldmax = field.max()
+    print grb
     print nmsg+1,bitmapflag,fieldmin,fieldmax
+    # reset data to match scanning mode flags.
+    # rows scan in the -x direction (so flip)
+    if grb.scanmodeflags[0]:
+        fieldsave = field.astype('f') # casting makes a copy
+        field[:,:] = fieldsave[:,::-1]
+    # columns scan in the -y direction (so flip)
+    if not grb.scanmodeflags[1]:
+        fieldsave = field.astype('f') # casting makes a copy
+        field[:,:] = fieldsave[::-1,:]
+    # adjacent rows scan in opposite direction.
+    # (flip every other row)
+    if grb.scanmodeflags[3]:
+        fieldsave = field.astype('f') # casting makes a copy
+        field[1::2,:] = fieldsave[1::2,::-1]
     # add product definition template, data representation template
     # and data (field and optional bitmap).
     if hasattr(grb,'extra_vertical_coordinate_info'):
