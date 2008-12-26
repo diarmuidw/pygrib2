@@ -1,4 +1,4 @@
-__version__ = '20080710'
+__version__ = '20090101'
 __doc__ = """
 Introduction
 ============
@@ -152,11 +152,13 @@ Changelog
    Some support for spectral data and rotated lat/lon and gaussian grids.
    Lots of bug fixes.
  - B{20070615}: Compatibility fix for python < 2.5, bug fixes.
- - B{%(__version__)s}: Some support for GDT 204.  Update g2clib to 1.0.5.
+ - B{20080710}: Some support for GDT 204.  Update g2clib to 1.0.5.
    Tables updated, local use section now accessible. Fixed possible memory leak.
    NCEP parameter abbreviations included (via C{parameter_abbrev} instance
    variable).  Inventory string now uses the abbreviation instead of the full
    parameter name. Added C{originating_center} instance variable.
+ - B{%(__version__)s}: Bug fixes for scan mode handling, ensemble metadata.
+   Updated g2clib to version 1.1.7.
 
 @author: Jeffrey Whitaker.
 
