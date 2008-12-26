@@ -2,7 +2,11 @@ from grib2 import Grib2Decode
 from pylab import *
 from mpl_toolkits.basemap import Basemap
 grbs = Grib2Decode('../sampledata/eta.grb')
-lats, lons = grbs[0].grid()
+for g in grbs:
+    if g.parameter_abbrev == 'PRES' and g.vertical_level_descriptor == 'Ground or Water Surface':
+        data = g.data()
+        lats,lons = g.grid()
+        break
 print lats.min(), lats.max()
 print lons.min(), lons.max()
 print lats[0,0],lons[0,0]
@@ -22,6 +26,8 @@ m = Basemap(llcrnrlon=llcrnrlon,llcrnrlat=llcrnrlat,
 x,y = m(lons, lats)
 m.scatter(x.flat,y.flat,3,marker='o',color='k',zorder=10)
 m.drawcoastlines()
-m.fillcontinents()
+x,y = m(lons,lats)
+m.contourf(x,y,data,15)
+#m.fillcontinents()
 title('Lambert Conformal Model Grid')
 show()
