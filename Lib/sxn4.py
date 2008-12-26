@@ -7918,7 +7918,7 @@ codetable[6]={0:'Unperturbed high-resolution control forecast',
 1:'Unperturbed low-resolution control forecast',
 2:'Negatively perturbed forecast',
 3:'Positively perturbed forecast',
-255:('Missing','')}
+255:'Unknown'}
 for n in range(192):
     if not codetable[6].has_key(n): codetable[6][n]='Reserved'
 for n in range(192,255):
