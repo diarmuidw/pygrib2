@@ -41,7 +41,7 @@ extensions = [Extension("g2lib",g2clib_deps,include_dirs=incdirs,library_dirs=li
 
 setup(
   name = "pygrib2",
-  version           = "20080710",
+  version           = "20090101",
   description       = "Python module for reading and writing GRIB Edition 2 files",
   author            = "Jeff Whitaker",
   author_email      = "jeffrey.s.whitaker@noaa.gov",
