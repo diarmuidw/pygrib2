@@ -32,6 +32,9 @@ for nmsg,grb in enumerate(grbs):
     print grb
     print nmsg+1,bitmapflag,fieldmin,fieldmax
     # reset data to match scanning mode flags.
+    # (scanning mode madness is undone when data is extracted
+    #  from grib message - to write it back it correctly it
+    #  must be reset to be consistent with scanning model flags).
     # rows scan in the -x direction (so flip)
     if grb.scanmodeflags[0]:
         fieldsave = field.astype('f') # casting makes a copy
