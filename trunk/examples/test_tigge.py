@@ -3,7 +3,7 @@ from mpl_toolkits.basemap import Basemap
 from numpy import ma
 from grib2 import Grib2Decode, dump
 
-grbs = Grib2Decode('../sampledata/tigge.grib')
+grbs = Grib2Decode('../sampledata/tigge.grb')
 for grb in grbs:
     fld = 0.01*grb.data() # convert to hPa
     lats,lons = grb.grid()
