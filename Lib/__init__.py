@@ -672,19 +672,21 @@ class Grib2Message:
                         fld = ma.masked_values(fld,fill_value)
                     else:
                         fld = g2lib._redtoreg(nx, lonsperlat, fld, N.empty,order=order)
-        # rows scan in the -x direction (so flip)
-        if self.scanmodeflags[0]:
-            fldsave = fld.astype('f') # casting makes a copy
-            fld[:,:] = fldsave[:,::-1]
-        # columns scan in the -y direction (so flip)
-        if not self.scanmodeflags[1]:
-            fldsave = fld.astype('f') # casting makes a copy
-            fld[:,:] = fldsave[::-1,:]
-        # adjacent rows scan in opposite direction.
-        # (flip every other row)
-        if self.scanmodeflags[3]:
-            fldsave = fld.astype('f') # casting makes a copy
-            fld[1::2,:] = fldsave[1::2,::-1]
+        # check scan modes for rect grids.
+        if nx is not None and ny is not None:
+            # rows scan in the -x direction (so flip)
+            if self.scanmodeflags[0]:
+                fldsave = fld.astype('f') # casting makes a copy
+                fld[:,:] = fldsave[:,::-1]
+            # columns scan in the -y direction (so flip)
+            if not self.scanmodeflags[1]:
+                fldsave = fld.astype('f') # casting makes a copy
+                fld[:,:] = fldsave[::-1,:]
+            # adjacent rows scan in opposite direction.
+            # (flip every other row)
+            if self.scanmodeflags[3]:
+                fldsave = fld.astype('f') # casting makes a copy
+                fld[1::2,:] = fldsave[1::2,::-1]
         return fld
 
     def grid(self):
@@ -711,6 +713,11 @@ class Grib2Message:
             delat = self.gridlength_in_y_direction
             lats = N.arange(lat1,lat2+delat,delat)
             lons = N.arange(lon1,lon2+delon,delon)
+            # flip if scan mode says to.
+            if self.scanmodeflags[0]:
+                lons = lons[::-1]
+            if not self.scanmodeflags[1]:
+                lats = lats[::-1]
             lons,lats = _meshgrid(lons,lats) # make 2-d arrays.
         elif gdtnum == 40: # gaussian grid (only works for global!)
             lon1, lat1 = self.longitude_first_gridpoint, self.latitude_first_gridpoint
@@ -726,6 +733,11 @@ class Grib2Message:
             # compute gaussian lats (north to south)
             lats = gaussian.lats(nlats)
             if lat1 < lat2:  # reverse them if necessary
+                lats = lats[::-1]
+            # flip if scan mode says to.
+            if self.scanmodeflags[0]:
+                lons = lons[::-1]
+            if not self.scanmodeflags[1]:
                 lats = lats[::-1]
             lons,lats = _meshgrid(lons,lats) # make 2-d arrays
         # mercator, lambert conformal, stereographic, albers equal area, azimuthal equidistant
