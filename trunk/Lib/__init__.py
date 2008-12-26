@@ -1143,6 +1143,7 @@ def _getensinfo(pdtnum,pdtmpl):
     elif pdtnum in [2,12]:
         enstype = sxn4.codetable[7][pdtmpl[15]]
         nmembers = pdtmpl[16]
+        print enstype,pertnum,nmembers
         return enstype,None,nmembers
     else:
         print 'not an ensemble product'
