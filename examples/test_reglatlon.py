@@ -3,10 +3,13 @@ from pylab import *
 from mpl_toolkits.basemap import Basemap
 grbs = Grib2Decode('../sampledata/gfs.grb')
 for g in grbs:
-    if g.parameter_abbrev == 'PRES' and g.vertical_level_descriptor == 'Ground or Water Surface':
-        data = g.data()
+    #if g.parameter_abbrev == 'PRES' and g.vertical_level_descriptor == 'Ground or Water Surface':
+    if g.parameter_abbrev == 'SOILW' and g.vertical_level == "0-0.1 m":
+        print g.vertical_level
+        data = g.data(masked_array=True)
         lats,lons = g.grid()
         break
+print data.min(), data.max()
 print lats[:,0]
 print lons[0,:]
 llcrnrlon = lons[0,0]
