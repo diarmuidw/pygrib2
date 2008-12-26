@@ -36,9 +36,6 @@ g2libc-1.0.3 - December 2005 - Two bug fixes:  1) Error encoding constant
                                data field.  2)  Error encoding grid with
                                large bitmap using DRT 5.40 - JPEG2000.
 
-g2libc-1.0.4 - October 2006 - Modified Product Definition Templates 4.5 and 4.9
-                              to allow negative scale factors and limits.
-                            - Fixed rounding error bugs during encoding.
-                            - Cleanup up a few small memory leaks.
+g2libc-1.0.5 - August   2007 - Added GDT 3.204  Curvilinear Orthogonal Grid
 
-g2libc-1.0.5 - August  2007 - Add GDT 3.204 Curvilinear Orthogonal Grid
+g2libc-1.1.7 - August   2008 - Added GDT 3.32768 Rot Lat/Lon E-grid (Arakawa)
