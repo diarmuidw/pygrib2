@@ -591,14 +591,14 @@ class Grib2Message:
         """print a summary string describiing the contents of the GRIB2 message"""
         return self.inventory
         
-    def data(self,fill_value=1.e30,masked_array=False,expand=True,order=None):
+    def data(self,fill_value=1.e30,masked_array=True,expand=True,order=None):
         """
  returns an unpacked data grid.
  
  @keyword fill_value: missing or masked data is filled with this value
  (default 1.e30).
  @keyword masked_array: if True, return masked array if there is bitmap
- for missing or masked data (default False).
+ for missing or masked data (default True).
  @keyword expand:  if True (default), ECMWF 'reduced' gaussian grids are
  expanded to regular gaussian grids.
  @keyword order: if 1, linear interpolation is used for expanding reduced
