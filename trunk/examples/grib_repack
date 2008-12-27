@@ -52,6 +52,24 @@ for nmsg,grb in enumerate(grbs):
     else:
        grbo.addgrid(grb.grid_definition_info,grb.grid_definition_template)
     field = grb.data(masked_array=False,expand=False)
+    if len(field.shape) == 2:
+        # reset data to match scanning mode flags.
+        # (scanning mode madness is undone when data is extracted
+        #  from grib message - to write it back it correctly it
+        #  must be reset to be consistent with scanning model flags).
+        # rows scan in the -x direction (so flip)
+        if grb.scanmodeflags[0]:
+            fieldsave = field.astype('f') # casting makes a copy
+            field[:,:] = fieldsave[:,::-1]
+        # columns scan in the -y direction (so flip)
+        if not grb.scanmodeflags[1]:
+            fieldsave = field.astype('f') # casting makes a copy
+            field[:,:] = fieldsave[::-1,:]
+        # adjacent rows scan in opposite direction.
+        # (flip every other row)
+        if grb.scanmodeflags[3]:
+            fieldsave = field.astype('f') # casting makes a copy
+            field[1::2,:] = fieldsave[1::2,::-1]
     bitmapflag = grb.bitmap_indicator_flag
     if bitmapflag == 0:
         bitmap = grb._bitmap
