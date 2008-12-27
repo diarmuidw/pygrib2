@@ -4,7 +4,7 @@ from mpl_toolkits.basemap import Basemap
 from numpy import ma
 grbs = Grib2Decode('../sampledata/dspr.temp.grb')
 g = grbs[3]
-data = g.data(masked_array=True)
+data = g.data()
 lats, lons = g.grid()
 llcrnrlon = lons[0,0]
 llcrnrlat = lats[0,0]

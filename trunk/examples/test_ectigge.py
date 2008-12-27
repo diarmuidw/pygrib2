@@ -6,7 +6,7 @@ from grib2 import Grib2Decode, dump
 grbs = Grib2Decode('../sampledata/ecmwf_tigge.grb')
 for g in grbs:
     if g.parameter_abbrev == 'SOILM':
-        fld = g.data(masked_array=True)
+        fld = g.data()
         lats, lons = g.grid()
         break
 # stack grids side-by-side (in longitiudinal direction), so
@@ -15,6 +15,7 @@ lons = concatenate((lons-360,lons),1)
 lats = concatenate((lats,lats),1)
 fld = ma.concatenate((fld,fld),1)
 # setup miller cylindrical map projection.
+print lats[0,0],lats[-1,-1]
 m = Basemap(llcrnrlon=-180.,llcrnrlat=-90,urcrnrlon=180.,urcrnrlat=90.,\
             resolution='l',area_thresh=10000.,projection='mill')
 x, y = m(lons,lats)

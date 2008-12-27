@@ -5,7 +5,7 @@ from mpl_toolkits.basemap import Basemap, cm
 
 grbs = Grib2Decode('../sampledata/eumetsat_precip.grb')
 g = grbs[0]
-fld = g.data(masked_array=True)
+fld = g.data()
 print fld.shape, fld.min(), fld.max()
 print g.proj4_lon_0,g.proj4_h,g.earthRmajor,g.earthRminor
 lats, lons = g.grid()
@@ -22,4 +22,9 @@ m.drawparallels(arange(-80,81,20))
 m.drawmeridians(arange(-90,90,20))
 m.drawmapboundary()
 title('EUMETSAT geostationary projection grid')
+
+figure()
+m.drawcoastlines()
+m.contourf(x,y,fld,20)
+
 show()
