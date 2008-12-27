@@ -539,7 +539,7 @@ class Grib2Message:
                 self.gridlength_in_x_direction = 2.*self.earthRmajor/dx
                 self.gridlength_in_y_direction = 2.*self.earthRminor/dy
             elif self.earthRmajor != self.earthRminor:
-                self.proj4_proj = 'npers'
+                self.proj4_proj = 'nsper'
                 self.gridlength_in_x_direction = 2.*self.earthRmajor/dx
                 self.gridlength_in_y_direction = 2.*self.earthRmajor/dy
             self.scanmodeflags = _dec2bin(gdtmpl[16])[0:4]
