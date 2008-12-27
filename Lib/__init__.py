@@ -157,7 +157,8 @@ Changelog
    NCEP parameter abbreviations included (via C{parameter_abbrev} instance
    variable).  Inventory string now uses the abbreviation instead of the full
    parameter name. Added C{originating_center} instance variable.
- - B{%(__version__)s}: Bug fixes for scan mode handling, ensemble metadata.
+ - B{%(__version__)s}: Bug fixes for scan mode handling, ensemble metadata, 
+   wave tables.  Masked arrays now returned by default is bitmap present..
    Updated g2clib to version 1.1.7.
 
 @author: Jeffrey Whitaker.
