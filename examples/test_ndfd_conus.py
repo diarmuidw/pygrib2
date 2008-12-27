@@ -5,8 +5,7 @@ from numpy import ma
 grbs = Grib2Decode('../sampledata/ds.temp.grb')
 g = grbs[0]
 lats, lons = g.grid()
-data = g.data(masked_array=False)
-data = ma.masked_values(data,g.missing_value)
+data = g.data()
 print data.dtype
 print data.shape, lons.shape, lats.shape
 print data.min(), data.max()
