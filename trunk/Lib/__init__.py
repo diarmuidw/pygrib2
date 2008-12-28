@@ -533,15 +533,36 @@ class Grib2Message:
             self.proj4_h = self.earthRmajor * (gdtmpl[18]/1.e6)
             dx = gdtmpl[12]
             dy = gdtmpl[13]
-            if self.proj4_lat_0 == 0.:
+            # if lat_0 is equator, it's a geostationary view.
+            if self.proj4_lat_0 == 0.: # if lat_0 is equator, it's a
                 self.proj4_proj = 'geos'
-                self.proj4_h = self.proj4_h - self.earthRmajor
-                self.gridlength_in_x_direction = 2.*self.earthRmajor/dx
-                self.gridlength_in_y_direction = 2.*self.earthRminor/dy
-            elif self.earthRmajor != self.earthRminor:
+            # general case of 'near-side perspective projection' (untested)
+            else:
                 self.proj4_proj = 'nsper'
-                self.gridlength_in_x_direction = 2.*self.earthRmajor/dx
-                self.gridlength_in_y_direction = 2.*self.earthRmajor/dy
+            self.proj4_h = self.proj4_h - self.earthRmajor
+            P = pyproj.Proj(proj=self.proj4_proj,lat_0=self.proj4_lat_0,\
+                            lon_0=self.proj4_lon_0,h=self.proj4_h)
+            # find width and height of visible projection.
+            # (apparent diameter of earth in NS and EW directions).
+            # For now, absent a more elegant solution, just
+            # transform points from center of projection outwards and
+            # find the point at which the projection coordinates become
+            # undefined.
+            delta = 0.01 # increment in degrees for test points.
+            lats = N.arange(0,90,delta)
+            lons = self.proj4_lon_0*N.ones(len(lats),'d')
+            x, y = P(lons, lats)
+            yi = (y > 1.e20).tolist()
+            ny = yi.index(1)-1
+            height = 2.*y[ny]
+            lons = N.arange(self.proj4_lon_0,self.proj4_lon_0+90,delta)
+            lats = N.zeros(len(lons),'d')
+            x, y = P(lons, lats)
+            xi = (x > 1.e20).tolist()
+            nx = xi.index(1)-1
+            width = 2.*x[nx]
+            self.gridlength_in_x_direction = width/dx
+            self.gridlength_in_y_direction = height/dy
             self.scanmodeflags = _dec2bin(gdtmpl[16])[0:4]
         elif gdtnum == 110: # azimuthal equidistant.
             self.proj4_lat_0 = gdtmpl[9]/1.e6
