@@ -159,7 +159,7 @@ Changelog
    parameter name. Added C{originating_center} instance variable.
  - B{%(__version__)s}: Bug fixes for scan mode handling, ensemble metadata, 
    wave tables, satellite perspective projection.  Masked arrays now returned
-   by default is bitmap present Updated g2clib to version 1.1.7..
+   by default is bitmap present. Updated g2clib to version 1.1.7..
 
 @author: Jeffrey Whitaker.
 
@@ -188,6 +188,7 @@ import struct
 import gaussian
 import string
 import math
+import warnings
 
 import numpy as N
 from numpy import ma
@@ -539,28 +540,25 @@ class Grib2Message:
             # general case of 'near-side perspective projection' (untested)
             else:
                 self.proj4_proj = 'nsper'
+                msg = """
+only geostationary perspective is supported.
+lat/lon values returned by grid method may be incorrect."""
+                warnings.warn(msg)
+            # latitude of horizon on central meridian
+            lonmax = 90.-(180./N.pi)*N.arcsin(self.earthRmajor/self.proj4_h)
+            # longitude of horizon on equator
+            latmax = 90.-(180./N.pi)*N.arcsin(self.earthRminor/self.proj4_h)
+            # truncate to nearest thousandth of a degree (to make sure
+            # they aren't slightly over the horizon)
+            latmax = int(1000*latmax)/1000.
+            lonmax = int(1000*lonmax)/1000.
+            # h is measured from surface of earth at equator.
             self.proj4_h = self.proj4_h - self.earthRmajor
-            P = pyproj.Proj(proj=self.proj4_proj,lat_0=self.proj4_lat_0,\
-                            lon_0=self.proj4_lon_0,h=self.proj4_h)
-            # find width and height of visible projection.
-            # (apparent diameter of earth in NS and EW directions).
-            # For now, absent a more elegant solution, just
-            # transform points from center of projection outwards and
-            # find the point at which the projection coordinates become
-            # undefined.
-            delta = 0.01 # increment in degrees for test points.
-            lats = N.arange(0,90,delta)
-            lons = self.proj4_lon_0*N.ones(len(lats),'d')
-            x, y = P(lons, lats)
-            yi = (y > 1.e20).tolist()
-            ny = yi.index(1)-1
-            height = 2.*y[ny]
-            lons = N.arange(self.proj4_lon_0,self.proj4_lon_0+90,delta)
-            lats = N.zeros(len(lons),'d')
-            x, y = P(lons, lats)
-            xi = (x > 1.e20).tolist()
-            nx = xi.index(1)-1
-            width = 2.*x[nx]
+            # width and height of visible projection
+            P = pyproj.Proj(proj=self.proj4_proj,lat_0=0,lon_0=0,h=self.proj4_h)
+            x1,y1 = P(0.,latmax); x2,y2 = P(lonmax,0.)
+            width = 2*x2; height = 2*y1
+            print latmax,lonmax,height,width
             self.gridlength_in_x_direction = width/dx
             self.gridlength_in_y_direction = height/dy
             self.scanmodeflags = _dec2bin(gdtmpl[16])[0:4]
