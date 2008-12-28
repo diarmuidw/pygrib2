@@ -555,7 +555,9 @@ lat/lon values returned by grid method may be incorrect."""
             # h is measured from surface of earth at equator.
             self.proj4_h = self.proj4_h - self.earthRmajor
             # width and height of visible projection
-            P = pyproj.Proj(proj=self.proj4_proj,lat_0=0,lon_0=0,h=self.proj4_h)
+            P = pyproj.Proj(proj=self.proj4_proj,\
+                            a=self.earthRmajor,b=self.earthRminor,\
+                            lat_0=0,lon_0=0,h=self.proj4_h)
             x1,y1 = P(0.,latmax); x2,y2 = P(lonmax,0.)
             width = 2*x2; height = 2*y1
             self.gridlength_in_x_direction = width/dx
