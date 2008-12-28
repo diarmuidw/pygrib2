@@ -558,7 +558,6 @@ lat/lon values returned by grid method may be incorrect."""
             P = pyproj.Proj(proj=self.proj4_proj,lat_0=0,lon_0=0,h=self.proj4_h)
             x1,y1 = P(0.,latmax); x2,y2 = P(lonmax,0.)
             width = 2*x2; height = 2*y1
-            print latmax,lonmax,height,width
             self.gridlength_in_x_direction = width/dx
             self.gridlength_in_y_direction = height/dy
             self.scanmodeflags = _dec2bin(gdtmpl[16])[0:4]
