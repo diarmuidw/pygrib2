@@ -20,5 +20,5 @@ for grb in grbs:
     m.drawparallels(arange(-80,81,20),labels=[1,0,0,0])
     m.drawmeridians(arange(0,360,60),labels=[0,0,0,1])
     m.drawmapboundary()
-    title(grb.parameter+': '+grb.originating_center)
+    title(grb.parameter+': '+grb.center_wmo_code.upper()+', i.e. '+grb.originating_center,fontsize=12)
 show()
