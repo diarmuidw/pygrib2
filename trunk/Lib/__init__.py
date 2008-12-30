@@ -255,6 +255,7 @@ class Grib2Message:
  @ivar longitude_first_gridpoint: longitude of first grid point on grid.
  @ivar longitude_last_gridpoint: longitude of last grid point on grid.
  @ivar originating_center: name of national/international originating center.
+ @ivar center_wmo_code: 4 character wmo code for originating center.
  @ivar scanmodeflags: scanning mode flags from Table 3.4.
 
   - bit 1:
@@ -1044,7 +1045,10 @@ def Grib2Decode(filename):
     gribs = []
     for n in range(len(msgstart)):
         kwargs = {}
-        kwargs['originating_center']=table0.table0[identsect[n][0]]
+        kwargs['originating_center']=table0.table0[identsect[n][0]][0]
+        wmo_code = table0.table0[identsect[n][0]][1]
+        if wmo_code is not None:
+            kwargs['center_wmo_code']=wmo_code
         kwargs['grid_definition_template_number']=gdtnum[n]
         kwargs['grid_definition_template']=gdtmpl[n]
         if gdeflist[n] != []:
