@@ -28,7 +28,7 @@ m.drawmeridians(arange(280,300,1),labels=[0,0,0,1])
 m.drawparallels(arange(16,21,1),labels=[1,0,0,0])
 # new axis for colorbar.
 cax = axes([0.875, 0.10, 0.03, 0.75])
-colorbar(cs, cax, format='%d') # draw colorbar
+colorbar(cs, cax, format='%g') # draw colorbar
 axes(ax)  # make the original axes current again
 title('NDFD Temp Puerto Rico '+g.forecast_time,fontsize=12)
 show()
