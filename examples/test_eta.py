@@ -46,7 +46,7 @@ x, y = m(lons, lats) # compute map proj coordinates.
 cs = m.contourf(x,y,data,20,cmap=cm.jet,colors=None)
 # new axis for colorbar.
 cax = axes([0.875, 0.10, 0.04, 0.75])
-colorbar(cs, cax, format='%d') # draw colorbar
+colorbar(cs, cax, format='%g') # draw colorbar
 axes(ax)  # make the original axes current again
 title('ETA '+g.vertical_level+' '+g.parameter+' ['+g.parameter_units+']')
 label = g.forecast_time

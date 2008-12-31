@@ -25,7 +25,7 @@ ax = gca()
 pos = ax.get_position()
 l, b, w, h = pos.bounds
 cax = axes([l+w+0.025, b, 0.025, h]) # setup colorbar axes
-colorbar(drawedges=True, cax=cax, format='%d') # draw colorbar
+colorbar(drawedges=True, cax=cax, format='%g') # draw colorbar
 axes(ax)  # make the original axes current again
 m.drawcoastlines()
 # draw parallels

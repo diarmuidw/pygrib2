@@ -30,7 +30,7 @@ m.drawstates()
 m.drawcountries()
 # new axis for colorbar.
 cax = axes([0.875, 0.15, 0.03, 0.65])
-colorbar(cs, cax, format='%d') # draw colorbar
+colorbar(cs, cax, format='%g') # draw colorbar
 axes(ax)  # make the original axes current again
 title('NDFD Temp CONUS '+g.forecast_time,fontsize=12)
 show()
