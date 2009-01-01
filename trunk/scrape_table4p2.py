@@ -46,7 +46,7 @@ def print_table(table,ndiscip,n):
                 print "%s:('%s','%s','%s')," % (number,parameter,units,abbrev)
             nrow = nrow + 1
 # table 4.2-0-n
-for n in [0,1,2,3,4,5,6,7,13,14,15,18,19,190,191,192]:
+for n in [0,1,2,3,4,5,6,7,13,14,15,16,17,18,19,190,191,192]:
     url = urlopen("http://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_table4-2-0-%s.shtml" % n)
     soup = BeautifulSoup(url)
     print_table(soup.find("table"),0,n)
