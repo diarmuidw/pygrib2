@@ -44,6 +44,7 @@ codetable[2]={0:6367470.0,
 5:'WGS84',
 6:6371229.0,
 7:'OblateSpheroid - major and minor axes specified in m by data producer',
+8:6371200.0,
 255:'Missing'}
 for n in range(192):
     if not codetable[2].has_key(n): codetable[2][n]='Reserved'
