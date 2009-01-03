@@ -58,6 +58,7 @@ grib2.Grib2Message.discipline_code	grib2.Grib2Message-class.html#discipline_code
 grib2.Grib2Message.grid	grib2.Grib2Message-class.html#grid
 grib2.Grib2Message.parameter_abbrev	grib2.Grib2Message-class.html#parameter_abbrev
 grib2.Grib2Message.data	grib2.Grib2Message-class.html#data
+grib2.Grib2Message.center_wmo_code	grib2.Grib2Message-class.html#center_wmo_code
 grib2.Grib2Message.spectral_truncation_parameters	grib2.Grib2Message-class.html#spectral_truncation_parameters
 grib2.Grib2Message.number_of_data_points_to_unpack	grib2.Grib2Message-class.html#number_of_data_points_to_unpack
 grib2.Grib2Message.originating_center	grib2.Grib2Message-class.html#originating_center
