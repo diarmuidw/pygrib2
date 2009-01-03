@@ -52,7 +52,7 @@ in the 'examples' directory.  Sample GRIB2 files are in the
 sampledata directory.
 
 NCEP GRIB Edition 2 files are available at:
-ftp://tgftp.nws.noaa.gov/SL.us008001/ST.opnt/
+ftp://ftpprd.ncep.noaa.gov/pub/data/nccf/com/
 
 Feedback to Jeff Whitaker <jeffrey.s.whitaker@noaa.gov>
 
