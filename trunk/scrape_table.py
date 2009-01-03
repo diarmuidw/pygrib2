@@ -25,7 +25,11 @@ def print_table(table,ndiscip,n):
                     print """%s:("%s","%s","%s"),""" % (number,parameter,units,abbrev)
             else:
                 number = int(cols[0].find(text=True))
-            parameter = cols[1].find(text=True)
+            parameter = cols[1].findAll(text=True)
+            try:
+                parameter = ''.join(parameter)
+            except:
+                pass
             # remove extra whitespace.
             parameter = removewhite(parameter)
             units = cols[2]
@@ -36,8 +40,15 @@ def print_table(table,ndiscip,n):
                 if units.find('sup') is not None:
                     units = (str(units).replace("<sup>","^")).replace("</sup>","")
                     units = BeautifulSoup(units)
-                units = units.find(text=True)
-                # remove extra whitespace.
+                if units.find('a') is not None:
+                    linktag = units.find('a')
+                    linktext = linktag.find(text=True)
+                    linktag.replaceWith(linktext)
+                units = units.findAll(text=True)
+                try:
+                    units = ''.join(units)
+                except:
+                    pass
                 units = removewhite(units)
             abbrev = cols[3].find(text=True)
             if abbrev is None:
@@ -58,9 +69,10 @@ def print_table(table,ndiscip,n):
                 print """%s:("%s","%s","%s"),""" % (number,parameter,units,abbrev)
             nrow = nrow + 1
 
-m = 10
-n = 3
+m = 0
+n = 17
 url = \
-urlopen("file:///Users/jsw/python/pygrib2/grib2_table4-2-%s-%s.shtml"%(m,n))
+urlopen("http://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_table4-2-%s-%s.shtml"%(m,n))
+#urlopen("file:///Users/jsw/python/pygrib2/grib2_table4-2-%s-%s.shtml"%(m,n))
 soup = BeautifulSoup(url)
 print_table(soup.find("table"),m,n)
