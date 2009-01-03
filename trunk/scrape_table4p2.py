@@ -26,17 +26,30 @@ def print_table(table,ndiscip,n):
             else:
                 number = int(cols[0].find(text=True))
             parameter = cols[1].find(text=True)
+            try:
+                parameter = ''.join(parameter)
+            except:
+                pass
             # remove extra whitespace.
             parameter = removewhite(parameter)
             units = cols[2]
             if units is None:
                 units = ""
             else:
-            # convert <sup> to ^, remove </sup>.
+                # convert <sup> to ^, remove </sup>.
                 if units.find('sup') is not None:
                     units = (str(units).replace("<sup>","^")).replace("</sup>","")
                     units = BeautifulSoup(units)
-                units = units.find(text=True)
+                # extract links to other tables.
+                if units.find('a') is not None:
+                    linktag = units.find('a')
+                    linktext = linktag.find(text=True)
+                    linktag.replaceWith(linktext)
+                units = units.findAll(text=True)
+                try:
+                    units = ''.join(units)
+                except:
+                    pass
                 # remove extra whitespace.
                 units = removewhite(units)
             abbrev = cols[3].find(text=True)
