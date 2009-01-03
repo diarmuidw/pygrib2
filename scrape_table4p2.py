@@ -1,5 +1,13 @@
 from urllib2 import urlopen
 from BeautifulSoup import BeautifulSoup
+def removewhite(x):
+    try:
+        x = x.rstrip().replace('\n',' ')
+        x = ' '.join(x.split())
+        x = x.replace('&#937;','w')
+    except:
+        pass
+    return x
 def print_table(table,ndiscip,n):
     nrow = 0
     for row in table.findAll("tr"):
@@ -11,39 +19,43 @@ def print_table(table,ndiscip,n):
                 n2 = int(cols[0].find(text=True).split('-')[1])
                 for number in range(n1,n2+1):
                     parameter = cols[1].find(text=True)
-                    parameter = parameter.rstrip().replace('\n',' ')
+                    parameter = removewhite(parameter)
                     units = ''
                     abbrev = ''
-                    print "%s:('%s','%s','%s')," % (number,parameter,units,abbrev)
+                    print """%s:("%s","%s","%s"),""" % (number,parameter,units,abbrev)
             else:
                 number = int(cols[0].find(text=True))
             parameter = cols[1].find(text=True)
             # remove extra whitespace.
-            parameter = parameter.rstrip().replace('\n',' ')
-            parameter = ' '.join(parameter.split())
-            parameter = parameter.replace('&#937;','w')
-            units = cols[2].find(text=True)
-            if units is None: 
-                units = ''
+            parameter = removewhite(parameter)
+            units = cols[2]
+            if units is None:
+                units = ""
             else:
-                units = units.rstrip().replace('\n',' ')
+            # convert <sup> to ^, remove </sup>.
+                if units.find('sup') is not None:
+                    units = (str(units).replace("<sup>","^")).replace("</sup>","")
+                    units = BeautifulSoup(units)
+                units = units.find(text=True)
+                # remove extra whitespace.
+                units = removewhite(units)
             abbrev = cols[3].find(text=True)
             if abbrev is None:
                 abbrev = ''
             else:
-                abbrev = abbrev.rstrip().replace(' ','_')
+                abbrev = removewhite(abbrev.rstrip().replace(' ','_'))
             if nrow == 0:
                 if n == 0 and ndiscip == 0:
-                    print "codetable[2]={0:{%s:{%s:('%s','%s','%s')," % (n,number,parameter,units,abbrev)
+                    print """codetable[2]={0:{%s:{%s:("%s","%s","%s"),""" % (n,number,parameter,units,abbrev)
                 else:
-                    print "codetable[2][%s][%s]={%s:('%s','%s','%s')," % (ndiscip,n,number,parameter,units,abbrev)
+                    print """codetable[2][%s][%s]={%s:("%s","%s","%s"),""" % (ndiscip,n,number,parameter,units,abbrev)
             elif number == 255:
                 if n == 0:
-                    print "%s:('%s','%s','%s')}," % (number,parameter,units,abbrev)
+                    print """%s:("%s","%s","%s")},""" % (number,parameter,units,abbrev)
                 else:
-                    print "%s:('%s','%s','%s')}" % (number,parameter,units,abbrev)
+                    print """%s:("%s","%s","%s")}""" % (number,parameter,units,abbrev)
             else:
-                print "%s:('%s','%s','%s')," % (number,parameter,units,abbrev)
+                print """%s:("%s","%s","%s"),""" % (number,parameter,units,abbrev)
             nrow = nrow + 1
 # table 4.2-0-n
 for n in [0,1,2,3,4,5,6,7,13,14,15,16,17,18,19,190,191,192]:
@@ -69,6 +81,10 @@ for n in [0,1,192]:
     print_table(soup.find("table"),3,n)
 # table 4.2-10-n
 for n in [0,1,2,3,4,191]:
-    url = urlopen("http://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_table4-2-10-%s.shtml" % n)
-    soup = BeautifulSoup(url)
+    urlstring = "http://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_table4-2-10-%s.shtml" % n
+    url = urlopen(urlstring)
+    try:
+        soup = BeautifulSoup(url)
+    except:
+        print 'error parsing ',urlstring
     print_table(soup.find("table"),10,n)
