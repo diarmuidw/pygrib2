@@ -13,6 +13,7 @@ def print_table(table,ndiscip,n):
     for row in table.findAll("tr"):
         cols = row.findAll("td")
         if len(cols) == 4:
+            raise SystemExit
             if cols[0].find(text=True).find('-') > 0:
                 # handle ranges of the for xxx-xxx
                 n1 = int(cols[0].find(text=True).split('-')[0])
@@ -36,10 +37,11 @@ def print_table(table,ndiscip,n):
             if units is None:
                 units = ""
             else:
-            # convert <sup> to ^, remove </sup>.
+                # convert <sup> to ^, remove </sup>.
                 if units.find('sup') is not None:
                     units = (str(units).replace("<sup>","^")).replace("</sup>","")
                     units = BeautifulSoup(units)
+                # extract links to other tables.
                 if units.find('a') is not None:
                     linktag = units.find('a')
                     linktext = linktag.find(text=True)
