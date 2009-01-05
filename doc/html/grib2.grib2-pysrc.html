@@ -15,8 +15,8 @@
        bgcolor="#a0c0ff" cellspacing="0">
   <tr valign="middle">
   <!-- Home link -->
-      <th bgcolor="#70b0f0" class="navbar-select"
-          >&nbsp;&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;</th>
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="grib2-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
 
   <!-- Tree link -->
       <th>&nbsp;&nbsp;&nbsp;<a
@@ -37,7 +37,7 @@
   <tr valign="top">
     <td width="100%">
       <span class="breadcrumbs">
-        Package&nbsp;grib2 ::
+        <a href="grib2-module.html">Package&nbsp;grib2</a> ::
         Module&nbsp;grib2
       </span>
     </td>
@@ -50,8 +50,10 @@
 </table>
 <h1 class="epydoc">Source Code for <a href="grib2.grib2-module.html">Module grib2.grib2</a></h1>
 <pre class="py-src">
-<a name="L1"></a><tt class="py-lineno">   1</tt>  <tt class="py-line"><tt id="link-0" class="py-name" targets="Variable grib2.grib2.__version__=grib2.grib2-module.html#__version__"><a title="grib2.grib2.__version__" class="py-name" href="#" onclick="return doclink('link-0', '__version__', 'link-0');">__version__</a></tt> <tt class="py-op">=</tt> <tt class="py-docstring">'20080710'</tt> </tt>
-<a name="L2"></a><tt class="py-lineno">   2</tt>  <tt class="py-line"><tt id="link-1" class="py-name" targets="Variable grib2.grib2.__doc__=grib2.grib2-module.html#__doc__"><a title="grib2.grib2.__doc__" class="py-name" href="#" onclick="return doclink('link-1', '__doc__', 'link-1');">__doc__</a></tt><tt class="py-op">=</tt><tt class="py-string">"""</tt> </tt>
+<a name="L1"></a><tt class="py-lineno">   1</tt>  <tt class="py-line"><tt id="link-0" class="py-name" targets="Variable grib2.__version__=grib2-module.html#__version__,Variable grib2.grib2.__version__=grib2.grib2-module.html#__version__,Variable grib2.grib2new.__version__=grib2.grib2new-module.html#__version__"><a title="grib2.__version__
+grib2.grib2.__version__
+grib2.grib2new.__version__" class="py-name" href="#" onclick="return doclink('link-0', '__version__', 'link-0');">__version__</a></tt> <tt class="py-op">=</tt> <tt class="py-docstring">'20080710'</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">   2</tt>  <tt class="py-line"><tt class="py-name">__doc__</tt><tt class="py-op">=</tt><tt class="py-string">"""</tt> </tt>
 <a name="L3"></a><tt class="py-lineno">   3</tt>  <tt class="py-line"><tt class="py-string">Introduction</tt> </tt>
 <a name="L4"></a><tt class="py-lineno">   4</tt>  <tt class="py-line"><tt class="py-string">============</tt> </tt>
 <a name="L5"></a><tt class="py-lineno">   5</tt>  <tt class="py-line"><tt class="py-string"></tt> </tt>
@@ -233,7 +235,7 @@
 <a name="L181"></a><tt class="py-lineno"> 181</tt>  <tt class="py-line"><tt class="py-string">"""</tt> <tt class="py-op">%</tt> <tt class="py-name">locals</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
 <a name="L182"></a><tt class="py-lineno"> 182</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">g2lib</tt> </tt>
 <a name="L183"></a><tt class="py-lineno"> 183</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">sxn0</tt><tt class="py-op">,</tt> <tt class="py-name">sxn3</tt><tt class="py-op">,</tt> <tt class="py-name">sxn4</tt> </tt>
-<a name="L184"></a><tt class="py-lineno"> 184</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">table0</tt> <tt class="py-keyword">import</tt> <tt class="py-name">table0</tt> </tt>
+<a name="L184"></a><tt class="py-lineno"> 184</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-1" class="py-name" targets="Variable grib2.grib2.table0=grib2.grib2-module.html#table0"><a title="grib2.grib2.table0" class="py-name" href="#" onclick="return doclink('link-1', 'table0', 'link-1');">table0</a></tt> <tt class="py-keyword">import</tt> <tt id="link-2" class="py-name"><a title="grib2.grib2.table0" class="py-name" href="#" onclick="return doclink('link-2', 'table0', 'link-1');">table0</a></tt> </tt>
 <a name="L185"></a><tt class="py-lineno"> 185</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">struct</tt> </tt>
 <a name="L186"></a><tt class="py-lineno"> 186</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">gaussian</tt> </tt>
 <a name="L187"></a><tt class="py-lineno"> 187</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">string</tt> </tt>
@@ -868,8 +870,12 @@
 <a name="L816"></a><tt class="py-lineno"> 816</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-name">f</tt><tt class="py-op">.</tt><tt class="py-name">seek</tt><tt class="py-op">(</tt><tt class="py-name">startpos</tt><tt class="py-op">)</tt> </tt>
 <a name="L817"></a><tt class="py-lineno"> 817</tt>  <tt class="py-line">        <tt class="py-name">gribmsg</tt> <tt class="py-op">=</tt> <tt class="py-name">f</tt><tt class="py-op">.</tt><tt class="py-name">read</tt><tt class="py-op">(</tt><tt class="py-name">lengrib</tt><tt class="py-op">)</tt> </tt>
 <a name="L818"></a><tt class="py-lineno"> 818</tt>  <tt class="py-line">        <tt class="py-comment"># make sure the message ends with '7777'</tt> </tt>
-<a name="L819"></a><tt class="py-lineno"> 819</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt id="link-2" class="py-name" targets="Method grib2.grib2.Grib2Encode.end()=grib2.grib2.Grib2Encode-class.html#end"><a title="grib2.grib2.Grib2Encode.end" class="py-name" href="#" onclick="return doclink('link-2', 'end', 'link-2');">end</a></tt> <tt class="py-op">=</tt> <tt class="py-name">gribmsg</tt><tt class="py-op">[</tt><tt class="py-op">-</tt><tt class="py-number">4</tt><tt class="py-op">:</tt><tt class="py-name">lengrib</tt><tt class="py-op">]</tt> </tt>
-<a name="L820"></a><tt class="py-lineno"> 820</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt id="link-3" class="py-name"><a title="grib2.grib2.Grib2Encode.end" class="py-name" href="#" onclick="return doclink('link-3', 'end', 'link-2');">end</a></tt> <tt class="py-op">!=</tt> <tt class="py-string">'7777'</tt><tt class="py-op">:</tt> </tt>
+<a name="L819"></a><tt class="py-lineno"> 819</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt id="link-3" class="py-name" targets="Method grib2.Grib2Encode.end()=grib2.Grib2Encode-class.html#end,Method grib2.grib2.Grib2Encode.end()=grib2.grib2.Grib2Encode-class.html#end,Method grib2.grib2new.Grib2Encode.end()=grib2.grib2new.Grib2Encode-class.html#end"><a title="grib2.Grib2Encode.end
+grib2.grib2.Grib2Encode.end
+grib2.grib2new.Grib2Encode.end" class="py-name" href="#" onclick="return doclink('link-3', 'end', 'link-3');">end</a></tt> <tt class="py-op">=</tt> <tt class="py-name">gribmsg</tt><tt class="py-op">[</tt><tt class="py-op">-</tt><tt class="py-number">4</tt><tt class="py-op">:</tt><tt class="py-name">lengrib</tt><tt class="py-op">]</tt> </tt>
+<a name="L820"></a><tt class="py-lineno"> 820</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt id="link-4" class="py-name"><a title="grib2.Grib2Encode.end
+grib2.grib2.Grib2Encode.end
+grib2.grib2new.Grib2Encode.end" class="py-name" href="#" onclick="return doclink('link-4', 'end', 'link-3');">end</a></tt> <tt class="py-op">!=</tt> <tt class="py-string">'7777'</tt><tt class="py-op">:</tt> </tt>
 <a name="L821"></a><tt class="py-lineno"> 821</tt>  <tt class="py-line">           <tt class="py-keyword">raise</tt> <tt class="py-name">IOError</tt><tt class="py-op">,</tt> <tt class="py-string">'partial GRIB message (no "7777" at end)'</tt> </tt>
 <a name="L822"></a><tt class="py-lineno"> 822</tt>  <tt class="py-line">        <tt class="py-comment"># do next message.</tt> </tt>
 <a name="L823"></a><tt class="py-lineno"> 823</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-name">nmsg</tt><tt class="py-op">=</tt><tt class="py-name">nmsg</tt><tt class="py-op">+</tt><tt class="py-number">1</tt> </tt>
@@ -1049,7 +1055,7 @@
 <a name="L997"></a><tt class="py-lineno"> 997</tt>  <tt class="py-line">    <tt class="py-name">gribs</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
 <a name="L998"></a><tt class="py-lineno"> 998</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">n</tt> <tt class="py-keyword">in</tt> <tt class="py-name">range</tt><tt class="py-op">(</tt><tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">msgstart</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
 <a name="L999"></a><tt class="py-lineno"> 999</tt>  <tt class="py-line">        <tt class="py-name">kwargs</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
-<a name="L1000"></a><tt class="py-lineno">1000</tt>  <tt class="py-line">        <tt class="py-name">kwargs</tt><tt class="py-op">[</tt><tt class="py-string">'originating_center'</tt><tt class="py-op">]</tt><tt class="py-op">=</tt><tt class="py-name">table0</tt><tt class="py-op">[</tt><tt class="py-name">identsect</tt><tt class="py-op">[</tt><tt class="py-name">n</tt><tt class="py-op">]</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">]</tt> </tt>
+<a name="L1000"></a><tt class="py-lineno">1000</tt>  <tt class="py-line">        <tt class="py-name">kwargs</tt><tt class="py-op">[</tt><tt class="py-string">'originating_center'</tt><tt class="py-op">]</tt><tt class="py-op">=</tt><tt id="link-5" class="py-name"><a title="grib2.grib2.table0" class="py-name" href="#" onclick="return doclink('link-5', 'table0', 'link-1');">table0</a></tt><tt class="py-op">[</tt><tt class="py-name">identsect</tt><tt class="py-op">[</tt><tt class="py-name">n</tt><tt class="py-op">]</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">]</tt> </tt>
 <a name="L1001"></a><tt class="py-lineno">1001</tt>  <tt class="py-line">        <tt class="py-name">kwargs</tt><tt class="py-op">[</tt><tt class="py-string">'grid_definition_template_number'</tt><tt class="py-op">]</tt><tt class="py-op">=</tt><tt class="py-name">gdtnum</tt><tt class="py-op">[</tt><tt class="py-name">n</tt><tt class="py-op">]</tt> </tt>
 <a name="L1002"></a><tt class="py-lineno">1002</tt>  <tt class="py-line">        <tt class="py-name">kwargs</tt><tt class="py-op">[</tt><tt class="py-string">'grid_definition_template'</tt><tt class="py-op">]</tt><tt class="py-op">=</tt><tt class="py-name">gdtmpl</tt><tt class="py-op">[</tt><tt class="py-name">n</tt><tt class="py-op">]</tt> </tt>
 <a name="L1003"></a><tt class="py-lineno">1003</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">gdeflist</tt><tt class="py-op">[</tt><tt class="py-name">n</tt><tt class="py-op">]</tt> <tt class="py-op">!=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt><tt class="py-op">:</tt> </tt>
@@ -1077,7 +1083,9 @@
 <a name="L1025"></a><tt class="py-lineno">1025</tt>  <tt class="py-line">            <tt class="py-name">kwargs</tt><tt class="py-op">[</tt><tt class="py-string">'_local_use_section'</tt><tt class="py-op">]</tt><tt class="py-op">=</tt><tt class="py-name">localsxn</tt><tt class="py-op">[</tt><tt class="py-name">n</tt><tt class="py-op">]</tt> </tt>
 <a name="L1026"></a><tt class="py-lineno">1026</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
 <a name="L1027"></a><tt class="py-lineno">1027</tt>  <tt class="py-line">            <tt class="py-name">kwargs</tt><tt class="py-op">[</tt><tt class="py-string">'has_local_use_section'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
-<a name="L1028"></a><tt class="py-lineno">1028</tt>  <tt class="py-line">        <tt class="py-name">gribs</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt id="link-4" class="py-name" targets="Class grib2.grib2.Grib2Message=grib2.grib2.Grib2Message-class.html"><a title="grib2.grib2.Grib2Message" class="py-name" href="#" onclick="return doclink('link-4', 'Grib2Message', 'link-4');">Grib2Message</a></tt><tt class="py-op">(</tt><tt class="py-op">**</tt><tt class="py-name">kwargs</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L1028"></a><tt class="py-lineno">1028</tt>  <tt class="py-line">        <tt class="py-name">gribs</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt id="link-6" class="py-name" targets="Class grib2.Grib2Message=grib2.Grib2Message-class.html,Class grib2.grib2.Grib2Message=grib2.grib2.Grib2Message-class.html,Class grib2.grib2new.Grib2Message=grib2.grib2new.Grib2Message-class.html"><a title="grib2.Grib2Message
+grib2.grib2.Grib2Message
+grib2.grib2new.Grib2Message" class="py-name" href="#" onclick="return doclink('link-6', 'Grib2Message', 'link-6');">Grib2Message</a></tt><tt class="py-op">(</tt><tt class="py-op">**</tt><tt class="py-name">kwargs</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
 <a name="L1029"></a><tt class="py-lineno">1029</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt class="py-name">close</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
 <a name="L1030"></a><tt class="py-lineno">1030</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">gribs</tt>  </tt>
 </div><a name="L1031"></a><tt class="py-lineno">1031</tt>  <tt class="py-line"> </tt>
@@ -1440,8 +1448,8 @@ expandto(location.href);
        bgcolor="#a0c0ff" cellspacing="0">
   <tr valign="middle">
   <!-- Home link -->
-      <th bgcolor="#70b0f0" class="navbar-select"
-          >&nbsp;&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;</th>
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="grib2-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
 
   <!-- Tree link -->
       <th>&nbsp;&nbsp;&nbsp;<a
@@ -1461,7 +1469,7 @@ expandto(location.href);
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Thu Jul  3 16:08:41 2008
+    Generated by Epydoc 3.0.1 on Mon Jan  5 10:20:24 2009
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

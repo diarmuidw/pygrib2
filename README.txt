@@ -10,7 +10,8 @@ Uses C code from NCEP's g2clib (http://www.nco.ncep.noaa.gov/pmb/codes/GRIB2).
 1) Python 2.3 or higher.
 
 2) numpy:      N-dimensional array object for python
-               (http://numpy.scipy.org).
+               (http://numpy.scipy.org). Version 1.2.1 or newer
+               recommended.
 
 3) pyproj:     python interface to PROJ.4 library 
                (http://code.google.com/p/pyproj). This in turn requires

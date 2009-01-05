@@ -3,7 +3,7 @@
           "DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>grib2.Grib2Encode</title>
+  <title>grib2.grib2new.Grib2Encode</title>
   <link rel="stylesheet" href="epydoc.css" type="text/css" />
   <script type="text/javascript" src="epydoc.js"></script>
 </head>
@@ -38,6 +38,7 @@
     <td width="100%">
       <span class="breadcrumbs">
         <a href="grib2-module.html">Package&nbsp;grib2</a> ::
+        <a href="grib2.grib2new-module.html">Module&nbsp;grib2new</a> ::
         Class&nbsp;Grib2Encode
       </span>
     </td>
@@ -49,27 +50,27 @@
   </tr>
 </table>
 <!-- ==================== CLASS DESCRIPTION ==================== -->
-<h1 class="epydoc">Class Grib2Encode</h1><p class="nomargin-top"><span class="codelink"><a href="grib2-pysrc.html#Grib2Encode">source&nbsp;code</a></span></p>
+<h1 class="epydoc">Class Grib2Encode</h1><p class="nomargin-top"><span class="codelink"><a href="grib2.grib2new-pysrc.html#Grib2Encode">source&nbsp;code</a></span></p>
 <p>Class for encoding data into a GRIB2 message.</p>
   <ul>
     <li>
       Creating a class instance (<a 
-      href="grib2.Grib2Encode-class.html#__init__" 
+      href="grib2.grib2new.Grib2Encode-class.html#__init__" 
       class="link">__init__</a>) initializes the message and adds sections 
       0 and 1 (the indicator and identification sections),
     </li>
     <li>
-      method <a href="grib2.Grib2Encode-class.html#addgrid" 
+      method <a href="grib2.grib2new.Grib2Encode-class.html#addgrid" 
       class="link">addgrid</a> adds a grid definition (section 3) to the 
       messsage.
     </li>
     <li>
-      method <a href="grib2.Grib2Encode-class.html#addfield" 
+      method <a href="grib2.grib2new.Grib2Encode-class.html#addfield" 
       class="link">addfield</a> adds sections 4-7 to the message (the 
       product definition, data representation, bitmap and data sections).
     </li>
     <li>
-      method <a href="grib2.Grib2Encode-class.html#end" 
+      method <a href="grib2.grib2new.Grib2Encode-class.html#end" 
       class="link">end</a> adds the end section (section 8) and terminates 
       the message.
     </li>
@@ -110,7 +111,7 @@
   repeated within a single GRIB message.  All sections within such repeated
   sequences must be present and shall appear in the numerical order noted 
   above. Unrepeated sections remain in effect until redefined.</p>
-  <p>Note:  Writing section 2 (the 'local use section') is not yet 
+  <p>Note:  Reading/writing section 2 (the 'local use section') is not yet 
   supported.</p>
 
 <!-- ==================== INSTANCE METHODS ==================== -->
@@ -127,13 +128,13 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="grib2.Grib2Encode-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+          <td><span class="summary-sig"><a href="grib2.grib2new.Grib2Encode-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">discipline</span>,
         <span class="summary-sig-arg">idsect</span>)</span><br />
       create a Grib2Enecode class instance given the GRIB2 discipline 
       parameter and the identification section (sections 0 and 1).</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="grib2-pysrc.html#Grib2Encode.__init__">source&nbsp;code</a></span>
+            <span class="codelink"><a href="grib2.grib2new-pysrc.html#Grib2Encode.__init__">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -147,7 +148,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="grib2.Grib2Encode-class.html#addfield" class="summary-sig-name">addfield</a>(<span class="summary-sig-arg">self</span>,
+          <td><span class="summary-sig"><a href="grib2.grib2new.Grib2Encode-class.html#addfield" class="summary-sig-name">addfield</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">pdtnum</span>,
         <span class="summary-sig-arg">pdtmpl</span>,
         <span class="summary-sig-arg">drtnum</span>,
@@ -159,7 +160,7 @@
       Add a product definition section, data representation section, bitmap
       section and data section to the GRIB2 message (sections 4-7).</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="grib2-pysrc.html#Grib2Encode.addfield">source&nbsp;code</a></span>
+            <span class="codelink"><a href="grib2.grib2new-pysrc.html#Grib2Encode.addfield">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -173,13 +174,13 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="grib2.Grib2Encode-class.html#addgrid" class="summary-sig-name">addgrid</a>(<span class="summary-sig-arg">self</span>,
+          <td><span class="summary-sig"><a href="grib2.grib2new.Grib2Encode-class.html#addgrid" class="summary-sig-name">addgrid</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">gdsinfo</span>,
         <span class="summary-sig-arg">gdtmpl</span>,
         <span class="summary-sig-arg">deflist</span>=<span class="summary-sig-default">None</span>)</span><br />
       Add a grid definition section (section 3) to the GRIB2 message.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="grib2-pysrc.html#Grib2Encode.addgrid">source&nbsp;code</a></span>
+            <span class="codelink"><a href="grib2.grib2new-pysrc.html#Grib2Encode.addgrid">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -193,10 +194,10 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="grib2.Grib2Encode-class.html#end" class="summary-sig-name">end</a>(<span class="summary-sig-arg">self</span>)</span><br />
+          <td><span class="summary-sig"><a href="grib2.grib2new.Grib2Encode-class.html#end" class="summary-sig-name">end</a>(<span class="summary-sig-arg">self</span>)</span><br />
       Add an end section (section 8) to the GRIB2 message.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="grib2-pysrc.html#Grib2Encode.end">source&nbsp;code</a></span>
+            <span class="codelink"><a href="grib2.grib2new-pysrc.html#Grib2Encode.end">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -217,7 +218,7 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a href="grib2.Grib2Encode-class.html#msg" class="summary-name">msg</a><br />
+        <a href="grib2.grib2new.Grib2Encode-class.html#msg" class="summary-name">msg</a><br />
       A binary string containing the GRIB2 message.
     </td>
   </tr>
@@ -244,19 +245,21 @@
     <br /><em class="fname">(Constructor)</em>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="grib2-pysrc.html#Grib2Encode.__init__">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="grib2.grib2new-pysrc.html#Grib2Encode.__init__">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
   <p>create a Grib2Enecode class instance given the GRIB2 discipline 
   parameter and the identification section (sections 0 and 1).</p>
   <p>The GRIB2 message is stored as a binary string in instance variable <a
-  href="grib2.Grib2Encode-class.html#msg" class="link">msg</a>.</p>
-  <p><a href="grib2.Grib2Encode-class.html#addgrid" 
-  class="link">addgrid</a>, <a href="grib2.Grib2Encode-class.html#addfield"
-  class="link">addfield</a> and <a href="grib2.Grib2Encode-class.html#end" 
-  class="link">end</a> class methods must be called to complete the GRIB2 
-  message.</p>
+  href="grib2.grib2new.Grib2Encode-class.html#msg" 
+  class="link">msg</a>.</p>
+  <p><a href="grib2.grib2new.Grib2Encode-class.html#addgrid" 
+  class="link">addgrid</a>, <a 
+  href="grib2.grib2new.Grib2Encode-class.html#addfield" 
+  class="link">addfield</a> and <a 
+  href="grib2.grib2new.Grib2Encode-class.html#end" class="link">end</a> 
+  class methods must be called to complete the GRIB2 message.</p>
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
@@ -327,7 +330,7 @@
         <span class="sig-arg">bitmap</span>=<span class="sig-default">None</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="grib2-pysrc.html#Grib2Encode.addfield">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="grib2.grib2new-pysrc.html#Grib2Encode.addfield">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
@@ -389,7 +392,7 @@
         <span class="sig-arg">deflist</span>=<span class="sig-default">None</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="grib2-pysrc.html#Grib2Encode.addgrid">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="grib2.grib2new-pysrc.html#Grib2Encode.addgrid">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
@@ -439,7 +442,7 @@
   <h3 class="epydoc"><span class="sig"><span class="sig-name">end</span>(<span class="sig-arg">self</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="grib2-pysrc.html#Grib2Encode.end">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="grib2.grib2new-pysrc.html#Grib2Encode.end">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
@@ -467,8 +470,9 @@
 <tr><td>
   <h3 class="epydoc">msg</h3>
   A binary string containing the GRIB2 message. After the message has been 
-  terminated by calling the <a href="grib2.Grib2Encode-class.html#end" 
-  class="link">end</a> method, this string can be written to a file.
+  terminated by calling the <a 
+  href="grib2.grib2new.Grib2Encode-class.html#end" class="link">end</a> 
+  method, this string can be written to a file.
   <dl class="fields">
   </dl>
 </td></tr></table>

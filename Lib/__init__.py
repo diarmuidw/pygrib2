@@ -18,7 +18,7 @@ Required
 
 - U{Python<http://python.org>} 2.3 or higher.  
 - U{numpy<http://sourceforge.net/project/showfiles.php?group_id=1369>}
-  N-dimensional array object for python.
+  N-dimensional array object for python. Version 1.2.1 or higher.
 - U{pyproj<http://code.google.com/p/pyproj/>} Python interface to 
   U{PROJ.4<http://proj.maptools.org>} library for cartographic transformations.
   U{PROJ.4<http://proj.maptools.org>} library must be installed first.
