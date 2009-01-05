@@ -16,7 +16,7 @@
   <tr valign="middle">
   <!-- Home link -->
       <th>&nbsp;&nbsp;&nbsp;<a
-        href="grib2.grib2-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+        href="grib2-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
 
   <!-- Tree link -->
       <th>&nbsp;&nbsp;&nbsp;<a
@@ -37,7 +37,7 @@
   <tr valign="top">
     <td width="100%">
       <span class="breadcrumbs">
-        Package&nbsp;grib2 ::
+        <a href="grib2-module.html">Package&nbsp;grib2</a> ::
         <a href="grib2.grib2-module.html">Module&nbsp;grib2</a> ::
         Class&nbsp;Grib2Encode
       </span>
@@ -148,26 +148,6 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="grib2.grib2.Grib2Encode-class.html#addgrid" class="summary-sig-name">addgrid</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">gdsinfo</span>,
-        <span class="summary-sig-arg">gdtmpl</span>,
-        <span class="summary-sig-arg">deflist</span>=<span class="summary-sig-default">None</span>)</span><br />
-      Add a grid definition section (section 3) to the GRIB2 message.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Encode.addgrid">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
           <td><span class="summary-sig"><a href="grib2.grib2.Grib2Encode-class.html#addfield" class="summary-sig-name">addfield</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">pdtnum</span>,
         <span class="summary-sig-arg">pdtmpl</span>,
@@ -181,6 +161,26 @@
       section and data section to the GRIB2 message (sections 4-7).</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Encode.addfield">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="grib2.grib2.Grib2Encode-class.html#addgrid" class="summary-sig-name">addgrid</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">gdsinfo</span>,
+        <span class="summary-sig-arg">gdtmpl</span>,
+        <span class="summary-sig-arg">deflist</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Add a grid definition section (section 3) to the GRIB2 message.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Encode.addgrid">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -311,59 +311,6 @@
   </dl>
 </td></tr></table>
 </div>
-<a name="addgrid"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">addgrid</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">gdsinfo</span>,
-        <span class="sig-arg">gdtmpl</span>,
-        <span class="sig-arg">deflist</span>=<span class="sig-default">None</span>)</span>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Encode.addgrid">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </tr></table>
-  
-  <p>Add a grid definition section (section 3) to the GRIB2 message.</p>
-  <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>gdsinfo</code></strong> - Sequence containing information needed for the grid definition 
-          section.
-          <ul>
-            <li>
-              gdsinfo[0] = Source of grid definition (see Code Table 3.0)
-            </li>
-            <li>
-              gdsinfo[1] = Number of grid points in the defined grid.
-            </li>
-            <li>
-              gdsinfo[2] = Number of octets needed for each additional grid
-              points defn. Used to define number of points in each row for 
-              non-reg grids (=0 for regular grid).
-            </li>
-            <li>
-              gdsinfo[3] = Interp. of list for optional points defn (Code 
-              Table 3.11)
-            </li>
-            <li>
-              gdsinfo[4] = Grid Definition Template Number (Code Table 3.1)
-            </li>
-          </ul></li>
-        <li><strong class="pname"><code>gdtmpl</code></strong> - Contains the data values for the specified Grid Definition 
-          Template ( NN=gds[4] ).  Each element of this integer array 
-          contains an entry (in the order specified) of Grid Definition 
-          Template 3.NN</li>
-        <li><strong class="pname"><code>deflist</code></strong> - (Used if gds[2] != 0)  Sequence containing the number of grid 
-          points contained in each row (or column) of a non-regular grid.</li>
-    </ul></dd>
-  </dl>
-</td></tr></table>
-</div>
 <a name="addfield"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -431,6 +378,59 @@
   </dl>
 </td></tr></table>
 </div>
+<a name="addgrid"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">addgrid</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">gdsinfo</span>,
+        <span class="sig-arg">gdtmpl</span>,
+        <span class="sig-arg">deflist</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="grib2.grib2-pysrc.html#Grib2Encode.addgrid">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Add a grid definition section (section 3) to the GRIB2 message.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>gdsinfo</code></strong> - Sequence containing information needed for the grid definition 
+          section.
+          <ul>
+            <li>
+              gdsinfo[0] = Source of grid definition (see Code Table 3.0)
+            </li>
+            <li>
+              gdsinfo[1] = Number of grid points in the defined grid.
+            </li>
+            <li>
+              gdsinfo[2] = Number of octets needed for each additional grid
+              points defn. Used to define number of points in each row for 
+              non-reg grids (=0 for regular grid).
+            </li>
+            <li>
+              gdsinfo[3] = Interp. of list for optional points defn (Code 
+              Table 3.11)
+            </li>
+            <li>
+              gdsinfo[4] = Grid Definition Template Number (Code Table 3.1)
+            </li>
+          </ul></li>
+        <li><strong class="pname"><code>gdtmpl</code></strong> - Contains the data values for the specified Grid Definition 
+          Template ( NN=gds[4] ).  Each element of this integer array 
+          contains an entry (in the order specified) of Grid Definition 
+          Template 3.NN</li>
+        <li><strong class="pname"><code>deflist</code></strong> - (Used if gds[2] != 0)  Sequence containing the number of grid 
+          points contained in each row (or column) of a non-regular grid.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
 <a name="end"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -483,7 +483,7 @@
   <tr valign="middle">
   <!-- Home link -->
       <th>&nbsp;&nbsp;&nbsp;<a
-        href="grib2.grib2-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+        href="grib2-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
 
   <!-- Tree link -->
       <th>&nbsp;&nbsp;&nbsp;<a
@@ -503,7 +503,7 @@
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Thu Jul  3 16:08:41 2008
+    Generated by Epydoc 3.0.1 on Mon Jan  5 10:20:22 2009
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"
