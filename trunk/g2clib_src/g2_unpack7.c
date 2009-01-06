@@ -96,7 +96,8 @@ g2int g2_unpack7(unsigned char *cgrib,g2int *iofst,g2int igdsnum,g2int *igdstmpl
       }
 
       ipos=(*iofst/8);
-      lfld=(g2float *)calloc(ndpts,sizeof(g2float));
+// wne      lfld=(g2float *)calloc(ndpts,sizeof(g2float));
+      lfld=(g2float *)calloc(ndpts ? ndpts : 1,sizeof(g2float));
       if (lfld == 0) {
          ierr=6;
          return(ierr);
