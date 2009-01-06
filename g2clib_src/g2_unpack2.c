@@ -61,7 +61,7 @@ g2int g2_unpack2(unsigned char *cgrib,g2int *iofst,g2int *lencsec2,unsigned char
          return(ierr);
       }
 
-      *csec2=(unsigned char *)malloc(*lencsec2);
+      *csec2=(unsigned char *)malloc(*lencsec2+1);
       if (*csec2 == 0) {
          ierr=6;
          *lencsec2=0;
