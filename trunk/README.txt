@@ -14,8 +14,7 @@ Uses C code from NCEP's g2clib (http://www.nco.ncep.noaa.gov/pmb/codes/GRIB2).
                recommended.
 
 3) pyproj:     python interface to PROJ.4 library 
-               (http://code.google.com/p/pyproj). This in turn requires
-               the PROJ.4 C library from http://proj.maptools.org.
+               (http://code.google.com/p/pyproj). 
 
 4) jasper lib: This library is a C implementation of the JPEG-2000 Part-1 
                standard (i.e., ISO/IEC 15444-1).
