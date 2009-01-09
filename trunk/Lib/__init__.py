@@ -21,7 +21,6 @@ Required
   N-dimensional array object for python. Version 1.2.1 or higher.
 - U{pyproj<http://code.google.com/p/pyproj/>} Python interface to 
   U{PROJ.4<http://proj.maptools.org>} library for cartographic transformations.
-  U{PROJ.4<http://proj.maptools.org>} library must be installed first.
 - U{Jasper<http://www.ece.uvic.ca/~mdadams/jasper>} library. This library
   is a C implementation of the JPEG-2000 Part-1 standard (ISO/IEC 15444-1).
 - U{PNG<http://www.libpng.org/pub/png/libpng.html>} library. This library
@@ -130,8 +129,7 @@ Changelog
  - B{20060117}: Now uses numpy by default (instead of Numeric).
    Python 2.5 compatibility fixes.
  - B{20070130}: Fixes some bugs found by Rob Cermak.  Now
-   requires pyproj be installed first (which in turn requires
-   that you have the PROJ.4 C-library installed). Updated to g2clib 1.0.4.
+   requires pyproj be installed first. Updated to g2clib 1.0.4.
  - B{20070428}: Fixed memory leaks with a patch provided
    by Thomas Natschlager.
  - B{20070501}: Included new parameters approved by WMO
