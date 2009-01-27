@@ -188,6 +188,7 @@ import gaussian
 import string
 import math
 import warnings
+from datetime import datetime
 
 import numpy as N
 from numpy import ma
@@ -240,7 +241,10 @@ class Grib2Message:
  @ivar earthRmajor: major (equatorial) earth radius.
  @ivar earthRminor: minor (polar) earth radius.
  @ivar ensemble_info: ensemble member information string.
+ @ivar ensemble_member:  ensemble member number.
  @ivar forecast_time: string describing forecast time.
+ @ivar forecast_hour: forecast hour.
+ @ivar initial_time: datetime instance representation initialization time.
  @ivar grid_definition_info: grid definition section information from section 3.
   See L{Grib2Encode.addgrid} for details.
  @ivar grid_definition_template: grid definition template from section 3.
@@ -365,6 +369,8 @@ class Grib2Message:
            try:
                ftime = _getftime(pdtnum,pdtmpl)
                ftimestring = string.lstrip(repr(ftime[0])+' '+ftime[1]+' Forecast initialized '+date)
+               if ftime[1] in ['Hour','hour']:
+                   self.forecast_hour = ftime[0]
            except:
                ftimestring=None
         if ftimestring is not None:
@@ -388,6 +394,7 @@ class Grib2Message:
         if pdtnum in [1,11]:
             ensname,pertnum,nmembers = _getensinfo(pdtnum,pdtmpl)
             self.ensemble_info = ensname+' member '+repr(pertnum)+' of '+repr(nmembers)
+            self.ensemble_member = pertnum
         elif pdtnum in [2,12]:
             ensname,pertnum,nmembers = _getensinfo(pdtnum,pdtmpl)
             self.ensemble_info = ensname+' from a '+repr(nmembers)+' member ensemble'
@@ -607,9 +614,11 @@ lat/lon values returned by grid method may be incorrect."""
         else:
             ensstring = ''
         self.inventory = repr(self._grib_message_number)+':'+paramstring+':'+levstring+':'+fcsttimestring+':'+self.type_of_grid+':'+ensstring
+        idsect = self.identification_section
+        self.initial_time = datetime(idsect[5],idsect[6],idsect[7],idsect[8],idsect[9],idsect[10])
 
     def __repr__(self):
-        """print a summary string describiing the contents of the GRIB2 message"""
+        """print a summary string describing the contents of the GRIB2 message"""
         return self.inventory
         
     def data(self,fill_value=1.e30,masked_array=True,expand=True,order=None):
