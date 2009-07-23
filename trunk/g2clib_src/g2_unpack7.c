@@ -33,6 +33,7 @@ g2int g2_unpack7(unsigned char *cgrib,g2int *iofst,g2int igdsnum,g2int *igdstmpl
 // 2004-11-29  Gilbert  - JPEG2000 now allowed to use WMO Template no. 5.40
 //                        PNG now allowed to use WMO Template no. 5.41
 // 2004-12-16  Taylor   - Added check on comunpack return code.
+// 2008-12-23  Wesley   - Initialize Number of data points unpacked
 //
 // USAGE:    int g2_unpack7(unsigned char *cgrib,g2int *iofst,g2int igdsnum,
 //                          g2int *igdstmpl, g2int idrsnum,
@@ -96,7 +97,6 @@ g2int g2_unpack7(unsigned char *cgrib,g2int *iofst,g2int igdsnum,g2int *igdstmpl
       }
 
       ipos=(*iofst/8);
-// wne      lfld=(g2float *)calloc(ndpts,sizeof(g2float));
       lfld=(g2float *)calloc(ndpts ? ndpts : 1,sizeof(g2float));
       if (lfld == 0) {
          ierr=6;

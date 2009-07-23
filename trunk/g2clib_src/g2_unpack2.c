@@ -13,6 +13,7 @@ g2int g2_unpack2(unsigned char *cgrib,g2int *iofst,g2int *lencsec2,unsigned char
 //
 // PROGRAM HISTORY LOG:
 // 2002-10-31  Gilbert
+// 2008-12-23  Wesley   - Initialize lencsec2 Length of Local Use data
 //
 // USAGE:    int g2_unpack2(unsigned char *cgrib,g2int *iofst,g2int *lencsec2,
 //                          unsigned char **csec2)

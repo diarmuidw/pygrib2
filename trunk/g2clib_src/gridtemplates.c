@@ -14,6 +14,8 @@ g2int getgridindex(g2int number)
 ! PROGRAM HISTORY LOG:
 ! 2001-06-28  Gilbert
 ! 2007-08-16  Vuong     -  Added GDT 3.204  Curvilinear Orthogonal Grid
+! 2008-07-08  Vuong     -  Added GDT 3.32768 Rotate Lat/Lon E-grid (Arakawa)
+! 2009-01-14  Vuong     -  Changed structure name template to gtemplate
 !
 ! USAGE:    index=getgridindex(number)
 !   INPUT ARGUMENT LIST:
@@ -43,7 +45,7 @@ g2int getgridindex(g2int number)
            return(getgridindex);
 }
 
-template *getgridtemplate(g2int number)
+gtemplate *getgridtemplate(g2int number)
 /*!$$$  SUBPROGRAM DOCUMENTATION BLOCK
 !                .      .    .                                       .
 ! SUBPROGRAM:    getgridtemplate 
@@ -58,8 +60,10 @@ template *getgridtemplate(g2int number)
 ! PROGRAM HISTORY LOG:
 ! 2000-05-09  Gilbert
 ! 2007-08-16  Vuong     -  Added GDT 3.204  Curvilinear Orthogonal Grid
+! 2008-07-08  Vuong     -  Added GDT 3.32768 Rotate Lat/Lon E-grid (Arakawa)
+! 2009-01-14  Vuong     -  Changed structure name template to gtemplate
 !
-! USAGE:    template *getgridtemplate(number)
+! USAGE:    gtemplate *getgridtemplate(number)
 !   INPUT ARGUMENT LIST:
 !     number   - NN, indicating the number of the Grid Definition 
 !                Template 3.NN that is being requested.
@@ -77,12 +81,12 @@ template *getgridtemplate(g2int number)
 !$$$*/
 {
            g2int index;
-           template *new;
+           gtemplate *new;
 
            index=getgridindex(number);
 
            if (index != -1) {
-              new=(template *)malloc(sizeof(template));
+              new=(gtemplate *)malloc(sizeof(gtemplate));
               new->type=3;
               new->num=templatesgrid[index].template_num;
               new->maplen=templatesgrid[index].mapgridlen;
@@ -101,7 +105,7 @@ template *getgridtemplate(g2int number)
 }
 
 
-template *extgridtemplate(g2int number,g2int *list)
+gtemplate *extgridtemplate(g2int number,g2int *list)
 /*!$$$  SUBPROGRAM DOCUMENTATION BLOCK
 !                .      .    .                                       .
 ! SUBPROGRAM:    extgridtemplate 
@@ -115,6 +119,8 @@ template *extgridtemplate(g2int number,g2int *list)
 !
 ! PROGRAM HISTORY LOG:
 ! 2000-05-09  Gilbert
+! 2008-07-08  Vuong     -  Added GDT 3.32768 Rotate Lat/Lon E-grid (Arakawa)
+! 2009-01-14  Vuong     -  Changed structure name template to gtemplate
 !
 ! USAGE:    CALL extgridtemplate(number,list)
 !   INPUT ARGUMENT LIST:
@@ -133,7 +139,7 @@ template *extgridtemplate(g2int number,g2int *list)
 !
 !$$$*/
 {
-           template *new;
+           gtemplate *new;
            g2int index,i;
 
            index=getgridindex(number);

@@ -15,6 +15,7 @@ g2int g2_unpack3(unsigned char *cgrib,g2int *iofst,g2int **igds,g2int **igdstmpl
 //
 // PROGRAM HISTORY LOG:
 // 2002-10-31  Gilbert
+// 2009-01-14  Vuong     Changed structure name template to gtemplate
 //
 // USAGE:    int g2_unpack3(unsigned char *cgrib,g2int *iofst,g2int **igds,
 //                          g2int **igdstmpl,g2int *mapgridlen,
@@ -70,7 +71,7 @@ g2int g2_unpack3(unsigned char *cgrib,g2int *iofst,g2int **igds,g2int **igdstmpl
       g2int ierr,i,j,nbits,isecnum;
       g2int lensec,ibyttem=0,isign,newlen;
       g2int *ligds,*ligdstmpl=0,*lideflist=0;
-      template *mapgrid;
+      gtemplate *mapgrid;
 
       ierr=0;
       *igds=0;       // NULL
@@ -150,7 +151,7 @@ g2int g2_unpack3(unsigned char *cgrib,g2int *iofst,g2int **igds,g2int **igdstmpl
         //   extended.
         //   The number of values in a specific template may vary
         //   depending on data specified in the "static" part of the
-        //   template.
+        //   gtemplate.
         //
         if ( mapgrid->needext == 1 ) {
           free(mapgrid);

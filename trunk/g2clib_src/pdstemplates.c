@@ -13,6 +13,7 @@ g2int getpdsindex(g2int number)
 //
 // PROGRAM HISTORY LOG:
 // 2001-06-28  Gilbert
+// 2009-01-14  Vuong     Changed structure name template to gtemplate
 //
 // USAGE:    index=getpdsindex(number)
 //   INPUT ARGUMENT LIST:
@@ -43,7 +44,7 @@ g2int getpdsindex(g2int number)
 }
 
 
-template *getpdstemplate(g2int number)
+gtemplate *getpdstemplate(g2int number)
 ///$$$  SUBPROGRAM DOCUMENTATION BLOCK
 //                .      .    .                                       .
 // SUBPROGRAM:    getpdstemplate 
@@ -57,6 +58,7 @@ template *getpdstemplate(g2int number)
 //
 // PROGRAM HISTORY LOG:
 // 2000-05-11  Gilbert
+// 2009-01-14  Vuong     Changed structure name template to gtemplate
 //
 // USAGE:    CALL getpdstemplate(number)
 //   INPUT ARGUMENT LIST:
@@ -76,12 +78,12 @@ template *getpdstemplate(g2int number)
 //$$$/
 {
            g2int index;
-           template *new;
+           gtemplate *new;
 
            index=getpdsindex(number);
 
            if (index != -1) {
-              new=(template *)malloc(sizeof(template));
+              new=(gtemplate *)malloc(sizeof(gtemplate));
               new->type=4;
               new->num=templatespds[index].template_num;
               new->maplen=templatespds[index].mappdslen;
@@ -100,7 +102,7 @@ template *getpdstemplate(g2int number)
 }
          
         
-template *extpdstemplate(g2int number,g2int *list)
+gtemplate *extpdstemplate(g2int number,g2int *list)
 ///$$$  SUBPROGRAM DOCUMENTATION BLOCK
 //                .      .    .                                       .
 // SUBPROGRAM:    extpdstemplate 
@@ -114,6 +116,7 @@ template *extpdstemplate(g2int number,g2int *list)
 //
 // PROGRAM HISTORY LOG:
 // 2000-05-11  Gilbert
+// 2009-01-14  Vuong     Changed structure name template to gtemplate
 //
 // USAGE:    CALL extpdstemplate(number,list)
 //   INPUT ARGUMENT LIST:
@@ -132,7 +135,7 @@ template *extpdstemplate(g2int number,g2int *list)
 //
 //$$$
 {
-           template *new;
+           gtemplate *new;
            g2int index,i,j,k,l;
 
            index=getpdsindex(number);
