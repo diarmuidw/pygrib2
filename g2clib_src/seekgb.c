@@ -17,6 +17,7 @@ void seekgb(FILE *lugb,g2int iseek,g2int mseek,g2int *lskip,g2int *lgrib)
 //
 // PROGRAM HISTORY LOG:
 // 2002-10-28  GILBERT   Modified from Iredell's skgb subroutine
+// 2009-01-16  VUONG     Changed  lskip to 4 instead of sizof(g2int)
 //
 // USAGE:    seekgb(FILE *lugb,g2int iseek,g2int mseek,int *lskip,int *lgrib)
 //   INPUT ARGUMENTS:
@@ -35,7 +36,8 @@ void seekgb(FILE *lugb,g2int iseek,g2int mseek,g2int *lskip,g2int *lgrib)
 //$$$
 {
       g2int  ret;
-      g2int k,k4,ipos,nread,lim,start,vers,end,lengrib;
+      g2int k,k4,ipos,nread,lim,start,vers,lengrib;
+      int    end;
       unsigned char *cbuf;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -65,7 +67,8 @@ void seekgb(FILE *lugb,g2int iseek,g2int mseek,g2int *lskip,g2int *lgrib)
             if (vers == 1) gbit(cbuf,&lengrib,(k+4)*8,3*8);
             if (vers == 2) gbit(cbuf,&lengrib,(k+12)*8,4*8);
             ret=fseek(lugb,ipos+k+lengrib-4,SEEK_SET);
-            k4=fread(&end,sizeof(g2int),1,lugb);
+//          Hard code to 4 instead of sizeof(g2int)
+            k4=fread(&end,4,1,lugb);
             if (k4 == 1 && end == 926365495) {      //GRIB message found
                 *lskip=ipos+k;
                 *lgrib=lengrib;

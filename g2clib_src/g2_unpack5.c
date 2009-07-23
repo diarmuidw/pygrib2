@@ -15,6 +15,7 @@ g2int g2_unpack5(unsigned char *cgrib,g2int *iofst,g2int *ndpts,g2int *idrsnum,
 //
 // PROGRAM HISTORY LOG:
 // 2002-10-31  Gilbert
+// 2009-01-14  Vuong     Changed structure name template to gtemplate
 //
 // USAGE:    int g2_unpack5(unsigned char *cgrib,g2int *iofst,g2int *ndpts,
 //                          g2int *idrsnum,g2int **idrstmpl,g2int *mapdrslen)
@@ -53,7 +54,7 @@ g2int g2_unpack5(unsigned char *cgrib,g2int *iofst,g2int *ndpts,g2int *idrsnum,
       g2int ierr,needext,i,j,nbits,isecnum;
       g2int lensec,isign,newlen;
       g2int *lidrstmpl=0;
-      template *mapdrs;
+      gtemplate *mapdrs;
 
       ierr=0;
       *idrstmpl=0;       //NULL
@@ -116,9 +117,9 @@ g2int g2_unpack5(unsigned char *cgrib,g2int *iofst,g2int *ndpts,g2int *idrsnum,
       //
       //   Check to see if the Data Representation Template needs to be
       //   extended.
-      //   The number of values in a specific template may vary
+      //   The number of values in a specific gtemplate may vary
       //   depending on data specified in the "static" part of the
-      //   template.
+      //   gtemplate.
       //
       if ( needext == 1 ) {
         free(mapdrs);

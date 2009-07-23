@@ -13,13 +13,14 @@ g2int getdrsindex(g2int number)
 !
 ! PROGRAM HISTORY LOG:
 ! 2001-06-28  Gilbert
+! 2009-01-14  Vuong     Changed structure name template to gtemplate
 !
 ! USAGE:    index=getdrsindex(number)
 !   INPUT ARGUMENT LIST:
 !     number   - NN, indicating the number of the Data Representation 
 !                Template 5.NN that is being requested.
 !
-! RETURNS:  Index of DRT 5.NN in array templates, if template exists.
+! RETURNS:  Index of DRT 5.NN in array gtemplates, if gtemplate exists.
 !           = -1, otherwise.
 !
 ! REMARKS: None
@@ -43,7 +44,7 @@ g2int getdrsindex(g2int number)
 }
 
 
-template *getdrstemplate(g2int number)
+gtemplate *getdrstemplate(g2int number)
 /*!$$$  SUBPROGRAM DOCUMENTATION BLOCK
 !                .      .    .                                       .
 ! SUBPROGRAM:    getdrstemplate 
@@ -57,6 +58,7 @@ template *getdrstemplate(g2int number)
 !
 ! PROGRAM HISTORY LOG:
 ! 2000-05-11  Gilbert
+! 2009-01-14  Vuong     Changed structure name template to gtemplate
 !
 ! USAGE:    new=getdrstemplate(number);
 !   INPUT ARGUMENT LIST:
@@ -76,12 +78,12 @@ template *getdrstemplate(g2int number)
 !$$$*/
 {
            g2int index;
-           template *new;
+           gtemplate *new;
 
            index=getdrsindex(number);
 
            if (index != -1) {
-              new=(template *)malloc(sizeof(template));
+              new=(gtemplate *)malloc(sizeof(gtemplate));
               new->type=5;
               new->num=templatesdrs[index].template_num;
               new->maplen=templatesdrs[index].mapdrslen;
@@ -99,7 +101,7 @@ template *getdrstemplate(g2int number)
          return(0);        //NULL
 }
 
-template *extdrstemplate(g2int number,g2int *list)
+gtemplate *extdrstemplate(g2int number,g2int *list)
 /*!$$$  SUBPROGRAM DOCUMENTATION BLOCK
 !                .      .    .                                       .
 ! SUBPROGRAM:    extdrstemplate 
@@ -113,6 +115,7 @@ template *extdrstemplate(g2int number,g2int *list)
 !
 ! PROGRAM HISTORY LOG:
 ! 2000-05-11  Gilbert
+! 2009-01-14  Vuong     Changed structure name template to gtemplate
 !
 ! USAGE:    new=extdrstemplate(number,list);
 !   INPUT ARGUMENT LIST:
@@ -131,7 +134,7 @@ template *extdrstemplate(g2int number,g2int *list)
 !
 !$$$*/
 {
-           template *new;
+           gtemplate *new;
            g2int index,i;
 
            index=getdrsindex(number);
